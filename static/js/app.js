@@ -37,6 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const engineBtns       = document.querySelectorAll('.engine-btn');
     const engineSlider     = document.getElementById('engine-slider');
     const engineInfo       = document.getElementById('engine-info');
+    const apiKeyWrapper    = document.getElementById('api-key-wrapper');
+    const apiKeyInput      = document.getElementById('gemini-api-key');
+    const apiKeyToggle     = document.getElementById('api-key-toggle');
 
     let selectedEngine = 'fast';
 
@@ -53,12 +56,25 @@ document.addEventListener('DOMContentLoaded', () => {
             if (engine === 'marker') {
                 engineSlider.classList.add('right');
                 engineInfo.classList.add('show');
+                apiKeyWrapper.classList.add('show');
             } else {
                 engineSlider.classList.remove('right');
                 engineInfo.classList.remove('show');
+                apiKeyWrapper.classList.remove('show');
             }
         });
     });
+
+    // ─── API Key Show/Hide Toggle ─────────────────────────────────────────
+    if (apiKeyToggle) {
+        apiKeyToggle.addEventListener('click', () => {
+            const isPassword = apiKeyInput.type === 'password';
+            apiKeyInput.type = isPassword ? 'text' : 'password';
+            apiKeyToggle.querySelector('svg').innerHTML = isPassword
+                ? `<path d="M2 2l12 12M6.5 6.6A3 3 0 0111.4 9.5M5.1 5.1C3.6 6.2 2.5 7.8 1 8s4 5 7 5c1.5 0 2.9-.5 4-1.4M9.9 3.1C9.3 3 8.7 3 8 3 5 3 2 8 2 8s.8 1.3 2.1 2.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>`
+                : `<path d="M8 3C4 3 1 8 1 8s3 5 7 5 7-5 7-5-3-5-7-5z" stroke="currentColor" stroke-width="1.4"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.4"/>`;
+        });
+    }
 
     // ─── State ───────────────────────────────────────────────────────────
     let currentMarkdown = '';
@@ -128,6 +144,16 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        // Validate Gemini API key is provided when using Math Mode
+        if (selectedEngine === 'marker') {
+            const key = apiKeyInput ? apiKeyInput.value.trim() : '';
+            if (!key) {
+                showError('Please enter your Gemini API key to use Math Mode.');
+                apiKeyInput && apiKeyInput.focus();
+                return;
+            }
+        }
+
         uploadFile(file);
     }
 
@@ -183,6 +209,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const formData = new FormData();
         formData.append('file', file);
         formData.append('engine', selectedEngine);
+
+        // Attach user's Gemini API key if in Math Mode
+        if (selectedEngine === 'marker' && apiKeyInput) {
+            formData.append('gemini_api_key', apiKeyInput.value.trim());
+        }
 
         try {
             progressBarFill.style.width = '40%';

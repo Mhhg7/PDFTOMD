@@ -26,10 +26,7 @@ app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024  # 100 MB max upload
 
 # Initialize Gemini client
-gemini_client = None
-GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
-if GEMINI_API_KEY:
-    gemini_client = genai.Client(api_key=GEMINI_API_KEY)
+SERVER_GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
 
 # ─── Conversion Statistics (in-memory counter) ───────────────────────────────
 conversion_stats = {
@@ -176,17 +173,21 @@ def convert_pdf_to_markdown(pdf_path):
 
 # ─── Gemini Vision API PDF to Markdown (with Math support) ───────────────────
 
-def convert_pdf_with_gemini(pdf_path):
+def convert_pdf_with_gemini(pdf_path, api_key=None):
     """
     Convert a PDF file to Markdown using Google Gemini Vision API.
     Renders each page as an image, sends to Gemini for OCR with math support.
     Returns (markdown_string, page_count).
+    Uses user-provided api_key, falls back to server key from .env.
     """
-    if not gemini_client:
+    # Prefer user-supplied key, fall back to server key
+    resolved_key = api_key or SERVER_GEMINI_API_KEY
+    if not resolved_key:
         raise RuntimeError(
-            'Gemini API key not configured. '
-            'Set GEMINI_API_KEY in your .env file.'
+            'No Gemini API key provided. '
+            'Please enter your Gemini API key in the Math Mode field.'
         )
+    gemini_client = genai.Client(api_key=resolved_key)
 
     doc = fitz.open(pdf_path)
     page_count = len(doc)
@@ -392,7 +393,8 @@ def upload():
             markdown_content, page_count = convert_pptx_to_markdown(tmp_path)
             file_type = 'PPTX'
         elif engine == 'marker':
-            markdown_content, page_count = convert_pdf_with_gemini(tmp_path)
+            user_api_key = request.form.get('gemini_api_key', '').strip() or None
+            markdown_content, page_count = convert_pdf_with_gemini(tmp_path, api_key=user_api_key)
             file_type = 'PDF'
         else:
             markdown_content, page_count = convert_pdf_to_markdown(tmp_path)

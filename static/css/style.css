@@ -422,6 +422,95 @@ button {
     color: #D97706;
 }
 
+/* ───── Gemini API Key Input ───── */
+.api-key-wrapper {
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+    animation: fadeInUp 0.25s ease;
+}
+
+.api-key-wrapper.show {
+    display: flex;
+}
+
+.api-key-field {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: var(--color-surface);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.api-key-field:focus-within {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.api-key-icon {
+    flex-shrink: 0;
+    margin-left: 12px;
+    color: var(--color-text-muted);
+}
+
+.api-key-input {
+    flex: 1;
+    padding: 10px 12px;
+    border: none;
+    outline: none;
+    font-size: 0.875rem;
+    font-family: 'Inter', monospace;
+    color: var(--color-text-primary);
+    background: transparent;
+    letter-spacing: 0.02em;
+}
+
+.api-key-input::placeholder {
+    color: var(--color-text-muted);
+    letter-spacing: 0;
+}
+
+.api-key-toggle {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 12px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: var(--color-text-muted);
+    transition: color var(--transition-fast);
+}
+
+.api-key-toggle:hover {
+    color: var(--color-primary);
+}
+
+.api-key-hint {
+    font-size: 0.76rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.api-key-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 2px;
+    transition: opacity var(--transition-fast);
+}
+
+.api-key-link:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
 .upload-area {
     display: flex;
     flex-direction: column;
