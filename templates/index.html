@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PDF2MD — Convert your PDF and PPTX documents to clean Markdown format online. Free, fast, and private.">
+    <title>PDF2MD — Convert PDF & PPTX to Markdown Online</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <!-- ───── Navbar ───── -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo" id="nav-logo">
+                <div class="logo-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="3" y="3" width="18" height="18" rx="4" fill="url(#logo-gradient)" />
+                        <path d="M8 8h8M8 12h5M8 16h7" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                        <defs>
+                            <linearGradient id="logo-gradient" x1="3" y1="3" x2="21" y2="21">
+                                <stop stop-color="#2563EB"/>
+                                <stop offset="1" stop-color="#7C3AED"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <span class="logo-text">PDF2MD</span>
+            </a>
+
+            <div class="nav-links" id="nav-links">
+                <a href="#converter" class="nav-link">Convert</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#how-it-works" class="nav-link">How It Works</a>
+            </div>
+
+            <div class="nav-actions">
+                <a href="#converter" class="btn-convert-nav" id="btn-convert-nav">Start Converting</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ───── Hero Section ───── -->
+    <section class="hero" id="hero">
+        <div class="hero-bg-effects">
+            <div class="hero-orb hero-orb-1"></div>
+            <div class="hero-orb hero-orb-2"></div>
+            <div class="hero-orb hero-orb-3"></div>
+        </div>
+        <div class="hero-container">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                Free & Open Source
+            </div>
+            <h1 class="hero-title">
+                Convert <span class="gradient-text">PDF</span> & <span class="gradient-text">PPTX</span> to <span class="gradient-text">Markdown</span> Online
+            </h1>
+            <p class="hero-subtitle">
+                Transform your PDF and PowerPoint documents into clean, structured Markdown in seconds.
+                Preserves headings, bold, italic, lists, tables, and more.
+            </p>
+        </div>
+    </section>
+
+    <!-- ───── Converter Section ───── -->
+    <section class="converter-section" id="converter">
+        <div class="converter-container">
+
+            <!-- Upload Area -->
+            <div class="upload-card" id="upload-card">
+                <!-- Engine Toggle -->
+                <div class="engine-toggle" id="engine-toggle">
+                    <button class="engine-btn active" data-engine="fast" id="engine-fast">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M9 1L4 9h4l-1 6 5-8H8l1-6z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Fast Mode
+                    </button>
+                    <button class="engine-btn" data-engine="marker" id="engine-marker">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <text x="1" y="13" font-size="14" font-family="serif" fill="currentColor">∑</text>
+                        </svg>
+                        Math Mode (AI)
+                    </button>
+                    <div class="engine-slider" id="engine-slider"></div>
+                </div>
+                <div class="engine-info" id="engine-info">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/>
+                        <path d="M7 6v4M7 4.5h.01" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Uses AI to recognize math equations. First run downloads ~2GB model. Processing takes ~5-15 sec/page.</span>
+                </div>
+
+                <div class="upload-area" id="upload-area">
+                    <div class="upload-icon" id="upload-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="8" y="6" width="32" height="36" rx="4" stroke="#94A3B8" stroke-width="2" fill="none"/>
+                            <path d="M16 4v6a2 2 0 01-2 2H8" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M24 20v12M18 26l6-6 6 6" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <p class="upload-text">Drop file here to upload</p>
+                    <div class="upload-divider">
+                        <span class="divider-line"></span>
+                        <span class="divider-text">or</span>
+                        <span class="divider-line"></span>
+                    </div>
+                    <label for="file-input" class="btn-upload" id="btn-upload">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 3v12M3 9h12" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        Upload from your device
+                    </label>
+                    <input type="file" id="file-input" accept=".pdf,.pptx" hidden>
+                    <p class="upload-hint">PDF & PPTX supported — Size up to 100 MB</p>
+                </div>
+
+                <!-- Progress Bar (hidden by default) -->
+                <div class="progress-wrapper" id="progress-wrapper">
+                    <div class="progress-file-info">
+                        <div class="progress-file-icon">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <rect x="3" y="2" width="14" height="16" rx="2" fill="#EFF6FF" stroke="#2563EB" stroke-width="1.5"/>
+                                <path d="M7 7h6M7 10h4M7 13h5" stroke="#2563EB" stroke-width="1" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="progress-file-details">
+                            <span class="progress-filename" id="progress-filename">document.pdf</span>
+                            <span class="progress-status" id="progress-status">Converting...</span>
+                        </div>
+                    </div>
+                    <div class="progress-bar-track">
+                        <div class="progress-bar-fill" id="progress-bar-fill"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Result Area (hidden by default) -->
+            <div class="result-card" id="result-card">
+                <div class="result-header">
+                    <div class="result-title-group">
+                        <div class="result-icon">
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                                <circle cx="11" cy="11" r="10" fill="#DCFCE7" stroke="#22C55E" stroke-width="1.5"/>
+                                <path d="M7 11l3 3 5-5" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="result-title" id="result-title">Conversion Complete</h3>
+                            <p class="result-meta" id="result-meta">0 pages processed</p>
+                        </div>
+                    </div>
+                    <div class="result-actions">
+                        <button class="btn-action btn-copy" id="btn-copy" title="Copy to clipboard">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                <rect x="5" y="5" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M3 13V4a1 1 0 011-1h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                            Copy
+                        </button>
+                        <button class="btn-action btn-download" id="btn-download" title="Download .md file">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                <path d="M9 3v9M5 9l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M3 14h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                            Download
+                        </button>
+                        <button class="btn-action btn-new" id="btn-new" title="Convert another file">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                <path d="M9 3v12M3 9h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            New
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tabs -->
+                <div class="result-tabs">
+                    <button class="tab-btn active" id="tab-raw" data-tab="raw">Raw Markdown</button>
+                    <button class="tab-btn" id="tab-preview" data-tab="preview">Preview</button>
+                </div>
+
+                <!-- Tab Content -->
+                <div class="result-content">
+                    <div class="tab-panel active" id="panel-raw">
+                        <pre class="markdown-raw" id="markdown-raw"></pre>
+                    </div>
+                    <div class="tab-panel" id="panel-preview">
+                        <div class="markdown-preview" id="markdown-preview"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ───── Stats Section ───── -->
+    <section class="stats-section" id="stats-section">
+        <div class="stats-container">
+            <div class="stat-item" id="stat-conversions">
+                <div class="stat-icon stat-icon-blue">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <rect x="4" y="4" width="16" height="16" rx="3" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.5"/>
+                        <path d="M8 8h8M8 12h5M8 16h7" stroke="#2563EB" stroke-width="1.2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-number" id="stat-conversions-num">{{ stats.total_conversions }}</span>
+                    <span class="stat-label">Files converted</span>
+                </div>
+            </div>
+            <div class="stat-item" id="stat-pages">
+                <div class="stat-icon stat-icon-green">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" fill="#DCFCE7" stroke="#22C55E" stroke-width="1.5"/>
+                        <path d="M8 12h8M12 8v8" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-number" id="stat-pages-num">{{ stats.total_pages_processed }}</span>
+                    <span class="stat-label">Pages / slides processed</span>
+                </div>
+            </div>
+            <div class="stat-item" id="stat-quality">
+                <div class="stat-icon stat-icon-purple">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7l3-7z" fill="#F3E8FF" stroke="#7C3AED" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Privacy guaranteed</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ───── Features Section ───── -->
+    <section class="features-section" id="features">
+        <div class="features-container">
+            <div class="section-header">
+                <h2 class="section-title">Why Choose <span class="gradient-text">PDF2MD</span>?</h2>
+                <p class="section-subtitle">Built for developers, writers, and anyone who needs clean Markdown.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card" id="feature-headings">
+                    <div class="feature-icon feature-icon-blue">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                            <path d="M6 6h16M6 14h10M6 22h13" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Smart Headings</h3>
+                    <p class="feature-desc">Automatically detects heading levels from font sizes and applies proper H1–H6 Markdown syntax.</p>
+                </div>
+                <div class="feature-card" id="feature-formatting">
+                    <div class="feature-icon feature-icon-purple">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                            <path d="M7 6h4l3 16h-4L7 6zM17 6h4l-3 16h-4l3-16z" fill="#7C3AED"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Formatting Preserved</h3>
+                    <p class="feature-desc">Keeps bold, italic, and other text formatting intact in the Markdown output.</p>
+                </div>
+                <div class="feature-card" id="feature-speed">
+                    <div class="feature-icon feature-icon-green">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                            <path d="M14 6v8l5 3" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="14" cy="14" r="10" stroke="#22C55E" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Lightning Fast</h3>
+                    <p class="feature-desc">Powered by PyMuPDF and python-pptx for blazing-fast conversion. Process large documents in seconds.</p>
+                </div>
+                <div class="feature-card" id="feature-privacy">
+                    <div class="feature-icon feature-icon-orange">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                            <rect x="6" y="12" width="16" height="12" rx="3" stroke="#F59E0B" stroke-width="2"/>
+                            <path d="M10 12V9a4 4 0 018 0v3" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">100% Private</h3>
+                    <p class="feature-desc">Files are processed locally on the server and immediately deleted after conversion. No storage.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ───── How It Works ───── -->
+    <section class="how-section" id="how-it-works">
+        <div class="how-container">
+            <div class="section-header">
+                <h2 class="section-title">How It <span class="gradient-text">Works</span></h2>
+                <p class="section-subtitle">Three simple steps to get your Markdown.</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card" id="step-1">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Upload File</h3>
+                    <p class="step-desc">Drag and drop your PDF or PPTX file, or click to browse. Up to 100 MB.</p>
+                </div>
+                <div class="step-arrow">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <path d="M8 16h16M20 12l4 4-4 4" stroke="#CBD5E1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="step-card" id="step-2">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Auto Convert</h3>
+                    <p class="step-desc">Our engine parses the PDF or PPTX and generates structured, clean Markdown.</p>
+                </div>
+                <div class="step-arrow">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <path d="M8 16h16M20 12l4 4-4 4" stroke="#CBD5E1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="step-card" id="step-3">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Download MD</h3>
+                    <p class="step-desc">Preview the result, copy to clipboard, or download the .md file instantly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ───── Footer ───── -->
+    <footer class="footer" id="footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <div class="footer-logo">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <rect x="3" y="3" width="18" height="18" rx="4" fill="url(#footer-grad)"/>
+                        <path d="M8 8h8M8 12h5M8 16h7" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                        <defs>
+                            <linearGradient id="footer-grad" x1="3" y1="3" x2="21" y2="21">
+                                <stop stop-color="#2563EB"/>
+                                <stop offset="1" stop-color="#7C3AED"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>PDF2MD</span>
+                </div>
+                <p class="footer-tagline">Convert PDF to Markdown — fast, free, and private.</p>
+            </div>
+            <div class="footer-right">
+                <p class="footer-copy">&copy; 2026 PDF2MD. Built with Python & Flask.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
