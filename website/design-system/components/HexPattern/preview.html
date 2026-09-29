@@ -1,0 +1,30 @@
+<!-- @dsCard group="Brand" height=470 subtitle="The focal cluster and the background layer, per ground" -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; padding: 24px; background: var(--surface); font-family: var(--font-body-en); }
+  .demo { display: grid; gap: 24px; }
+  .row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+  .note { font-size: 12px; line-height: 18px; color: var(--text-muted); font-family: var(--font-body-en); margin: 0; }
+  .dark { background: var(--gradient-depth); border-radius: var(--radius-lg); padding: 24px; }
+</style>
+<div id="root"></div>
+<script>
+const { HexPattern, SectionHeading } = window.AlQawsan;
+const h = React.createElement;
+const box = (bg, child, extra) => h('div', Object.assign({ style: Object.assign({
+  position: 'relative', height: '180px', borderRadius: 'var(--radius-lg)', overflow: 'hidden', background: bg }, extra || {}) }), child);
+ReactDOM.createRoot(document.getElementById('root')).render(
+  h('div', { className: 'demo' },
+    h('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' } },
+      box('var(--surface-inverse)', h(HexPattern, { variant: 'cluster', tone: 'navy', width: 300, height: 180, cell: 50 })),
+      box('var(--surface-accent)', h(HexPattern, { variant: 'field', tone: 'orange', width: 300, height: 180, cell: 40 })),
+      box('var(--surface)', h(HexPattern, { variant: 'cluster', tone: 'light', width: 300, height: 180, cell: 50, opacity: 1 }),
+        { border: '1px solid var(--border-default)' })),
+    h('div', { style: { position: 'relative', padding: '24px', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border-default)', overflow: 'hidden' } },
+      h('div', { style: { position: 'absolute', inset: 0 } },
+        h(HexPattern, { variant: 'field', tone: 'watermark', width: 900, height: 160, cell: 48 })),
+      h('div', { style: { position: 'relative' } },
+        h(SectionHeading, { level: 'h3', overline: 'Watermark', title: 'Behind reading matter, the pattern stops at 6%',
+          lead: 'Anything heavier competes with the text it sits under.' })))));
+</script>

@@ -1,0 +1,28 @@
+<!-- @dsCard group="Forms" height=490 subtitle="Label above, LTR phone fields inside RTL forms, two-part focus" -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; padding: 24px; background: var(--surface); font-family: var(--font-body-en); }
+  .demo { display: grid; gap: 24px; }
+  .row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+  .note { font-size: 12px; line-height: 18px; color: var(--text-muted); font-family: var(--font-body-en); margin: 0; }
+  .dark { background: var(--gradient-depth); border-radius: var(--radius-lg); padding: 24px; }
+</style>
+<div id="root"></div>
+<script>
+const { Field, Button } = window.AlQawsan;
+const h = React.createElement;
+ReactDOM.createRoot(document.getElementById('root')).render(
+  h('div', { className: 'demo' },
+    h('div', { className: 'split' },
+      h('div', { style: { display: 'grid', gap: '16px' } },
+        h(Field, { label: 'Facility name', required: true, placeholder: 'Al-Karama Teaching Hospital' }),
+        h(Field, { label: 'Phone', type: 'tel', defaultValue: '+964 770 000 0000', hint: 'Numbers stay left-to-right in both languages.' }),
+        h(Field, { label: 'Licence number', error: 'This licence is not registered with the Ministry of Health.', defaultValue: 'MOH-00-0000' })),
+      h('div', { style: { display: 'grid', gap: '16px' } },
+        h(Field, { lang: 'ar', label: 'اسم المنشأة', required: true, placeholder: 'مستشفى الكرامة التعليمي' }),
+        h(Field, { lang: 'ar', label: 'رقم الهاتف', type: 'tel', defaultValue: '+964 770 000 0000', hint: 'تبقى الأرقام من اليسار إلى اليمين.' }),
+        h(Field, { lang: 'ar', label: 'البريد الإلكتروني', type: 'email', placeholder: 'name@example.com' }))),
+    h('div', { className: 'row' }, h(Button, { variant: 'primary' }, 'Submit request')),
+    h('p', { className: 'note' }, 'Tab into a control to see the focus treatment: the orange ring and the navy border change together.')));
+</script>

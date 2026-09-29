@@ -1,0 +1,29 @@
+<!-- @dsCard group="Content" height=500 subtitle="Overline, title and lead, in both languages" -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; padding: 24px; background: var(--surface); font-family: var(--font-body-en); }
+  .demo { display: grid; gap: 24px; }
+  .row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+  .note { font-size: 12px; line-height: 18px; color: var(--text-muted); font-family: var(--font-body-en); margin: 0; }
+  .dark { background: var(--gradient-depth); border-radius: var(--radius-lg); padding: 24px; }
+</style>
+<div id="root"></div>
+<script>
+const { SectionHeading } = window.AlQawsan;
+const h = React.createElement;
+ReactDOM.createRoot(document.getElementById('root')).render(
+  h('div', { className: 'demo' },
+    h('div', { className: 'split' },
+      h(SectionHeading, {
+        overline: 'Nationwide Presence',
+        title: 'Certified medicines in every governorate',
+        lead: 'A central hub in Baghdad and four regional hubs put our fleet within a day of every hospital, clinic and pharmacy we serve.' }),
+      h(SectionHeading, {
+        lang: 'ar',
+        overline: 'حضور في كل المحافظات',
+        title: 'أدوية معتمدة في كل محافظة',
+        lead: 'مركز رئيسي في بغداد وأربعة مراكز إقليمية تضع أسطولنا على بعد يوم واحد من كل مستشفى وصيدلية نخدمها.' })),
+    h('div', { className: 'dark' },
+      h(SectionHeading, { onDark: true, overline: 'Our Impact', title: 'Top five, by every measure that matters', level: 'h3' }))));
+</script>

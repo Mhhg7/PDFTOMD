@@ -1,0 +1,96 @@
+<!-- @dsCard group="Foundations" height=1410 page subtitle="The two Arabic faces, side by side, at every weight the system ships" -->
+<style>
+  body { margin: 0; padding: 24px; background: var(--surface); color: var(--text-body); font-family: var(--font-body-en); }
+  .wrap { display: grid; gap: var(--space-8); }
+  .lede { font-size: 14px; line-height: 22px; color: var(--text-muted); margin: 0; max-width: 70ch; }
+  .lede b { color: var(--text-heading); font-weight: 600; }
+  h3.sec {
+    font-family: var(--font-body-en); font-size: 13px; line-height: 16px; font-weight: 600;
+    letter-spacing: 1.04px; text-transform: uppercase; color: var(--text-link); margin: 0 0 var(--space-4);
+  }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); }
+  .card {
+    border: var(--border-width) solid var(--border-default); border-radius: var(--radius-lg);
+    padding: var(--space-5); background: var(--surface); display: grid; gap: var(--space-4);
+  }
+  .card--live { background: var(--surface-alt); }
+  .meta { font-size: 12px; line-height: 18px; color: var(--text-muted); margin: 0; }
+  .meta strong { color: var(--text-heading); font-weight: 600; }
+  .rule { height: 1px; background: var(--border-default); }
+
+  /* The two faces, named so nothing here depends on which one is "the" body face today. */
+  .cairo { font-family: "Cairo", "Segoe UI", Tahoma, sans-serif; direction: rtl; }
+  .plex  { font-family: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, sans-serif; direction: rtl; }
+
+  .big { font-size: 38px; line-height: 54px; margin: 0; color: var(--text-heading); }
+  .row { display: grid; gap: var(--space-2); }
+  .w { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); direction: rtl; }
+  .w span.n { font-family: var(--font-body-en); font-size: 11px; color: var(--text-muted); direction: ltr; }
+  .w p { margin: 0; font-size: 30px; line-height: 46px; color: var(--text-heading); }
+  .para { font-size: 17px; line-height: 30px; margin: 0; }
+  .digits { font-size: 17px; line-height: 30px; margin: 0; font-variant-numeric: tabular-nums; }
+
+  /* The two places the string actually appears in the system today. */
+  .chip {
+    display: inline-flex; align-items: center; height: var(--control-height);
+    padding-inline: 22px; border-radius: var(--radius-md);
+    background: var(--navy-800); color: var(--text-inverse);
+    font-size: 16px; line-height: 22px; font-weight: 600; direction: rtl; justify-self: start;
+  }
+  .foot { background: var(--surface-inverse); border-radius: var(--radius-lg); padding: var(--space-5); }
+  .foot p { margin: 0; color: var(--text-inverse); font-size: 17px; line-height: 24px; font-weight: 600; direction: rtl; }
+</style>
+
+<div class="wrap">
+
+  <p class="lede">The string <b>تواصل معنا</b> appears twice in this system, set in two different faces. Below, each face at every weight that ships, so the choice can be made by looking rather than by name.</p>
+
+  <div>
+    <h3 class="sec">Where it appears today</h3>
+    <div class="pair">
+      <div class="card card--live">
+        <span class="chip plex">تواصل معنا</span>
+        <p class="meta"><strong>Button, Arabic</strong> — IBM Plex Sans Arabic 600 at 16px. Every button, label, input and table cell in Arabic uses this face.</p>
+      </div>
+      <div class="card card--live">
+        <div class="foot"><p class="cairo">تواصل معنا</p></div>
+        <p class="meta"><strong>SiteFooter column title</strong> — Cairo 600 at 17px. Every heading, card title and slide title in Arabic uses this face.</p>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h3 class="sec">Cairo — the heading face</h3>
+    <div class="card">
+      <p class="big cairo">تواصل معنا</p>
+      <div class="rule"></div>
+      <div class="row">
+        <div class="w"><p class="cairo" style="font-weight:600">تواصل معنا</p><span class="n">600</span></div>
+        <div class="w"><p class="cairo" style="font-weight:700">تواصل معنا</p><span class="n">700</span></div>
+        <div class="w"><p class="cairo" style="font-weight:800">تواصل معنا</p><span class="n">800</span></div>
+      </div>
+      <div class="rule"></div>
+      <p class="para cairo" style="font-weight:600">نربط التطورات الصحية العالمية بالاحتياجات المحلية، ونوزع أدوية معتمدة في جميع المحافظات.</p>
+      <p class="digits cairo" style="font-weight:600">18 محافظة · 5 مراكز · 1,500 موظف · 24/7</p>
+      <p class="meta">Geometric, open counters, wide apertures. Sits closer to Montserrat, so a bilingual headline reads as one family. Ships at 600, 700 and 800 — it has no regular weight here, so it cannot carry body copy without adding 400.</p>
+    </div>
+  </div>
+
+  <div>
+    <h3 class="sec">IBM Plex Sans Arabic — the body face</h3>
+    <div class="card">
+      <p class="big plex">تواصل معنا</p>
+      <div class="rule"></div>
+      <div class="row">
+        <div class="w"><p class="plex" style="font-weight:400">تواصل معنا</p><span class="n">400</span></div>
+        <div class="w"><p class="plex" style="font-weight:500">تواصل معنا</p><span class="n">500</span></div>
+        <div class="w"><p class="plex" style="font-weight:600">تواصل معنا</p><span class="n">600</span></div>
+      </div>
+      <div class="rule"></div>
+      <p class="para plex">نربط التطورات الصحية العالمية بالاحتياجات المحلية، ونوزع أدوية معتمدة في جميع المحافظات.</p>
+      <p class="digits plex">18 محافظة · 5 مراكز · 1,500 موظف · 24/7</p>
+      <p class="meta">Narrower, more even colour, built for small sizes — dosage lines, batch numbers, dense tables. Ships at 400, 500 and 600. At 400 in a long paragraph it reads lighter than Inter does at 400 beside it, which is a known property of Arabic at weight parity.</p>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,59 @@
+<!-- @dsCard height=320 -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Montserrat:wght@800&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: var(--surface); }
+  .cover { display: block; width: 100%; height: auto; }
+  .c-gold   { fill: var(--gold-400); }
+  .c-navy   { fill: var(--navy-800); }
+  .c-orange { fill: var(--surface-accent); }
+  .c-indigo { fill: var(--indigo-600); }
+  .c-tint   { fill: var(--navy-50); }
+  .c-name   { fill: var(--ink); font-family: var(--font-display-en); font-weight: 800; font-size: 64px; }
+  .c-tag    { fill: var(--text-muted); font-family: var(--font-body-en); font-weight: 400; font-size: 14px; }
+  .hex-w    { fill: none; stroke: var(--white); stroke-width: 3; stroke-linejoin: round; }
+  .hex-n    { fill: none; stroke: var(--navy-800); stroke-width: 3; stroke-linejoin: round; }
+  .node     { fill: none; stroke: var(--orange-500); stroke-width: 3; }
+  .node-n   { fill: none; stroke: var(--navy-800); stroke-width: 3; }
+  .link-w   { stroke: var(--orange-500); stroke-width: 3; stroke-linecap: round; }
+</style>
+<!--
+  blocks:      navy-800 448x112, orange-500 224x112, gold-400 96x112, indigo-600 128x112, navy-50 64x112 for relief,
+               plus a navy-800 96x48 satellite dropping below the band at radius-lg
+  arrangement: top-band skeleton — one strip of unequal bands bleeding off both edges, widths stepped down
+               448 / 224 / 96 / 128 / 64, after the notebook covers' banded inversions and their gold head rule;
+               the name sits beneath the band because it is far wider than a 440px zone at 64px
+  pattern:     the molecular hexagon — ten flat-top frames in one row, stroke 6% of width, three hollow nodes and
+               two connectors on the joins; chosen because this brand's signature graphic IS a benzene ring read
+               as partnership, and a single row keeps it a rule of texture rather than wallpaper
+  scales:      x-stops from space-16 and space-12 multiples; rule height = accent-bar; text inset = space-8;
+               satellite rx = radius-lg; hexagon r = 48, stroke 3, pitch 1.5r
+-->
+<svg class="cover" viewBox="0 0 960 320" role="img" aria-label="Al-Qawsan Scientific Bureau design system cover">
+  <rect class="c-gold" x="0" y="0" width="960" height="4"/>
+  <rect class="c-navy"   x="0"   y="4" width="448" height="112"/>
+  <rect class="c-orange" x="448" y="4" width="224" height="112"/>
+  <rect class="c-gold"   x="672" y="4" width="96"  height="112"/>
+  <rect class="c-indigo" x="768" y="4" width="128" height="112"/>
+  <rect class="c-tint"   x="896" y="4" width="64"  height="112"/>
+  <rect class="c-navy"   x="672" y="116" width="96" height="48" rx="12"/>
+  <g clip-path="url(#band)">
+    <line class="link-w" x1="160.0" y1="60.0" x2="232.0" y2="60.0"/>
+    <line class="link-w" x1="376.0" y1="60.0" x2="448.0" y2="60.0"/>
+    <polygon class="hex-w" points="88.0,60.0 64.0,101.6 16.0,101.6 -8.0,60.0 16.0,18.4 64.0,18.4"/>
+    <polygon class="hex-w" points="160.0,60.0 136.0,101.6 88.0,101.6 64.0,60.0 88.0,18.4 136.0,18.4"/>
+    <polygon class="hex-w" points="232.0,60.0 208.0,101.6 160.0,101.6 136.0,60.0 160.0,18.4 208.0,18.4"/>
+    <polygon class="hex-w" points="304.0,60.0 280.0,101.6 232.0,101.6 208.0,60.0 232.0,18.4 280.0,18.4"/>
+    <polygon class="hex-w" points="376.0,60.0 352.0,101.6 304.0,101.6 280.0,60.0 304.0,18.4 352.0,18.4"/>
+    <polygon class="hex-w" points="448.0,60.0 424.0,101.6 376.0,101.6 352.0,60.0 376.0,18.4 424.0,18.4"/>
+    <polygon class="hex-n" points="520.0,60.0 496.0,101.6 448.0,101.6 424.0,60.0 448.0,18.4 496.0,18.4"/>
+    <polygon class="hex-n" points="592.0,60.0 568.0,101.6 520.0,101.6 496.0,60.0 520.0,18.4 568.0,18.4"/>
+    <polygon class="hex-n" points="664.0,60.0 640.0,101.6 592.0,101.6 568.0,60.0 592.0,18.4 640.0,18.4"/>
+    <circle class="node" cx="160.0" cy="60.0" r="9"/>
+    <circle class="node" cx="376.0" cy="60.0" r="9"/>
+    <circle class="node-n" cx="592.0" cy="60.0" r="9"/>
+  </g>
+  <defs><clipPath id="band"><rect x="0" y="4" width="672" height="112"/></clipPath></defs>
+  <text class="c-name" x="48" y="222">Al-Qawsan</text>
+  <text class="c-name" x="48" y="283">Scientific Bureau</text>
+  <text class="c-tag"  x="48" y="308">Your Trusted Partner in Medical &amp; Scientific Solutions</text>
+</svg>

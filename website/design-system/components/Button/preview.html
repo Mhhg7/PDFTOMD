@@ -1,0 +1,38 @@
+<!-- @dsCard group="Actions" height=420 subtitle="Five variants, three sizes, bilingual" -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; padding: 24px; background: var(--surface); font-family: var(--font-body-en); }
+  .demo { display: grid; gap: 24px; }
+  .row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+  .note { font-size: 12px; line-height: 18px; color: var(--text-muted); font-family: var(--font-body-en); margin: 0; }
+  .dark { background: var(--gradient-depth); border-radius: var(--radius-lg); padding: 24px; }
+</style>
+<div id="root"></div>
+<script>
+const { Button } = window.AlQawsan;
+const h = React.createElement;
+const arrow = h('svg', { viewBox: '0 0 20 20', width: 20, height: 20, fill: 'none', stroke: 'currentColor', strokeWidth: 1.75, strokeLinecap: 'round', strokeLinejoin: 'round' },
+  h('path', { d: 'M4 10h11M11 6l4 4-4 4' }));
+ReactDOM.createRoot(document.getElementById('root')).render(
+  h('div', { className: 'demo' },
+    h('div', { className: 'row' },
+      h(Button, { variant: 'primary' }, 'Contact Us'),
+      h(Button, { variant: 'accent', iconEnd: arrow }, 'Become a Partner'),
+      h(Button, { variant: 'secondary' }, 'Download Catalogue'),
+      h(Button, { variant: 'ghost' }, 'Learn more'),
+      h(Button, { variant: 'danger' }, 'Report a recall'),
+      h(Button, { variant: 'primary', disabled: true }, 'Unavailable')),
+    h('div', { className: 'row' },
+      h(Button, { variant: 'primary', size: 'sm' }, 'Small'),
+      h(Button, { variant: 'primary' }, 'Default'),
+      h(Button, { variant: 'accent', size: 'lg' }, 'Large CTA')),
+    h('div', { className: 'row', dir: 'rtl' },
+      h(Button, { lang: 'ar', variant: 'primary' }, 'تواصل معنا'),
+      h(Button, { lang: 'ar', variant: 'accent', iconEnd: arrow }, 'كن شريكاً'),
+      h(Button, { lang: 'ar', variant: 'secondary' }, 'تحميل الكتالوج')),
+    h('div', { className: 'dark' },
+      h('div', { className: 'row qs-on-dark' },
+        h(Button, { variant: 'accent' }, 'Become a Partner'),
+        h(Button, { variant: 'secondary' }, 'Our Network')))));
+</script>

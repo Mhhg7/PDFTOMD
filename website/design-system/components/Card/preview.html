@@ -1,0 +1,29 @@
+<!-- @dsCard group="Content" height=500 subtitle="Content, Depth-navy, orange and numbered" -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; padding: 24px; background: var(--surface); font-family: var(--font-body-en); }
+  .demo { display: grid; gap: 24px; }
+  .row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+  .note { font-size: 12px; line-height: 18px; color: var(--text-muted); font-family: var(--font-body-en); margin: 0; }
+  .dark { background: var(--gradient-depth); border-radius: var(--radius-lg); padding: 24px; }
+</style>
+<div id="root"></div>
+<script>
+const { Card } = window.AlQawsan;
+const h = React.createElement;
+ReactDOM.createRoot(document.getElementById('root')).render(
+  h('div', { className: 'demo' },
+    h('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px', alignItems: 'start' } },
+      h(Card, { overline: 'Cold Chain', title: 'Validated 2–8°C transport',
+        body: 'Temperature-mapped vehicles and monitored storage across all five hubs, audited against GDP requirements.' }),
+      h(Card, { variant: 'dark', number: '02', title: 'Quality of Work',
+        body: 'Generous whitespace, crisp type and real photography — never stock.' }),
+      h(Card, { variant: 'accent', number: '03', title: 'Teamwork',
+        body: 'Orange surfaces carry navy copy. White would sit at 2.3:1 here and is reserved for bold text at 24px and above.' })),
+    h('div', { className: 'split' },
+      h(Card, { lang: 'ar', variant: 'dark', number: '04', title: 'التطوير المستمر',
+        body: 'نستثمر في فرقنا وفي بنيتنا التحتية اللوجستية عاماً بعد عام.' }),
+      h(Card, { lang: 'ar', title: 'الالتزام',
+        body: 'شبكات ثابتة، ولا شيء خارج المحاذاة.' }))));
+</script>

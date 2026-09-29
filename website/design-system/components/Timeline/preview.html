@@ -1,0 +1,32 @@
+<!-- @dsCard group="Content" height=430 subtitle="Our Growth Journey — direction follows the language" -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; padding: 24px; background: var(--surface); font-family: var(--font-body-en); }
+  .demo { display: grid; gap: 24px; }
+  .row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+  .note { font-size: 12px; line-height: 18px; color: var(--text-muted); font-family: var(--font-body-en); margin: 0; }
+  .dark { background: var(--gradient-depth); border-radius: var(--radius-lg); padding: 24px; }
+</style>
+<div id="root"></div>
+<script>
+const { Timeline } = window.AlQawsan;
+const h = React.createElement;
+const en = [
+  { year: '2009', title: 'Founded in Baghdad', description: 'Pharmaceutical distribution begins from the Qadisiyah District.' },
+  { year: '2015', title: 'Lara Scientific Office', description: 'Nutritional supplements join the group.' },
+  { year: '2019', title: 'Sanaya Scientific Office', description: 'Medical supplies added to the portfolio.' },
+  { year: '2026', title: 'Five strategic hubs', description: 'Baghdad, Basra, Erbil, Mosul and Najaf.' }
+];
+const ar = [
+  { year: '2009', title: 'التأسيس في بغداد', description: 'انطلاق توزيع الأدوية من منطقة القادسية.' },
+  { year: '2015', title: 'مكتب لارا العلمي', description: 'انضمام المكملات الغذائية إلى المجموعة.' },
+  { year: '2019', title: 'مكتب سنايا العلمي', description: 'إضافة المستلزمات الطبية.' },
+  { year: '2026', title: 'خمسة مراكز استراتيجية', description: 'بغداد والبصرة وأربيل والموصل والنجف.' }
+];
+ReactDOM.createRoot(document.getElementById('root')).render(
+  h('div', { className: 'demo' },
+    h(Timeline, { items: en }),
+    h(Timeline, { lang: 'ar', items: ar }),
+    h('p', { className: 'note' }, 'Horizontal on desktop, vertical on mobile — pass orientation="vertical" below the tablet breakpoint.')));
+</script>

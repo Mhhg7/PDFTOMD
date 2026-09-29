@@ -1,0 +1,179 @@
+/* Al-Qawsan Scientific Bureau — tokens.css
+   Generated from tokens.json. Do not edit by hand: change tokens.json and regenerate,
+   or let the design system page compile it. Load this first, then components/bundle.css. */
+
+:root, [data-theme="light"] {
+  --navy-50: #EEF2F8;
+  --navy-100: #D5DEEC;
+  --navy-200: #AEBFD9;
+  --navy-300: #7F98BF;
+  --navy-400: #52709F;
+  --navy-500: #34507E;
+  --navy-600: #274470;
+  --navy-700: #213D67;
+  --navy-800: #1B365D;
+  --navy-900: #0F1E33;
+  --orange-50: #FFF5E8;
+  --orange-100: #FEE6C6;
+  --orange-200: #FDCD8D;
+  --orange-300: #FBB455;
+  --orange-400: #F9A236;
+  --orange-500: #F7931E;
+  --orange-600: #DB7710;
+  --orange-700: #B85A0B;
+  --orange-800: #8F450B;
+  --orange-900: #5E2E09;
+  --indigo-50: #EFF1F9;
+  --indigo-100: #D8DDF0;
+  --indigo-200: #B3BCE1;
+  --indigo-300: #8B98CD;
+  --indigo-400: #6A7ABC;
+  --indigo-500: #5869B3;
+  --indigo-600: #4A5FAA;
+  --indigo-700: #3C4D8C;
+  --indigo-800: #2F3C6D;
+  --indigo-900: #1F284A;
+  --gold-100: #FFF3CC;
+  --gold-300: #FED466;
+  --gold-400: #FDB913;
+  --gold-600: #D99A00;
+  --white: #FFFFFF;
+  --gray-25: #F8F9FB;
+  --gray-50: #F1F3F6;
+  --gray-100: #E4E7EC;
+  --gray-200: #D0D5DD;
+  --gray-400: #98A2B3;
+  --gray-600: #5B6474;
+  --gray-800: #2F3643;
+  --ink: var(--navy-900);
+  --success: #1E8E5A;
+  --success-bg: #E7F5EE;
+  --warning: var(--gold-600);
+  --warning-bg: #FFF6DB;
+  --danger: #C62828;
+  --danger-bg: #FDECEC;
+  --info: var(--indigo-600);
+  --info-bg: var(--indigo-50);
+  --surface: var(--white);
+  --surface-alt: var(--gray-25);
+  --surface-sunken: var(--gray-50);
+  --surface-inverse: var(--navy-800);
+  --surface-accent: var(--orange-500);
+  --border-default: var(--gray-100);
+  --border-strong: var(--gray-200);
+  --border-inverse: var(--navy-400);
+  --text-body: var(--navy-900);
+  --text-heading: var(--navy-800);
+  --text-muted: var(--gray-600);
+  --text-placeholder: var(--gray-400);
+  --text-inverse: var(--white);
+  --text-link: var(--orange-700);
+  --text-on-dark-muted: var(--navy-200);
+  --accent: var(--orange-500);
+  --on-accent: var(--navy-800);
+  --highlight: var(--gold-400);
+  --focus-ring: #F7931EA6;
+
+  --shadow-sm: 0 1px 2px rgba(15,30,51,0.06);
+  --shadow-md: 0 4px 12px rgba(15,30,51,0.08);
+  --shadow-lg: 0 12px 32px rgba(15,30,51,0.12);
+}
+
+:root {
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-8: 48px;
+  --space-10: 64px;
+  --space-12: 96px;
+  --space-16: 128px;
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 20px;
+  --radius-full: 999px;
+  /* Gradients */
+  --gradient-arc: linear-gradient(135deg, #FDB913 0%, #F7931E 55%, #E8671C 100%);
+  --gradient-horizon: linear-gradient(135deg, #1B365D 0%, #1B365D 45%, #F7931E 130%);
+  --gradient-depth: linear-gradient(180deg, #213D67 0%, #1B365D 100%);
+  /* Layout */
+  --container-max: 1280px;
+  --bp-tablet: 640px;
+  --bp-desktop: 1024px;
+  --bp-wide: 1440px;
+  --header-height: 72px;
+  --control-height: 44px;
+  --control-height-sm: 36px;
+  --control-height-lg: 52px;
+  --row-height: 48px;
+  --border-width: 1px;
+  --border-width-strong: 1.5px;
+  --accent-bar: 4px;
+  --focus-ring-width: 3px;
+  /* Pattern opacity */
+  --opacity-watermark: 0.06;
+  --opacity-pattern: 0.08;
+  --opacity-pattern-max: 0.12;
+  --opacity-pattern-strong: 0.25;
+  --opacity-disabled: 0.4;
+  /* Font families */
+  --font-display-en: "Montserrat", "Cairo", system-ui, "Segoe UI", Arial, sans-serif;
+  --font-body-en: "Inter", "IBM Plex Sans Arabic", system-ui, "Segoe UI", Arial, sans-serif;
+  --font-display-ar: "Cairo", "Segoe UI", Tahoma, sans-serif;
+  --font-body-ar: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+}
+
+@font-face { font-family: "Cairo"; src: url("fonts/Cairo-600.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Cairo"; src: url("fonts/Cairo-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Cairo"; src: url("fonts/Cairo-800.woff2") format("woff2"); font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: "IBM Plex Sans Arabic"; src: url("fonts/IBMPlexSansArabic-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "IBM Plex Sans Arabic"; src: url("fonts/IBMPlexSansArabic-500.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "IBM Plex Sans Arabic"; src: url("fonts/IBMPlexSansArabic-600.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Montserrat"; src: url("fonts/Montserrat-600.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Montserrat"; src: url("fonts/Montserrat-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Montserrat"; src: url("fonts/Montserrat-800.woff2") format("woff2"); font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("fonts/Inter-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("fonts/Inter-500.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("fonts/Inter-600.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+
+/* English — Web */
+.display { font-family: var(--font-display-en); font-size: 56px; line-height: 64px; font-weight: 800; letter-spacing: -0.56px; }
+.h1 { font-family: var(--font-display-en); font-size: 44px; line-height: 52px; font-weight: 700; }
+.h2 { font-family: var(--font-display-en); font-size: 34px; line-height: 42px; font-weight: 700; }
+.h3 { font-family: var(--font-display-en); font-size: 26px; line-height: 34px; font-weight: 600; }
+.h4 { font-family: var(--font-display-en); font-size: 20px; line-height: 28px; font-weight: 600; }
+.h5 { font-family: var(--font-body-en); font-size: 17px; line-height: 24px; font-weight: 600; }
+.overline { font-family: var(--font-body-en); font-size: 13px; line-height: 16px; font-weight: 600; letter-spacing: 1.04px; }
+.lead { font-family: var(--font-body-en); font-size: 20px; line-height: 32px; font-weight: 400; }
+.body-lg { font-family: var(--font-body-en); font-size: 18px; line-height: 29px; font-weight: 400; }
+.body { font-family: var(--font-body-en); font-size: 16px; line-height: 26px; font-weight: 400; }
+.body-sm { font-family: var(--font-body-en); font-size: 14px; line-height: 22px; font-weight: 400; }
+.caption { font-family: var(--font-body-en); font-size: 12px; line-height: 18px; font-weight: 400; }
+.label { font-family: var(--font-body-en); font-size: 14px; line-height: 20px; font-weight: 500; }
+.button { font-family: var(--font-body-en); font-size: 15px; line-height: 20px; font-weight: 600; }
+.stat { font-family: var(--font-display-en); font-size: 48px; line-height: 52px; font-weight: 800; }
+.data { font-family: var(--font-body-en); font-size: 14px; line-height: 20px; font-weight: 400; }
+
+/* العربية — الويب (Arabic — Web) */
+.ar-display { font-family: var(--font-display-ar); font-size: 60px; line-height: 84px; font-weight: 800; }
+.ar-h1 { font-family: var(--font-display-ar); font-size: 48px; line-height: 68px; font-weight: 700; }
+.ar-h2 { font-family: var(--font-display-ar); font-size: 38px; line-height: 54px; font-weight: 700; }
+.ar-h3 { font-family: var(--font-display-ar); font-size: 28px; line-height: 40px; font-weight: 700; }
+.ar-h4 { font-family: var(--font-display-ar); font-size: 22px; line-height: 32px; font-weight: 600; }
+.ar-h5 { font-family: var(--font-body-ar); font-size: 18px; line-height: 28px; font-weight: 600; }
+.ar-overline { font-family: var(--font-body-ar); font-size: 14px; line-height: 20px; font-weight: 600; }
+.ar-lead { font-family: var(--font-body-ar); font-size: 21px; line-height: 36px; font-weight: 400; }
+.ar-body-lg { font-family: var(--font-body-ar); font-size: 19px; line-height: 34px; font-weight: 400; }
+.ar-body { font-family: var(--font-body-ar); font-size: 17px; line-height: 30px; font-weight: 400; }
+.ar-body-sm { font-family: var(--font-body-ar); font-size: 15px; line-height: 26px; font-weight: 400; }
+.ar-caption { font-family: var(--font-body-ar); font-size: 13px; line-height: 22px; font-weight: 400; }
+.ar-label { font-family: var(--font-body-ar); font-size: 15px; line-height: 22px; font-weight: 500; }
+.ar-button { font-family: var(--font-body-ar); font-size: 16px; line-height: 22px; font-weight: 600; }
+.ar-data { font-family: var(--font-body-ar); font-size: 15px; line-height: 22px; font-weight: 400; }
+
+.tabular { font-variant-numeric: tabular-nums; }

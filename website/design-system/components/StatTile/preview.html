@@ -1,0 +1,29 @@
+<!-- @dsCard group="Content" height=390 subtitle="The approved brand figures, alternating navy and orange" -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; padding: 24px; background: var(--surface); font-family: var(--font-body-en); }
+  .demo { display: grid; gap: 24px; }
+  .row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+  .note { font-size: 12px; line-height: 18px; color: var(--text-muted); font-family: var(--font-body-en); margin: 0; }
+  .dark { background: var(--gradient-depth); border-radius: var(--radius-lg); padding: 24px; }
+</style>
+<div id="root"></div>
+<script>
+const { StatTile } = window.AlQawsan;
+const h = React.createElement;
+const grid = { display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px' };
+ReactDOM.createRoot(document.getElementById('root')).render(
+  h('div', { className: 'demo' },
+    h('div', { style: grid },
+      h(StatTile, { value: '2009', label: 'Founded in Baghdad' }),
+      h(StatTile, { tone: 'orange', value: '18', label: 'Governorates served' }),
+      h(StatTile, { value: '5', label: 'Strategic hubs' }),
+      h(StatTile, { tone: 'orange', value: '1,500+', label: 'Professionals' })),
+    h('div', { style: grid, dir: 'rtl' },
+      h(StatTile, { lang: 'ar', value: '18', label: 'محافظة نخدمها' }),
+      h(StatTile, { lang: 'ar', tone: 'orange', value: '5', label: 'مراكز استراتيجية' }),
+      h(StatTile, { lang: 'ar', value: '25+', label: 'شريك تصنيع دولي' }),
+      h(StatTile, { lang: 'ar', tone: 'orange', value: '24/7', label: 'دعم لوجستي' })),
+    h('p', { className: 'note' }, 'Figures use Western digits and tabular numerals in both languages.')));
+</script>
