@@ -21,6 +21,7 @@
   --gutter: clamp(16px, 4vw, 48px);
   --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
   --util-h: 36px;
+  --hdr-h: var(--header-height);
   color-scheme: light;
 }
 
@@ -129,7 +130,17 @@ html[lang="ar"] .mega a { font-size: 16px; line-height: 26px; }
 .lang [lang="en"] { font-family: var(--font-body-en); }
 .burger { display: none; }
 
-@media (max-width: 1300px) {
+/* 768-1299px: two-row header. Brand and tools on the first row, the full tab bar on
+   the second, so laptops keep the tabs. Phones (under 768px) use the side menu. */
+@media (min-width: 768px) and (max-width: 1299px) {
+  :root { --hdr-h: 112px; }
+  .mainbar__row { flex-wrap: wrap; height: auto; row-gap: 0; }
+  .mainbar__row > .brand, .mainbar__row > .hdr-tools { min-height: 64px; display: flex; align-items: center; }
+  .mainbar__row > .brand { display: grid; align-content: center; }
+  .nav { order: 3; flex-basis: 100%; margin-inline: calc(var(--gutter) * -1); padding-inline: calc(var(--gutter) - 7px); height: 48px; border-top: var(--border-width) solid var(--border-default); }
+  .nav__item:nth-last-child(-n+2) > .mega { inset-inline-start: auto; inset-inline-end: 0; }
+}
+@media (max-width: 767px) {
   .nav { display: none; }
   .burger { display: inline-grid; }
 }
@@ -370,7 +381,7 @@ html[lang="ar"] .banner__lead { font-size: 21px; line-height: 36px; max-width: 5
 .inner { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: var(--space-10); padding-block: var(--space-10) var(--space-12); align-items: start; }
 .inner--full { grid-template-columns: minmax(0, 1fr); }
 @media (max-width: 1023px) { .inner { grid-template-columns: minmax(0, 1fr); gap: var(--space-6); padding-block: var(--space-6) var(--space-10); } }
-.rail { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--header-height) + var(--space-5)); display: grid; gap: var(--space-2); }
+.rail { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--hdr-h) + var(--space-5)); display: grid; gap: var(--space-2); }
 .rail__title { font-size: 14px; font-weight: 600; color: var(--text-muted); padding-inline: var(--space-3); }
 .rail ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
 .rail a { display: block; padding: var(--space-2) var(--space-3); border-radius: var(--radius-md); color: var(--text-body); text-decoration: none; font-size: 15px; line-height: 22px; }
