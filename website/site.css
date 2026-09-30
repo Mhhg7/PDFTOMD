@@ -4,7 +4,7 @@
 
    Layout: map-first hero (copy at the reading start, the Iraq network map at the
    reading end) -> KPI tiles -> sections on white and gray-25 bands; inner pages are
-   a gradient-horizon banner, then a section rail + content column, a related row
+   a plain white page title, then a section rail + content column, a related row
    and the orange call-to-action band. One stylesheet serves LTR and RTL through
    logical properties.
 
@@ -218,7 +218,7 @@ html[lang="ar"] .shead { max-width: 52ch; }
 .band--navy .link-more { color: var(--gold-400); }
 
 .hexbg { position: absolute; inset: 0; pointer-events: none; }
-.band--navy > .wrap, .banner > .wrap { position: relative; }
+.band--navy > .wrap { position: relative; }
 
 .grid { display: grid; gap: var(--space-5); }
 .grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -455,19 +455,21 @@ html[lang="ar"] .ftr__cols nav a { font-size: 17px; line-height: 28px; }
 
 /* ------------------------------------------------------------- Inner pages */
 
-.banner { background: var(--gradient-horizon); color: var(--text-inverse); position: relative; overflow: hidden; }
-.banner .wrap { padding-block: var(--space-10) var(--space-10); display: grid; gap: var(--space-4); }
-.banner h1 { color: var(--text-inverse); font-size: clamp(32px, 4vw, 44px); line-height: 1.2; font-weight: 700; max-width: 22ch; }
-html[lang="ar"] .banner h1 { font-size: clamp(34px, 4.2vw, 48px); line-height: 1.42; }
-.banner__lead { color: var(--text-on-dark-muted); font-size: 20px; line-height: 32px; max-width: 60ch; }
-html[lang="ar"] .banner__lead { font-size: 21px; line-height: 36px; max-width: 52ch; }
-.banner__icon { width: 56px; height: 56px; border-radius: var(--radius-full); background: var(--surface); color: var(--orange-500); display: grid; place-items: center; }
-.crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); font-size: 14px; color: var(--text-on-dark-muted); }
-.crumbs a { color: var(--text-inverse); text-decoration: none; }
-.crumbs a:hover { text-decoration: underline; }
-.crumbs .icon { width: 14px; height: 14px; color: var(--navy-300); }
+/* Page title: plain white, no banner. Breadcrumb, navy title, lead, hairline below. */
+.pagehead { background: var(--surface); }
+.pagehead .wrap { padding-block: var(--space-8) var(--space-6); display: grid; gap: var(--space-3); justify-items: start; }
+.pagehead .wrap::after { content: ""; justify-self: stretch; height: 1px; background: var(--border-default); margin-top: var(--space-4); }
+.pagehead h1 { color: var(--text-heading); font-size: clamp(32px, 4vw, 44px); line-height: 1.2; font-weight: 700; max-width: 24ch; }
+html[lang="ar"] .pagehead h1 { font-size: clamp(34px, 4.2vw, 48px); line-height: 1.42; }
+.pagehead__lead { color: var(--text-muted); font-size: 20px; line-height: 32px; max-width: 60ch; }
+html[lang="ar"] .pagehead__lead { font-size: 21px; line-height: 36px; max-width: 52ch; }
+.pagehead .icon-circle { margin-top: var(--space-2); }
+.crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); font-size: 14px; color: var(--text-muted); }
+.crumbs a { color: var(--text-body); text-decoration: none; }
+.crumbs a:hover { color: var(--text-link); text-decoration: underline; }
+.crumbs .icon { width: 14px; height: 14px; color: var(--gray-400); }
 
-.inner { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: var(--space-10); padding-block: var(--space-10) var(--space-12); align-items: start; }
+.inner { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: var(--space-10); padding-block: var(--space-4) var(--space-12); align-items: start; }
 .inner--full { grid-template-columns: minmax(0, 1fr); }
 @media (max-width: 1023px) { .inner { grid-template-columns: minmax(0, 1fr); gap: var(--space-6); padding-block: var(--space-6) var(--space-10); } }
 .rail { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--space-5)); display: grid; gap: var(--space-2); }
