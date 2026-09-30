@@ -26,4 +26,4 @@ Thumbs.db
 
 # Licensed Tajarib font files (Harf Library). The licence forbids making them
 # available for download, and this repository is public, so they are never committed.
-website/fonts/tajarib/
+cms/public/fonts/tajarib/

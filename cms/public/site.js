@@ -9,6 +9,8 @@
   "use strict";
 
   var Q = window.QS;
+  var S = Q.SETTINGS || {};
+  var API = window.QS_API || null; /* set when Laravel serves the page; forms then really send */
   var MAP = window.IRAQ_MAP;
   var root = document.documentElement;
   var app = document.getElementById("app");
@@ -27,7 +29,14 @@
   var firstRender = true;
 
   function t(o) { if (o == null) return ""; if (typeof o === "string") return o; return o[lang] != null ? o[lang] : o.en; }
-  function u(k) { return Q.UI[lang][k]; }
+  function u(k) { var v = Q.UI[lang][k]; return v != null ? v : (Q.UI.en[k] != null ? Q.UI.en[k] : ""); }
+  function lines(k) { return u(k).split("\n").map(function (x) { return x.trim(); }).filter(Boolean); }
+  function pg(id) { return Q.PAGES[id] || null; }
+  function ptitle(id) { var p = pg(id); return p ? t(p.t) : ""; }
+  function has(o) { return o != null && t(o) !== ""; }
+  function src(path) { return esc(String(path)); }
+  function img(path, alt, cls) { return '<img' + (cls ? ' class="' + cls + '"' : "") + ' src="' + src(path) + '" alt="' + esc(alt || "") + '" loading="lazy" decoding="async">'; }
+  function tel(v) { return "tel:" + String(v).replace(/[^+\d]/g, ""); }
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
   function fmt(s) { var a = [].slice.call(arguments, 1); return s.replace(/%s/g, function () { return a.shift(); }); }
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -78,12 +87,12 @@
   };
   var DIR_ICONS = { chevRight: 1, chevLeft: 1, arrowRight: 1 };
   function icon(name, cls) {
-    return '<svg class="icon ' + (cls || "") + (DIR_ICONS[name] ? " icon--dir" : "") + '" viewBox="0 0 24 24" aria-hidden="true" focusable="false">' + I[name] + "</svg>";
+    return '<svg class="icon ' + (cls || "") + (DIR_ICONS[name] ? " icon--dir" : "") + '" viewBox="0 0 24 24" aria-hidden="true" focusable="false">' + (I[name] || I.info) + "</svg>";
   }
 
   /* The supplied logo lockup (Arc + Arabic + English wordmarks). Never mirrored. */
   function logo(cls) {
-    return '<img class="' + cls + '" src="assets/logos/alqawsan-horizontal-color.png" width="399" height="234" alt="' + esc(lang === "ar" ? "مكتب القوسان العلمي، Al-Qawsan Scientific Bureau" : "Al-Qawsan Scientific Bureau, مكتب القوسان العلمي") + '">';
+    return '<img class="' + cls + '" src="' + src(S.logo || "assets/logos/alqawsan-horizontal-color.png") + '" width="399" height="234" alt="' + esc(u("logoAlt")) + '">';
   }
 
   /* ------------------------------------------------------------ design-system pieces */
@@ -125,8 +134,8 @@
   /* ------------------------------------------------------------ navigation helpers */
   var SEC = {}; Q.NAV.forEach(function (n) { SEC[n.id] = n; });
   function secOf(id) { var p = Q.PAGES[id]; return p ? p.sec : null; }
-  function hrefOf(navId) { var n = SEC[navId]; return n.kids ? n.kids[0] : navId; }
-  function titleOf(id) { return id === "home" ? u("home") : t(Q.PAGES[id].t); }
+  function hrefOf(navId) { var n = SEC[navId]; return n && n.kids ? n.kids[0] : navId; }
+  function secT(id) { return SEC[id] ? t(SEC[id].t) : ""; }
 
   /* ------------------------------------------------------------ header */
   function headerHTML() {
@@ -177,11 +186,11 @@
           '<button type="button" class="dl dl--search" style="--i:0" data-act="search"><span>' + u("searchLabel") + "</span>" + icon("search") + "</button>" + items + "</nav>" +
         '<div class="drawer__foot">' +
           '<a class="qs-btn qs-btn--accent" style="--i:' + (n + 1) + '" href="#partners-join">' + icon("handshake", "icon--md") + "<span>" + u("cta") + "</span></a>" +
-          '<ul class="drawer__contact" style="--i:' + (n + 2) + '"><li>' + icon("phone") + '<bdi dir="ltr">+964 XXX XXX XXXX</bdi></li><li>' + icon("mail") + '<bdi dir="ltr">info@alqawsangroup.com</bdi></li></ul>' +
+          '<ul class="drawer__contact" style="--i:' + (n + 2) + '">' + (S.phone ? "<li>" + icon("phone") + '<bdi dir="ltr">' + esc(S.phone) + "</bdi></li>" : "") + (S.email ? "<li>" + icon("mail") + '<bdi dir="ltr">' + esc(S.email) + "</bdi></li>" : "") + "</ul>" +
           '<div class="drawer__row" style="--i:' + (n + 3) + '"><span class="lang" role="group" aria-label="Language / اللغة">' +
             '<button type="button" lang="en" data-lang="en" aria-pressed="' + (lang === "en") + '">EN</button>|' +
             '<button type="button" lang="ar" data-lang="ar" aria-pressed="' + (lang === "ar") + '">عربي</button></span>' +
-            '<span class="ftr__social"><a href="https://www.linkedin.com/company/al-qawsan-group" target="_blank" rel="noopener" aria-label="LinkedIn">' + icon("linkedin", "icon--md") + "</a></span></div>" +
+            '<span class="ftr__social">' + (S.linkedin ? '<a href="' + src(S.linkedin) + '" target="_blank" rel="noopener" aria-label="LinkedIn">' + icon("linkedin", "icon--md") + "</a>" : "") + "</span></div>" +
         "</div>" +
       "</div>";
   }
@@ -198,13 +207,13 @@
 
   /* ------------------------------------------------------------ footer */
   function footerHTML() {
-    var quick = ["about-who", "partners-list", "products-areas", "media-news", "careers-why", "contact-office"];
+    var quick = (S.footerLinks || []).filter(pg);
     var ar = lang === "ar";
     var strip = [
       { ic: "mapPin", k: u("fLocation"), v: u("address") },
-      { ic: "mail", k: u("fEmail"), v: '<bdi dir="ltr">info@alqawsangroup.com</bdi>' },
-      { ic: "phone", k: u("fCall"), v: '<bdi dir="ltr">+964 XXX XXX XXXX</bdi>' }
-    ].map(function (x) {
+      S.email ? { ic: "mail", k: u("fEmail"), v: '<a href="mailto:' + src(S.email) + '"><bdi dir="ltr">' + esc(S.email) + "</bdi></a>" } : null,
+      S.phone ? { ic: "phone", k: u("fCall"), v: '<bdi dir="ltr">' + esc(S.phone) + "</bdi>" } : null
+    ].filter(Boolean).map(function (x) {
       return '<li><span class="ftr__ico">' + icon(x.ic) + '</span><span class="ftr__kv"><span class="ftr__k">' + x.k + '</span><span class="ftr__v">' + x.v + "</span></span></li>";
     }).join("");
     return '<footer class="ftr' + (ar ? " qs-ar" : "") + '">' +
@@ -214,21 +223,23 @@
           '<div class="wrap ftr__cols">' +
             '<div class="ftr__about">' + logo("ftr__logo") +
               '<p class="ftr__text">' + u("footerAbout") + "</p>" +
-              '<p class="ftr__meta"><strong>' + u("group") + ":</strong> CAS Development, " + (ar ? "مكتب لارا العلمي، مكتب سنايا العلمي" : "Lara Scientific Office, Sanaya Scientific Office") + "</p>" +
+              (Q.GROUP.length ? '<p class="ftr__meta"><strong>' + u("group") + ":</strong> " + Q.GROUP.map(function (g) { return t(g.t); }).join(ar ? "، " : ", ") + "</p>" : "") +
               '<p class="ftr__meta">' + icon("clock", "icon--sm") + u("hours") + "</p>" +
-              '<div class="ftr__social"><a href="https://www.linkedin.com/company/al-qawsan-group" target="_blank" rel="noopener" aria-label="LinkedIn">' + icon("linkedin", "icon--md") + '</a><a href="https://alqawsangroup.com" target="_blank" rel="noopener" aria-label="www.alqawsangroup.com">' + icon("globe", "icon--md") + "</a></div></div>" +
-            '<nav aria-labelledby="ftr-q"><h2 class="ftr__title" id="ftr-q">' + u("quick") + "</h2><ul>" + quick.map(function (k) { return '<li><a href="#' + k + '">' + t(Q.PAGES[k].t) + "</a></li>"; }).join("") + "</ul></nav>" +
+              '<div class="ftr__social">' + (S.linkedin ? '<a href="' + src(S.linkedin) + '" target="_blank" rel="noopener" aria-label="LinkedIn">' + icon("linkedin", "icon--md") + "</a>" : "") +
+                (S.website ? '<a href="' + src(S.website) + '" target="_blank" rel="noopener" aria-label="' + src(S.website.replace(/^https?:\/\//, "")) + '">' + icon("globe", "icon--md") + "</a>" : "") + "</div></div>" +
+            '<nav aria-labelledby="ftr-q"><h2 class="ftr__title" id="ftr-q">' + u("quick") + "</h2><ul>" + quick.map(function (k) { return '<li><a href="#' + k + '">' + ptitle(k) + "</a></li>"; }).join("") + "</ul></nav>" +
             '<nav aria-labelledby="ftr-s"><h2 class="ftr__title" id="ftr-s">' + u("services") + "</h2><ul>" + Q.SERVICES.map(function (x) { return '<li><a href="#' + x.id + '">' + t(x.t) + "</a></li>"; }).join("") + "</ul></nav>" +
             '<div class="ftr__news"><h2 class="ftr__title">' + u("newsTitle") + '</h2><p class="ftr__text">' + u("newsText") + "</p>" +
               '<form class="ftr__form" data-news novalidate><label class="qs-field__label" for="f-news-email">' + u("fEmail") + '</label>' +
                 '<input class="qs-input ftr__input" id="f-news-email" name="email" type="email" dir="ltr" autocomplete="email" required placeholder="' + u("newsPh") + '">' +
                 '<button class="qs-btn qs-btn--primary ftr__btn" type="submit">' + u("subscribe") + "</button>" +
-                '<p class="ftr__fine">' + u("newsPrivacy") + ' <a href="#privacy">' + u("privacy") + "</a></p></form>" +
-              '<div class="ftr__done" hidden tabindex="-1"><p class="ftr__done-h">' + icon("checkCircle", "icon--md") + u("newsDone") + '</p><p class="ftr__fine">' + u("newsPreview") + "</p></div>" +
+                honeypot() +
+                '<p class="ftr__fine">' + u("newsPrivacy") + ' <a href="#privacy">' + u("privacy") + '</a></p><p class="ftr__fine ftr__err" role="alert" hidden>' + u("formError") + "</p></form>" +
+              '<div class="ftr__done" hidden tabindex="-1"><p class="ftr__done-h">' + icon("checkCircle", "icon--md") + u("newsDone") + "</p>" + (API ? "" : '<p class="ftr__fine">' + u("newsPreview") + "</p>") + "</div>" +
             "</div>" +
           "</div>" +
           '<div class="wrap ftr__bottom"><span aria-hidden="true"></span>' +
-            '<div class="ftr__legal"><p>© <bdi dir="ltr">2026</bdi> ' + u("brand") + " | " + u("rights") + '</p><nav aria-label="' + u("sitemap") + '"><a href="#privacy">' + u("privacy") + '</a><a href="#terms">' + u("terms") + '</a><a href="#sitemap">' + u("sitemap") + "</a></nav></div>" +
+            '<div class="ftr__legal"><p>© <bdi dir="ltr">' + (S.year || 2026) + "</bdi> " + u("brand") + " | " + u("rights") + '</p><nav aria-label="' + u("sitemap") + '"><a href="#privacy">' + u("privacy") + '</a><a href="#terms">' + u("terms") + '</a><a href="#sitemap">' + u("sitemap") + "</a></nav></div>" +
             '<button class="ftr__top" type="button" data-act="top" aria-label="' + u("toTop") + '">' + icon("arrowUp") + "</button>" +
           "</div>" +
         "</div>" +
@@ -288,7 +299,7 @@
     return '<div class="mapcard" data-map>' +
       '<figure class="mapfig">' + mapSVG(kind) + "</figure>" +
       '<div class="readout" aria-live="polite" data-readout>' + readoutHTML(mapSel) + "</div>" +
-      '<div class="maplegend"><span><i></i><bdi dir="ltr">18</bdi> ' + u("mapGovs") + '</span><span><i class="pin"></i><bdi dir="ltr">5</bdi> ' + u("mapHubs") + "</span><span>" + u("mapHint") + "</span></div>" +
+      '<div class="maplegend"><span><i></i><bdi dir="ltr">18</bdi> ' + u("mapGovs") + '</span><span><i class="pin"></i><bdi dir="ltr">' + Q.HUBS.length + '</bdi> ' + u("mapHubs") + "</span><span>" + u("mapHint") + "</span></div>" +
     "</div>";
   }
 
@@ -315,7 +326,7 @@
   /* ------------------------------------------------------------ home */
   function homeHTML() {
     var slides = Q.SLIDES.map(function (s, i) {
-      return '<div class="slide" id="slide-' + i + '" role="group" aria-roledescription="slide" aria-label="' + u("slide") + " " + (i + 1) + ' / 3"' + (i === slideIdx ? "" : " hidden") + ">" +
+      return '<div class="slide" id="slide-' + i + '" role="group" aria-roledescription="slide" aria-label="' + u("slide") + " " + (i + 1) + " / " + Q.SLIDES.length + '"' + (i === slideIdx ? "" : " hidden") + ">" +
         "<h2>" + t(s.h) + "</h2>" +
         "<p>" + t(s.p) + "</p>" +
         '<div class="slide__actions">' + btn(t(s.a.t), s.a.href, "primary") + btn(u("ctaContact"), "contact-inquiry", "secondary") + "</div></div>";
@@ -328,7 +339,8 @@
       return '<a class="qs-card svc" href="#' + s.id + '"><div class="card-top"><h3 class="qs-heading qs-card__title">' + t(s.t) + '</h3><span class="icon-circle">' + icon(s.icon) + "</span></div>" + '<p class="qs-card__body">' + t(s.d) + '</p><span class="link-more">' + u("readMore") + icon("arrowRight", "icon--sm") + "</span></a>";
     }).join("");
 
-    var partners = partnerTile(true) + [1, 2, 3, 4, 5, 6].map(function () { return '<div class="ptile ptile--slot">' + (lang === "ar" ? "شعار الشريك" : "Partner logo") + "</div>"; }).join("");
+    var partners = Q.PARTNERS.map(partnerTile).join("");
+    for (var ps = Q.PARTNERS.length; ps < 7; ps++) partners += slotTile();
 
     var areas = Q.AREAS.map(function (a) { return '<button type="button" class="area" data-area="' + a.id + '"><span class="icon-circle">' + icon(a.icon, "icon--md") + "</span>" + t(a.t) + "</button>"; }).join("");
 
@@ -343,29 +355,29 @@
         "</div>" +
       "</section>" +
 
-      '<section class="band band--alt" aria-label="' + (lang === "ar" ? "أرقامنا" : "Key figures") + '"><div class="wrap"><div class="stats">' + stats + '</div><p class="stats-banner">' + t(Q.STATS_BANNER) + "</p></div></section>" +
+      '<section class="band band--alt" aria-label="' + esc(u("keyFigures")) + '"><div class="wrap"><div class="stats">' + stats + '</div><p class="stats-banner">' + t(Q.STATS_BANNER) + "</p></div></section>" +
 
-      '<section class="band"><div class="wrap about-teaser"><div class="about-teaser__copy">' + overline(t(SEC.about.t)) +
+      '<section class="band"><div class="wrap about-teaser"><div class="about-teaser__copy">' + overline(secT("about")) +
         '<h2 class="' + (lang === "ar" ? "ar-h2" : "h2") + '">' + u("aboutTeaserH") + "</h2>" +
-        '<p class="' + (lang === "ar" ? "ar-body-lg" : "body-lg") + '">' + t(Q.PAGES["about-who"].blocks[0].p[0]) + "</p>" +
+        '<p class="' + (lang === "ar" ? "ar-body-lg" : "body-lg") + '">' + u("aboutTeaserText") + "</p>" +
         "<div>" + btn(u("readMore"), "about-who", "secondary") + "</div></div>" +
-        photoSlot(lang === "ar" ? "صورة: المكتب الرئيسي، حي القادسية (تُرفق لاحقاً)" : "Photo: head office, Qadisiyah District (to be supplied)") +
+        photoSlot(u("aboutPhotoCap"), false, S.aboutPhoto) +
       "</div></section>" +
 
-      '<section class="band band--alt"><div class="wrap"><div class="shead shead--row"><div>' + overline(t(SEC.services.t)) + '<h2 class="' + (lang === "ar" ? "ar-h2" : "h2") + '">' + u("servicesIntro") + "</h2></div></div>" +
+      '<section class="band band--alt"><div class="wrap"><div class="shead shead--row"><div>' + overline(secT("services")) + '<h2 class="' + (lang === "ar" ? "ar-h2" : "h2") + '">' + u("servicesIntro") + "</h2></div></div>" +
         '<div class="grid grid--3">' + services + "</div></div></section>" +
 
       '<section class="band band--navy">' + hexField("navy", 1280, 420, 56, "var(--opacity-pattern)") + '<div class="wrap">' +
-        '<div class="shead shead--row qs-on-dark"><div>' + '<p class="qs-overline">' + t(SEC.partners.t) + '</p><h2 class="' + (lang === "ar" ? "ar-h2" : "h2") + '" style="color:var(--text-inverse)">' + u("partnersIntro") + "</h2></div>" +
+        '<div class="shead shead--row qs-on-dark"><div>' + '<p class="qs-overline">' + secT("partners") + '</p><h2 class="' + (lang === "ar" ? "ar-h2" : "h2") + '" style="color:var(--text-inverse)">' + u("partnersIntro") + "</h2></div>" +
         '<div class="strip-ctl"><button class="iconbtn" type="button" data-strip="-1" aria-label="' + u("prev") + '">' + icon("chevLeft", "icon--md") + '</button><button class="iconbtn" type="button" data-strip="1" aria-label="' + u("next") + '">' + icon("chevRight", "icon--md") + "</button></div></div>" +
-        '<div class="partner-strip" id="pstrip" tabindex="0" aria-label="' + t(SEC.partners.t) + '">' + partners + "</div>" +
-        '<p style="margin-top:var(--space-5)"><a class="link-more" href="#partners-list">' + t(Q.PAGES["partners-list"].t) + icon("arrowRight", "icon--sm") + "</a></p>" +
+        '<div class="partner-strip" id="pstrip" tabindex="0" aria-label="' + esc(secT("partners")) + '">' + partners + "</div>" +
+        '<p style="margin-top:var(--space-5)"><a class="link-more" href="#partners-list">' + ptitle("partners-list") + icon("arrowRight", "icon--sm") + "</a></p>" +
       "</div></section>" +
 
-      '<section class="band band--alt"><div class="wrap"><div class="shead">' + overline(t(SEC.products.t)) + '<h2 class="' + (lang === "ar" ? "ar-h2" : "h2") + '">' + u("areasIntro") + "</h2></div>" +
+      '<section class="band band--alt"><div class="wrap"><div class="shead">' + overline(secT("products")) + '<h2 class="' + (lang === "ar" ? "ar-h2" : "h2") + '">' + u("areasIntro") + "</h2></div>" +
         '<div class="grid grid--4">' + areas + "</div></div></section>" +
 
-      '<section class="band"><div class="wrap"><div class="shead shead--row"><div>' + overline(t(SEC.media.t)) + '<h2 class="' + (lang === "ar" ? "ar-h2" : "h2") + '">' + u("newsIntro") + "</h2></div>" +
+      '<section class="band"><div class="wrap"><div class="shead shead--row"><div>' + overline(secT("media")) + '<h2 class="' + (lang === "ar" ? "ar-h2" : "h2") + '">' + u("newsIntro") + "</h2></div>" +
         '<a class="link-more" href="#media-news">' + u("newsAll") + icon("arrowRight", "icon--sm") + "</a></div>" +
         '<div class="grid grid--3">' + newsCards() + "</div></div></section>" +
 
@@ -380,19 +392,31 @@
       '<p class="kpi__value"><bdi dir="ltr">' + s.v + '</bdi></p><p class="kpi__foot">' + chip + '<span class="kpi__sub">' + t(s.sub) + "</span></p></div>";
   }
 
-  function photoSlot(caption, sq) {
+  /* A photo with its caption. Without a photo it shows the navy placeholder. */
+  function photoSlot(caption, sq, path) {
+    var plain = String(caption || "").replace(/<[^>]*>/g, "");
+    if (path) return '<figure class="photo photo--img' + (sq ? " photo--sq" : "") + '" style="margin:0">' + img(path, plain) +
+      (caption ? '<figcaption class="photo__cap">' + caption + "</figcaption>" : "") + "</figure>";
     return '<figure class="photo' + (sq ? " photo--sq" : "") + '" style="margin:0">' + hexField("navy", 400, 300, 40, "var(--opacity-pattern)") +
       '<figcaption class="photo__cap">' + icon("image", "icon--sm") + caption + "</figcaption></figure>";
   }
-  function partnerTile(link) {
-    var inner = '<span><span class="ptile__name" dir="ltr">SIPHAT</span><br><span class="ptile__sub">' + (lang === "ar" ? "تونس، منذ 2025" : "Tunisia, since 2025") + "</span></span>";
-    return link ? '<a class="ptile" href="#partners-siphat">' + inner + "</a>" : '<div class="ptile">' + inner + "</div>";
+  function slotTile() { return '<div class="ptile ptile--slot">' + u("partnerSlot") + "</div>"; }
+  function partnerTile(p) {
+    var inner = p.logo ? img(p.logo, p.name, "ptile__logo") + (has(p.sub) ? '<span class="ptile__sub">' + t(p.sub) + "</span>" : "") :
+      '<span><span class="ptile__name" dir="ltr">' + esc(p.name) + "</span>" + (has(p.sub) ? '<br><span class="ptile__sub">' + t(p.sub) + "</span>" : "") + "</span>";
+    if (p.page) return '<a class="ptile" href="#' + p.page + '">' + inner + "</a>";
+    if (p.url) return '<a class="ptile" href="' + src(p.url) + '" target="_blank" rel="noopener">' + inner + "</a>";
+    return '<div class="ptile">' + inner + "</div>";
   }
-  function newsCards() {
-    var n = Q.NEWS[0];
-    var real = '<a class="qs-card news-card" href="#' + n.id + '"><span class="news-date"><bdi dir="ltr">' + n.date + '</bdi></span><h3 class="qs-heading qs-card__title">' + t(n.t) + '</h3><p class="qs-card__body">' + t(n.d) + '</p><span class="link-more">' + u("readMore") + icon("arrowRight", "icon--sm") + "</span></a>";
+  function newsCards(all) {
+    var list = all ? Q.NEWS : Q.NEWS.slice(0, 3);
+    var out = list.map(function (n) {
+      return '<a class="qs-card news-card' + (n.img ? " news-card--img" : "") + '" href="#' + n.id + '">' + (n.img ? img(n.img, "", "news-card__img") : "") +
+        '<span class="news-date"><bdi dir="ltr">' + esc(n.date) + '</bdi></span><h3 class="qs-heading qs-card__title">' + t(n.t) + '</h3><p class="qs-card__body">' + t(n.d) + '</p><span class="link-more">' + u("readMore") + icon("arrowRight", "icon--sm") + "</span></a>";
+    }).join("");
     var slot = '<div class="qs-card news-card news-card--slot"><span class="news-date">' + tbc() + '</span><h3 class="qs-heading qs-card__title">' + u("draftSlot") + '</h3><p class="qs-card__body">' + u("draftSlotText") + "</p></div>";
-    return real + slot + slot;
+    for (var i = list.length; i < 3; i++) out += slot;
+    return out;
   }
   function ctaBand() {
     return '<section class="cta-band"><div class="wrap cta-band__row"><div><h2>' + u("ctaTitle") + "</h2><p>" + u("ctaText") + '</p></div><div class="cta-band__actions">' +
@@ -400,82 +424,89 @@
   }
 
   /* ------------------------------------------------------------ inner pages */
-  function pageHTML(id) {
-    var p = Q.PAGES[id];
+  function pageHTML(id, page) {
+    var p = page || Q.PAGES[id];
     var sec = p.sec ? SEC[p.sec] : null;
     var crumbs = '<nav class="crumbs" aria-label="' + u("breadcrumb") + '"><ol><li><a href="#home">' + u("home") + "</a></li>" +
       (sec ? "<li>" + icon("chevRight") + '<a href="#' + hrefOf(sec.id) + '">' + t(sec.t) + "</a></li>" : "") +
-      (p.parent ? "<li>" + icon("chevRight") + '<a href="#' + p.parent + '">' + t(Q.PAGES[p.parent].t) + "</a></li>" : "") +
+      (p.parent && pg(p.parent) ? "<li>" + icon("chevRight") + '<a href="#' + p.parent + '">' + ptitle(p.parent) + "</a></li>" : "") +
       "<li>" + icon("chevRight") + '<span aria-current="page">' + t(p.t) + "</span></li></ol></nav>";
-    var banner = '<section class="banner">' + hexField("navy", 1280, 360, 52, "var(--opacity-pattern)") + '<div class="wrap">' + crumbs +
-      (p.icon ? '<span class="banner__icon">' + icon(p.icon) + "</span>" : "") +
-      (p.date ? '<p class="news-date" style="color:var(--text-on-dark-muted)"><bdi dir="ltr">' + p.date + "</bdi></p>" : "") +
-      '<h1 tabindex="-1">' + t(p.t) + '</h1><p class="banner__lead">' + t(p.lead) + "</p></div></section>";
+    var banner = '<section class="banner' + (p.img ? " banner--img" : "") + '">' + (p.img ? img(p.img, "", "banner__img") : "") + hexField("navy", 1280, 360, 52, "var(--opacity-pattern)") + '<div class="wrap">' + crumbs +
+      (p.icon && I[p.icon] ? '<span class="banner__icon">' + icon(p.icon) + "</span>" : "") +
+      (p.date ? '<p class="news-date" style="color:var(--text-on-dark-muted)"><bdi dir="ltr">' + esc(p.date) + "</bdi></p>" : "") +
+      '<h1 tabindex="-1">' + t(p.t) + "</h1>" + (has(p.lead) ? '<p class="banner__lead">' + t(p.lead) + "</p>" : "") + "</div></section>";
 
     var rail = "";
     if (sec && sec.kids) {
       rail = '<aside class="rail" aria-label="' + u("inSection") + '"><p class="rail__title">' + t(sec.t) + "</p><ul>" + sec.kids.map(function (k) {
-        return '<li><a href="#' + k + '"' + ((k === id || k === p.parent) ? ' aria-current="page"' : "") + ">" + t(Q.PAGES[k].t) + "</a></li>";
+        return '<li><a href="#' + k + '"' + ((k === id || k === p.parent) ? ' aria-current="page"' : "") + ">" + ptitle(k) + "</a></li>";
       }).join("") + "</ul></aside>";
     }
-    var blocks = p.blocks.map(block).join("");
+    var blocks = (p.blocks || []).map(block).join("");
     var rel = relatedHTML(id, p);
     return banner + '<div class="wrap inner' + (rail ? "" : " inner--full") + '">' + rail + '<div class="content">' + blocks + rel + "</div></div>" + (p.noCta ? "" : ctaBand());
   }
 
   function relatedHTML(id, p) {
     var ids = p.rel;
-    if (!ids) {
+    if (!ids || !ids.length) {
       var sec = p.sec ? SEC[p.sec] : null;
       if (!sec || !sec.kids) return "";
       ids = sec.kids.filter(function (k) { return k !== id; }).slice(0, 3);
     }
+    ids = ids.filter(pg);
+    if (!ids.length) return "";
     return '<section class="related" aria-labelledby="rel-h"><h2 id="rel-h">' + u("related") + '</h2><div class="grid grid--3">' + ids.map(function (k) {
-      return '<a class="qs-card" href="#' + k + '"><h3 class="qs-heading qs-card__title">' + t(Q.PAGES[k].t) + '</h3><span class="link-more">' + u("readMore") + icon("arrowRight", "icon--sm") + "</span></a>";
+      return '<a class="qs-card" href="#' + k + '"><h3 class="qs-heading qs-card__title">' + ptitle(k) + '</h3><span class="link-more">' + u("readMore") + icon("arrowRight", "icon--sm") + "</span></a>";
     }).join("") + "</div></section>";
   }
 
   function h2(o) { return o ? "<h2>" + t(o) + "</h2>" : ""; }
 
   function block(b) {
+    var items = b.items || [];
     switch (b.type) {
       case "text":
-        return '<section class="blk">' + h2(b.h) + '<div class="prose">' + b.p.map(function (x) { return "<p>" + t(x) + "</p>"; }).join("") + "</div></section>";
+        return '<section class="blk">' + h2(b.h) + '<div class="prose">' + (b.p || []).map(function (x) { return "<p>" + t(x) + "</p>"; }).join("") + "</div></section>";
       case "list":
-        return '<section class="blk">' + h2(b.h) + '<ul class="checks">' + b.items.map(function (x) { return "<li>" + icon("check") + "<span>" + t(x) + "</span></li>"; }).join("") + "</ul></section>";
+        return '<section class="blk">' + h2(b.h) + '<ul class="checks">' + items.map(function (x) { return "<li>" + icon("check") + "<span>" + t(x) + "</span></li>"; }).join("") + "</ul></section>";
       case "features":
-        return '<section class="blk">' + h2(b.h) + '<div class="grid grid--2">' + b.items.map(function (x) {
+        return '<section class="blk">' + h2(b.h) + '<div class="grid grid--2">' + items.map(function (x) {
           return '<div class="qs-card"><div class="feat"><span class="icon-circle">' + icon(x.icon) + '</span><div><h3 class="qs-heading qs-card__title">' + t(x.t) + '</h3><p class="qs-card__body">' + t(x.d) + "</p></div></div></div>";
         }).join("") + "</div></section>";
       case "steps":
-        return '<section class="blk">' + h2(b.h) + '<ol class="grid grid--4 steps" style="list-style:none;margin:0;padding:0">' + b.items.map(function (x, i) {
+        return '<section class="blk">' + h2(b.h) + '<ol class="grid grid--4 steps" style="list-style:none;margin:0;padding:0">' + items.map(function (x, i) {
           return '<li class="qs-card qs-card--' + (i % 2 ? "accent" : "dark") + (i % 2 ? "" : " qs-on-dark") + '"><span class="qs-card__number">' + (i + 1) + '</span><h3 class="qs-heading qs-card__title">' + t(x.t) + '</h3><p class="qs-card__body">' + t(x.d) + "</p></li>";
         }).join("") + "</ol></section>";
       case "pair":
-        return '<section class="blk pair"><div class="grid grid--2">' + b.items.map(function (x, i) {
+        return '<section class="blk pair"><div class="grid grid--2">' + items.map(function (x, i) {
           return '<div class="qs-card qs-card--' + (i ? "accent" : "dark") + (i ? "" : " qs-on-dark") + '"><h2 class="qs-heading qs-card__title">' + t(x.t) + '</h2><p class="qs-card__body">' + t(x.d) + "</p></div>";
         }).join("") + "</div></section>";
       case "values":
-        return '<section class="blk">' + h2(b.h) + '<div class="grid grid--3">' + b.items.map(function (x) {
+        return '<section class="blk">' + h2(b.h) + '<div class="grid grid--3">' + items.map(function (x) {
           return '<div class="qs-card"><h3 class="qs-heading qs-card__title">' + t(x.t) + '</h3><p class="qs-card__body">' + t(x.d) + "</p></div>";
         }).join("") + "</div></section>";
       case "stats":
         return '<section class="blk"><div class="stats">' + Q.STATS.map(kpiCard).join("") + '</div><p class="stats-banner">' + t(Q.STATS_BANNER) + "</p></section>";
       case "timeline":
-        return '<section class="blk"><div class="qs-timeline qs-timeline--horizontal">' + b.items.map(function (x) {
+        return '<section class="blk"><div class="qs-timeline qs-timeline--horizontal">' + items.map(function (x) {
           return '<div class="qs-timeline__item"><span class="qs-timeline__rule" aria-hidden="true"></span><span class="qs-timeline__node" aria-hidden="true"></span>' +
             '<p class="qs-timeline__year">' + (typeof x.y === "string" ? '<bdi dir="ltr">' + x.y + "</bdi>" : t(x.y)) + '</p><p class="qs-heading qs-timeline__title">' + t(x.t) + '</p><p class="qs-timeline__text">' + t(x.d) + "</p></div>";
         }).join("") + "</div></section>";
       case "people":
-        return '<section class="blk"><div class="grid grid--4">' + b.items.map(function (r) {
-          return '<div class="qs-card person"><span class="person__ph">' + icon("user") + '</span><h3 class="qs-heading qs-card__title">' + t(r) + "</h3>" + tbc() + "</div>";
+        return '<section class="blk"><div class="grid grid--4">' + Q.PEOPLE.map(function (r) {
+          return '<div class="qs-card person">' + (r.img ? img(r.img, t(r.name) || t(r.role), "person__img") : '<span class="person__ph">' + icon("user") + "</span>") +
+            '<h3 class="qs-heading qs-card__title">' + (has(r.name) ? t(r.name) : t(r.role)) + "</h3>" +
+            (has(r.name) ? '<p class="person__role">' + t(r.role) + "</p>" : tbc()) + (has(r.bio) ? '<p class="qs-card__body">' + t(r.bio) + "</p>" : "") + "</div>";
         }).join("") + "</div></section>";
+      case "image":
+        return b.src ? '<section class="blk">' + h2(b.h) + photoSlot(t(b.cap), false, b.src) + "</section>" : "";
       case "note":
         return '<p class="note">' + icon("info", "icon--md") + "<span>" + t(b.text) + "</span></p>";
       case "source":
-        return '<p class="source">' + t(b.text) + ' <a href="' + b.href + '" target="_blank" rel="noopener">' + (lang === "ar" ? "رابط المصدر" : "Open source") + "</a></p>";
+        return '<p class="source">' + t(b.text) + (b.href ? ' <a href="' + src(b.href) + '" target="_blank" rel="noopener">' + u("openSource") + "</a>" : "") + "</p>";
       case "facts":
-        return '<dl class="facts">' + b.items.map(function (x) { return "<div><dt>" + t(x.k) + "</dt><dd>" + val(x.v) + "</dd></div>"; }).join("") + "</dl>";
+        return '<dl class="facts">' + items.map(function (x) { return "<div><dt>" + t(x.k) + "</dt><dd>" + val(x.v) + "</dd></div>"; }).join("") + "</dl>";
       case "temps": return tempsHTML();
       case "map":
         return '<section class="blk"><h2>' + u("mapTitle") + "</h2>" + mapBlock("full") + '<div class="filters" role="group" aria-label="' + u("mapTitle") + '">' +
@@ -486,33 +517,43 @@
         return '<section class="blk"><h2>' + u("mapHubs").replace(/^./, function (c) { return c.toUpperCase(); }) + '</h2><div class="grid grid--3">' + Q.HUBS.map(function (id) {
           var g = GOV[id];
           return '<div class="qs-card"><span class="icon-circle">' + icon(id === "IQ-BG" ? "hospital" : "warehouse") + '</span><h3 class="qs-heading qs-card__title">' + (lang === "ar" ? g.capAr : g.cap) + '</h3><p class="qs-card__body">' +
-            (id === "IQ-BG" ? u("mapHq") : u("mapHub")) + "</p>" + (id === "IQ-BG" ? '<p class="qs-card__body">' + u("address") + "</p>" : '<p class="qs-card__body">' + (lang === "ar" ? "العنوان وأرقام التواصل: " : "Address and contacts: ") + tbc() + "</p>") + "</div>";
+            (id === "IQ-BG" ? u("mapHq") : u("mapHub")) + "</p>" + hubInfo(id) + "</div>";
         }).join("") + "</div></section>";
       case "partners": return partnersHTML();
       case "areas":
         return '<section class="blk"><div class="grid grid--4">' + Q.AREAS.map(function (a) { return '<button type="button" class="area" data-area="' + a.id + '"><span class="icon-circle">' + icon(a.icon, "icon--md") + "</span>" + t(a.t) + "</button>"; }).join("") + "</div></section>";
       case "products": return productsHTML();
       case "productDetail": return productDetailHTML();
+      case "productPage":
+        return '<section class="blk pd">' + (b.product.img ? '<figure class="pd__img">' + img(b.product.img, t(b.product.name)) + "</figure>" : "") + productFields(b.product) + "</section>";
       case "news":
-        return '<section class="blk"><div class="grid grid--3">' + newsCards() + "</div></section>";
+        return '<section class="blk"><div class="grid grid--3">' + newsCards(true) + "</div></section>";
       case "events":
-        return '<section class="blk"><div class="empty"><span class="icon-circle">' + icon("calendar") + "</span><h2>" + (lang === "ar" ? "لا توجد فعاليات قادمة منشورة حالياً" : "No upcoming events are published yet") + '</h2><p class="muted">' +
-          (lang === "ar" ? "ننشر هنا مواعيد اللقاءات العلمية وجلسات التعليم الطبي المستمر والمؤتمرات فور تأكيدها." : "Scientific meetings, CME sessions and conferences are listed here as soon as their dates are confirmed.") + "</p>" + btn(t(Q.PAGES["media-news"].t), "media-news", "secondary") + "</div></section>";
+        if (Q.EVENTS.length) return '<section class="blk"><div class="grid grid--3">' + Q.EVENTS.map(function (ev) {
+          return '<div class="qs-card evt"><span class="news-date">' + icon("calendar", "icon--sm") + '<bdi dir="ltr">' + esc(ev.date) + '</bdi></span><h3 class="qs-heading qs-card__title">' + t(ev.t) + "</h3>" +
+            (has(ev.where) ? '<p class="evt__where">' + icon("mapPin", "icon--sm") + "<span>" + t(ev.where) + "</span></p>" : "") + (has(ev.d) ? '<p class="qs-card__body">' + t(ev.d) + "</p>" : "") + "</div>";
+        }).join("") + "</div></section>";
+        return '<section class="blk"><div class="empty"><span class="icon-circle">' + icon("calendar") + "</span><h2>" + u("eventsEmpty") + '</h2><p class="muted">' +
+          u("eventsEmptyText") + "</p>" + (pg("media-news") ? btn(ptitle("media-news"), "media-news", "secondary") : "") + "</div></section>";
       case "gallery":
-        var caps = lang === "ar" ? ["المكتب الرئيسي، بغداد", "المستودع", "غرفة التبريد 2 إلى 8 °م", "أسطول التوزيع", "لقاء علمي", "توقيع اتفاقية SIPHAT"] :
-          ["Head office, Baghdad", "Warehouse", "Cold room, 2 to 8 °C", "Delivery fleet", "Scientific meeting", "SIPHAT signing"];
-        return '<section class="blk"><div class="grid grid--3">' + caps.map(function (c) { return photoSlot(c, true); }).join("") + '</div><p class="note">' + icon("info", "icon--md") + "<span>" +
-          (lang === "ar" ? "صور حقيقية لمستودعاتنا وأسطولنا وفرقنا تُرفق من فريق التسويق، مع طبقة كحلية عند وضع نص عليها." : "Real photographs of our warehouses, fleet and teams are supplied by marketing, with a navy overlay wherever text sits on them.") + "</span></p></section>";
+        var anyImg = Q.GALLERY.some(function (g) { return g.img; });
+        return '<section class="blk"><div class="grid grid--3">' + Q.GALLERY.map(function (g) { return photoSlot(t(g.cap), true, g.img); }).join("") + "</div>" +
+          (anyImg ? "" : '<p class="note">' + icon("info", "icon--md") + "<span>" + u("galleryNote") + "</span></p>") + "</section>";
       case "jobs":
-        return '<section class="blk"><div class="empty"><span class="icon-circle">' + icon("briefcase") + "</span><h2>" + (lang === "ar" ? "لا توجد وظائف شاغرة منشورة حالياً" : "No open positions are published right now") + '</h2><p class="muted">' +
-          (lang === "ar" ? "أرسل سيرتك الذاتية، وسيتواصل معك فريق الموارد البشرية عند توفر وظيفة تناسبك في أحد مراكزنا الخمسة." : "Send your CV and Human Resources will contact you when a matching role opens in one of our five hubs.") + "</p>" + btn(t(Q.PAGES["careers-apply"].t), "careers-apply", "primary") + "</div></section>";
+        if (Q.JOBS.length) return '<section class="blk"><div class="grid grid--2">' + Q.JOBS.map(function (j) {
+          return '<div class="qs-card job"><div class="card-top"><h3 class="qs-heading qs-card__title">' + t(j.t) + '</h3><span class="icon-circle">' + icon("briefcase") + "</span></div>" +
+            '<p class="job__meta">' + (has(j.where) ? "<span>" + icon("mapPin", "icon--sm") + t(j.where) + "</span>" : "") + (has(j.type) ? "<span>" + icon("clock", "icon--sm") + t(j.type) + "</span>" : "") + "</p>" +
+            (has(j.d) ? '<p class="qs-card__body">' + t(j.d) + "</p>" : "") + "<div>" + btn(u("applyNow"), "careers-apply", "primary") + "</div></div>";
+        }).join("") + "</div></section>";
+        return '<section class="blk"><div class="empty"><span class="icon-circle">' + icon("briefcase") + "</span><h2>" + u("jobsEmpty") + '</h2><p class="muted">' +
+          u("jobsEmptyText") + "</p>" + (pg("careers-apply") ? btn(ptitle("careers-apply"), "careers-apply", "primary") : "") + "</div></section>";
       case "form": return formHTML(b.kind);
       case "office": return officeHTML();
       case "group": return groupHTML();
       case "sitemap":
         return '<section class="blk"><div class="smap"><div><h3><a href="#home">' + u("home") + "</a></h3></div>" + Q.NAV.filter(function (n) { return n.kids; }).map(function (n) {
-          return "<div><h3>" + t(n.t) + "</h3><ul>" + n.kids.map(function (k) { return '<li><a href="#' + k + '">' + t(Q.PAGES[k].t) + "</a></li>"; }).join("") + "</ul></div>";
-        }).join("") + "<div><h3>" + (lang === "ar" ? "صفحات عامة" : "General") + '</h3><ul><li><a href="#privacy">' + u("privacy") + '</a></li><li><a href="#terms">' + u("terms") + "</a></li></ul></div></div></section>";
+          return "<div><h3>" + t(n.t) + "</h3><ul>" + n.kids.map(function (k) { return '<li><a href="#' + k + '">' + ptitle(k) + "</a></li>"; }).join("") + "</ul></div>";
+        }).join("") + "<div><h3>" + u("sitemapGeneral") + '</h3><ul><li><a href="#privacy">' + u("privacy") + '</a></li><li><a href="#terms">' + u("terms") + "</a></li></ul></div></div></section>";
     }
     return "";
   }
@@ -522,74 +563,104 @@
     function X(c) { return x0 + (x1 - x0) * c / max; }
     var ticks = "";
     for (var c = 0; c <= max; c += 5) ticks += '<line class="axis" x1="' + X(c) + '" x2="' + X(c) + '" y1="92" y2="98"/><text class="tick" x="' + X(c) + '" y="114" text-anchor="middle">' + c + "</text>";
-    var cold = lang === "ar" ? "مبرّد: 2 إلى 8 °م" : "Refrigerated: 2 to 8 °C";
-    var room = lang === "ar" ? "حرارة الغرفة: 15 إلى 25 °م" : "Room temperature: 15 to 25 °C";
-    return '<section class="blk"><h2>' + (lang === "ar" ? "نطاقات التخزين" : "Storage ranges") + '</h2><figure class="temps" style="margin:0" dir="ltr">' +
-      '<svg viewBox="0 0 ' + W + ' 124" role="img" aria-label="' + cold + "; " + room + '">' +
+    var cold = u("tempsCold");
+    var room = u("tempsRoom");
+    return '<section class="blk"><h2>' + u("tempsTitle") + '</h2><figure class="temps" style="margin:0" dir="ltr">' +
+      '<svg viewBox="0 0 ' + W + ' 124" role="img" aria-label="' + esc(cold + "; " + room) + '">' +
         '<line class="axis" x1="' + x0 + '" x2="' + x1 + '" y1="92" y2="92"/>' + ticks +
         '<rect class="rng-cold" x="' + X(2) + '" y="52" width="' + (X(8) - X(2)) + '" height="28" rx="6"/>' +
         '<rect class="rng-room" x="' + X(15) + '" y="52" width="' + (X(25) - X(15)) + '" height="28" rx="6"/>' +
         '<text class="rng-lbl" x="' + X(2) + '" y="40">' + cold + "</text>" +
         '<text class="rng-lbl" x="' + X(15) + '" y="40">' + room + "</text>" +
-      '</svg><figcaption class="temps__cap" dir="' + (lang === "ar" ? "rtl" : "ltr") + '">' + (lang === "ar" ? "درجة الحرارة بالمئوي. المصدر: متطلبات التخزين في ممارسات التوزيع الجيد." : "Temperature in °C. Source: GDP storage requirements.") + "</figcaption></figure></section>";
+      '</svg><figcaption class="temps__cap" dir="' + (lang === "ar" ? "rtl" : "ltr") + '">' + u("tempsCap") + "</figcaption></figure></section>";
   }
 
   function partnersHTML() {
-    var slot = function () { return '<div class="ptile ptile--slot">' + (lang === "ar" ? "شعار الشريك" : "Partner logo") + "</div>"; };
-    var groups = [
-      { t: L2("North Africa", "شمال أفريقيا"), tiles: partnerTile(true) },
-      { t: L2("Europe", "أوروبا"), tiles: slot() + slot() + slot() },
-      { t: L2("Middle East", "الشرق الأوسط"), tiles: slot() + slot() },
-      { t: L2("Asia", "آسيا"), tiles: slot() + slot() }
-    ];
+    var groups = Q.REGIONS.map(function (r) {
+      var list = Q.PARTNERS.filter(function (p) { return p.region === r.id; });
+      return { t: r.t, tiles: list.length ? list.map(partnerTile).join("") : slotTile() + slotTile() };
+    });
     return '<section class="blk">' + groups.map(function (g) { return '<div class="pgroup"><h3>' + t(g.t) + '</h3><div class="ptiles">' + g.tiles + "</div></div>"; }).join("") +
-      '<p class="note">' + icon("info", "icon--md") + "<span>" + (lang === "ar" ? "تُعرض شعارات الشركاء بعد موافقتهم، في مربعات بيضاء متساوية الحجم." : "Partner logos are shown with each partner’s approval, in equal white tiles.") + "</span></p></section>";
+      '<p class="note">' + icon("info", "icon--md") + "<span>" + u("partnersNote") + "</span></p></section>";
   }
-  function L2(en, ar) { return { en: en, ar: ar }; }
 
-  var PRODUCT_ROWS = ["cardio", "diabetes", "anti-infectives", "respiratory", "gastro", "cns", "oncology", "derma"];
+  function areaName(id) { var a = Q.AREAS.filter(function (x) { return x.id === id; })[0]; return a ? t(a.t) : ""; }
+  function productById(id) { return Q.PRODUCTS.filter(function (p) { return String(p.id) === String(id); })[0] || null; }
   function productsHTML() {
     var chips = '<button type="button" class="chip" data-parea="all" aria-pressed="' + (productArea === "all") + '">' + u("allAreas") + "</button>" +
       Q.AREAS.map(function (a) { return '<button type="button" class="chip" data-parea="' + a.id + '" aria-pressed="' + (productArea === a.id) + '">' + t(a.t) + "</button>"; }).join("");
     return '<section class="blk">' +
-      '<div class="qs-field" style="max-width:420px"><label class="qs-field__label" for="p-search">' + (lang === "ar" ? "ابحث في المنتجات" : "Search products") + '</label><input class="qs-input" id="p-search" type="search" value="' + esc(productQuery) + '" placeholder="' + (lang === "ar" ? "الاسم التجاري أو العلمي" : "Brand or generic name") + '"></div>' +
-      '<div class="filters" role="group" aria-label="' + t(Q.PAGES["products-areas"].t) + '">' + chips + "</div>" +
+      '<div class="qs-field" style="max-width:420px"><label class="qs-field__label" for="p-search">' + u("productSearch") + '</label><input class="qs-input" id="p-search" type="search" value="' + esc(productQuery) + '" placeholder="' + esc(u("productSearchPh")) + '"></div>' +
+      '<div class="filters" role="group" aria-label="' + esc(ptitle("products-areas")) + '">' + chips + "</div>" +
       '<div id="p-table">' + productTable() + "</div></section>";
   }
   function productTable() {
-    var areaName = {}; Q.AREAS.forEach(function (a) { areaName[a.id] = t(a.t); });
     var q = productQuery.trim().toLowerCase();
-    var rows = PRODUCT_ROWS.filter(function (a) { return (productArea === "all" || productArea === a) && (!q || areaName[a].toLowerCase().indexOf(q) > -1); });
-    var ex = lang === "ar";
-    var head = ex ? ["المنتج", "الاسم العلمي", "الشكل والتركيز", "الشريك", "المجال العلاجي", "الحالة"] : ["Product", "Generic name (INN)", "Form & strength", "Partner", "Therapeutic area", "Status"];
-    var body = rows.length ? rows.map(function (a) {
-      return '<tr><td><a href="#products-detail">' + (ex ? "اسم المنتج" : "Product name") + '</a></td><td class="muted">' + (ex ? "الاسم العلمي" : "Generic name") + '</td><td class="muted">' + (ex ? "الشكل الصيدلاني والتركيز" : "Dosage form, strength") + '</td><td class="muted">' + (ex ? "الشريك" : "Partner") + "</td><td>" + areaName[a] + "</td><td>" + badge(u("example"), "info") + "</td></tr>";
-    }).join("") : '<tr><td colspan="6">' + (ex ? "لا توجد منتجات مطابقة. امسح البحث أو اختر «جميع المجالات»." : "No products match. Clear the search or choose “All areas”.") + "</td></tr>";
-    return '<p class="qs-field__hint" style="margin-bottom:var(--space-2)">' + (ex ? "المصدر: قائمة المنتجات المسجّلة، تُحمَّل عند رفع المحتوى. الصفوف أدناه أمثلة للتصميم." : "Source: the registered product list, loaded at content upload. The rows below are layout examples.") + "</p>" +
+    var rows = Q.PRODUCTS.filter(function (p) {
+      if (productArea !== "all" && p.area !== productArea) return false;
+      if (!q) return true;
+      var hay = [p.name, p.generic].map(function (o) { return o ? (o.en || "") + " " + (o.ar || "") : ""; }).join(" ") + " " + (p.partner || "") + " " + areaName(p.area);
+      return hay.toLowerCase().indexOf(q) > -1;
+    });
+    var anyExample = Q.PRODUCTS.some(function (p) { return p.example; });
+    var head = [u("thProduct"), u("thGeneric"), u("thForm"), u("thPartner"), u("thArea"), u("thStatus")];
+    var body = rows.length ? rows.map(function (p) {
+      var href = p.example ? "products-detail" : "product-" + p.id;
+      return '<tr><td><a href="#' + href + '">' + t(p.name) + '</a></td><td class="muted">' + t(p.generic) + '</td><td class="muted">' + t(p.form) + '</td><td class="muted">' + esc(p.partner || "") + "</td><td>" + areaName(p.area) + "</td><td>" +
+        (p.example ? badge(u("example"), "info") : badge(u("registered"), "success")) + "</td></tr>";
+    }).join("") : '<tr><td colspan="6">' + u("productsNone") + "</td></tr>";
+    return (anyExample ? '<p class="qs-field__hint" style="margin-bottom:var(--space-2)">' + u("productsSource") + "</p>" : "") +
       '<div class="table-scroll"><table class="qs-table"><thead><tr>' + head.map(function (h) { return '<th scope="col">' + h + "</th>"; }).join("") + "</tr></thead><tbody>" + body + "</tbody></table></div>";
   }
+  /* Field list for a product page. With a product it shows that product's
+     values; on the template page it shows where each value comes from. */
+  function productFields(p) {
+    var from = '<span class="muted">' + u("pdFrom") + "</span>";
+    function v(x) { return p ? (has(x) ? t(x) : tbc()) : from; }
+    var rows = [
+      [u("pdBrand"), p ? t(p.name) : from], [u("pdGeneric"), v(p && p.generic)], [u("pdForm"), v(p && p.form)], [u("pdPack"), v(p && p.pack)],
+      [u("pdArea"), p ? areaName(p.area) || tbc() : from], [u("pdMaker"), p ? (p.partner ? esc(p.partner) : tbc()) : from],
+      [u("pdReg"), p ? (p.reg ? '<bdi dir="ltr">' + esc(p.reg) + "</bdi>" : tbc()) : from], [u("pdStorage"), v(p && p.storage)],
+      [u("pdLeaflet"), p ? (p.leaflet ? '<a href="' + src(p.leaflet) + '" target="_blank" rel="noopener">' + u("pdDownload") + "</a>" : tbc()) : from]
+    ];
+    return '<div class="table-scroll"><table class="qs-table pd-table"><tbody>' + rows.map(function (r) {
+      return '<tr><th scope="row">' + r[0] + "</th><td>" + r[1] + "</td></tr>";
+    }).join("") + "</tbody></table></div>";
+  }
   function productDetailHTML() {
-    var ar = lang === "ar";
-    var rows = ar ? ["الاسم التجاري", "الاسم العلمي", "الشكل الصيدلاني والتركيز", "حجم العبوة", "المجال العلاجي", "الشركة المصنّعة", "رقم التسجيل في وزارة الصحة", "ظروف الحفظ", "النشرة الداخلية (PDF)"] :
-      ["Brand name", "Generic name (INN)", "Dosage form and strength", "Pack size", "Therapeutic area", "Manufacturer", "Ministry of Health registration no.", "Storage conditions", "Patient leaflet (PDF)"];
-    return '<section class="blk"><h2>' + (ar ? "حقول صفحة المنتج" : "Product page fields") + '</h2><div class="table-scroll"><table class="qs-table pd-table"><tbody>' + rows.map(function (r) {
-      return '<tr><th scope="row">' + r + '</th><td class="muted">' + (ar ? "من ملف التسجيل المعتمد" : "From the approved registration file") + "</td></tr>";
-    }).join("") + "</tbody></table></div></section>";
+    return '<section class="blk"><h2>' + u("pdTitle") + "</h2>" + productFields(null) + "</section>";
+  }
+  /* A real product gets its own page at #product-<id>, built from its record. */
+  function productPage(p) {
+    var lead = [t(p.generic), t(p.form)].filter(Boolean).join(" · ");
+    return {
+      sec: "products", parent: pg("products-list") ? "products-list" : null, t: p.name, lead: { en: lead, ar: lead },
+      rel: ["products-list", "products-areas", "contact-inquiry"],
+      blocks: [{ type: "productPage", product: p }, { type: "form", kind: "medical" }]
+    };
+  }
+
+  function hubInfo(id) {
+    var h = (Q.HUB_INFO || {})[id] || {};
+    if (!has(h.address) && !h.phone) return '<p class="qs-card__body">' + u("hubContacts") + " " + tbc() + "</p>";
+    return (has(h.address) ? '<p class="qs-card__body">' + t(h.address) + "</p>" : "") +
+      (h.phone ? '<p class="qs-card__body"><a href="' + tel(h.phone) + '"><bdi dir="ltr">' + esc(h.phone) + "</bdi></a></p>" : "");
   }
 
   function officeHTML() {
-    var ar = lang === "ar";
-    var copy = function (v) { return '<button type="button" class="copybtn" data-copy="' + v + '">' + icon("copy", "icon--sm") + "<span>" + u("copy") + "</span></button>"; };
+    var pend = S.pending ? tbc() : "";
+    var copy = function (v) { return '<button type="button" class="copybtn" data-copy="' + esc(v) + '">' + icon("copy", "icon--sm") + "<span>" + u("copy") + "</span></button>"; };
+    var row = function (ic, k, v) { return '<li><span class="icon-circle">' + icon(ic) + '</span><div><div class="cinfo__k">' + k + '</div><div class="cinfo__v">' + v + "</div></div></li>"; };
     return '<section class="blk office"><div class="qs-card"><ul class="cinfo">' +
-      "<li>" + '<span class="icon-circle">' + icon("mapPin") + '</span><div><div class="cinfo__k">' + (ar ? "العنوان" : "Address") + '</div><div class="cinfo__v">' + u("address") + "</div></div></li>" +
-      "<li>" + '<span class="icon-circle">' + icon("phone") + '</span><div><div class="cinfo__k">' + (ar ? "الهاتف" : "Phone") + '</div><div class="cinfo__v"><bdi dir="ltr">+964 XXX XXX XXXX</bdi> ' + tbc() + "</div></div></li>" +
-      "<li>" + '<span class="icon-circle">' + icon("mail") + '</span><div><div class="cinfo__k">' + (ar ? "البريد الإلكتروني" : "Email") + '</div><div class="cinfo__v"><bdi dir="ltr">info@alqawsangroup.com</bdi> ' + copy("info@alqawsangroup.com") + tbc() + "</div></div></li>" +
-      "<li>" + '<span class="icon-circle">' + icon("clock") + '</span><div><div class="cinfo__k">' + (ar ? "ساعات العمل" : "Working hours") + '</div><div class="cinfo__v">' + u("hours") + " " + tbc() + "</div></div></li>" +
-      "<li>" + '<span class="icon-circle">' + icon("globe") + '</span><div><div class="cinfo__k">' + (ar ? "الموقع الإلكتروني" : "Website") + '</div><div class="cinfo__v"><a href="https://alqawsangroup.com" target="_blank" rel="noopener" dir="ltr">www.alqawsangroup.com</a></div></div></li>' +
+      row("mapPin", u("officeAddress"), u("address")) +
+      (S.phone ? row("phone", u("officePhone"), '<bdi dir="ltr">' + esc(S.phone) + "</bdi> " + pend) : "") +
+      (S.email ? row("mail", u("officeEmail"), '<bdi dir="ltr">' + esc(S.email) + "</bdi> " + copy(S.email) + pend) : "") +
+      row("clock", u("officeHours"), u("hours") + " " + pend) +
+      (S.website ? row("globe", u("officeWebsite"), '<a href="' + src(S.website) + '" target="_blank" rel="noopener" dir="ltr">' + esc(S.website.replace(/^https?:\/\//, "").replace(/\/$/, "")) + "</a>") : "") +
       "</ul></div>" +
       '<div class="mapcard"><figure class="mapfig" style="max-width:360px;margin-inline:auto">' + mapSVG("mini") + "</figure>" +
-      '<a class="qs-btn qs-btn--secondary" href="https://www.google.com/maps/search/?api=1&query=Qadisiyah+District+Baghdad+Iraq" target="_blank" rel="noopener">' + icon("external", "icon--md") + "<span>" + (ar ? "افتح في خرائط Google" : "Open in Google Maps") + "</span></a></div></section>" +
-      '<section class="blk">' + btn(t(Q.PAGES["contact-inquiry"].t), "contact-inquiry", "primary") + "</section>";
+      (S.maps ? '<a class="qs-btn qs-btn--secondary" href="' + src(S.maps) + '" target="_blank" rel="noopener">' + icon("external", "icon--md") + "<span>" + u("openMaps") + "</span></a>" : "") + "</div></section>" +
+      (pg("contact-inquiry") ? '<section class="blk">' + btn(ptitle("contact-inquiry"), "contact-inquiry", "primary") + "</section>" : "");
   }
 
   function groupHTML() {
@@ -603,76 +674,101 @@
       '<polygon points="' + hexPoints(B[0], B[1], r * 0.6) + '" fill="var(--surface)" stroke="var(--navy-800)" stroke-width="' + sw * 0.8 + '" stroke-linejoin="round"/>' +
       '<polygon points="' + hexPoints(C[0], C[1], r * 0.6) + '" fill="var(--surface)" stroke="var(--navy-800)" stroke-width="' + sw * 0.8 + '" stroke-linejoin="round"/>';
     var lbl = function (p, dy, txt, size) { return '<text class="glbl" x="' + p[0] + '" y="' + (p[1] + dy) + '" text-anchor="middle" font-size="' + size + '">' + txt + "</text>"; };
-    s += lbl(A, -4, rtl ? "مكتب القوسان" : "Al-Qawsan", 17) + lbl(A, 18, rtl ? "العلمي" : "Scientific Bureau", 13);
-    s += lbl(B, 5, "CAS", 14) + lbl(C, 5, rtl ? "شريك التصنيع" : "Manufacturing", 11) + lbl(C, 19, rtl ? "" : "partner", 11);
-    var cards = window.QS.GROUP.map(function (g) {
-      return '<div class="qs-card"><h3 class="qs-heading qs-card__title"' + (g.t.en === "CAS Development" ? ' dir="ltr"' : "") + ">" + t(g.t) + '</h3><p class="qs-card__body">' + t(g.d) + "</p></div>";
+    s += lbl(A, -4, u("groupFigMain1"), 17) + lbl(A, 18, u("groupFigMain2"), 13);
+    s += lbl(B, 5, u("groupFigB"), 14) + lbl(C, 5, u("groupFigC1"), 11) + lbl(C, 19, u("groupFigC2"), 11);
+    var cards = Q.GROUP.map(function (g) {
+      var latin = /^[\x00-\x7F]*$/.test(t(g.t));
+      return '<div class="qs-card">' + (g.logo ? img(g.logo, t(g.t), "group__logo") : "") + '<h3 class="qs-heading qs-card__title"' + (latin ? ' dir="ltr"' : "") + ">" + t(g.t) + '</h3><p class="qs-card__body">' + t(g.d) + "</p></div>";
     }).join("");
-    return '<section class="blk"><figure class="group-fig" style="margin:0"><svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="' + (rtl ? "مجموعة القوسان: مكتب القوسان العلمي مع CAS Development وشريك التصنيع" : "Al-Qawsan Group: the Bureau with CAS Development and the manufacturing partner") + '">' + s + "</svg></figure></section>" +
-      '<section class="blk"><h2>' + (rtl ? "شركات المجموعة" : "Group companies") + '</h2><div class="grid grid--3">' + cards + "</div></section>";
+    return '<section class="blk"><figure class="group-fig" style="margin:0"><svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="' + esc(u("groupFigAria")) + '">' + s + "</svg></figure></section>" +
+      '<section class="blk"><h2>' + u("groupCompanies") + '</h2><div class="grid grid--3">' + cards + "</div></section>";
   }
 
   /* ------------------------------------------------------------ forms */
   function F(name, label, type, opts) { return { name: name, label: label, type: type || "text", req: opts && opts.req, span: opts && opts.span, options: opts && opts.options, accept: opts && opts.accept }; }
+  /* Field sets for the four forms. Labels and option lists are interface strings,
+     so they are edited in the dashboard; the field names match the server rules. */
   function formDef(kind) {
-    var ar = lang === "ar";
     var areas = Q.AREAS.map(function (a) { return t(a.t); });
-    var hubs = Q.HUBS.map(function (id) { return ar ? GOV[id].capAr : GOV[id].cap; });
+    var hubs = Q.HUBS.filter(function (id) { return GOV[id]; }).map(function (id) { return lang === "ar" ? GOV[id].capAr : GOV[id].cap; });
     var defs = {
-      partner: { h: L2("Partnership request", "طلب شراكة"), f: [
-        F("company", L2("Company name", "اسم الشركة"), "text", { req: 1 }),
-        F("country", L2("Country", "البلد"), "text", { req: 1 }),
-        F("name", L2("Your name", "اسمك"), "text", { req: 1 }),
-        F("email", L2("Email", "البريد الإلكتروني"), "email", { req: 1 }),
-        F("phone", L2("Phone", "الهاتف"), "tel"),
-        F("area", L2("Main therapeutic area", "المجال العلاجي الرئيسي"), "select", { options: areas.concat([ar ? "أخرى" : "Other"]) }),
-        F("portfolio", L2("Tell us about your portfolio", "حدّثنا عن محفظة منتجاتك"), "textarea", { req: 1, span: 1 })
-      ] },
-      inquiry: { h: L2("Send an inquiry", "أرسل استفساراً"), f: [
-        F("name", L2("Your name", "اسمك"), "text", { req: 1 }),
-        F("org", L2("Organisation", "الجهة"), "text"),
-        F("email", L2("Email", "البريد الإلكتروني"), "email", { req: 1 }),
-        F("phone", L2("Phone", "الهاتف"), "tel"),
-        F("subject", L2("Subject", "الموضوع"), "select", { req: 1, span: 1, options: ar ? ["المبيعات والطلبات", "الشراكة", "المعلومات الطبية", "الوظائف", "أخرى"] : ["Sales and orders", "Partnership", "Medical information", "Careers", "Other"] }),
-        F("message", L2("Message", "الرسالة"), "textarea", { req: 1, span: 1 })
-      ] },
-      medical: { h: L2("Medical information request", "طلب معلومات طبية"), f: [
-        F("name", L2("Your name", "اسمك"), "text", { req: 1 }),
-        F("role", L2("Profession", "المهنة"), "select", { req: 1, options: ar ? ["طبيب", "صيدلاني", "كادر صحي آخر"] : ["Doctor", "Pharmacist", "Other healthcare professional"] }),
-        F("email", L2("Email", "البريد الإلكتروني"), "email", { req: 1 }),
-        F("product", L2("Product", "المنتج"), "text", { req: 1 }),
-        F("question", L2("Your question", "سؤالك"), "textarea", { req: 1, span: 1 })
-      ] },
-      apply: { h: L2("Job application", "طلب توظيف"), f: [
-        F("name", L2("Full name", "الاسم الكامل"), "text", { req: 1 }),
-        F("email", L2("Email", "البريد الإلكتروني"), "email", { req: 1 }),
-        F("phone", L2("Phone", "الهاتف"), "tel", { req: 1 }),
-        F("role", L2("Area of interest", "المجال المطلوب"), "select", { req: 1, options: ar ? ["مندوب علمي", "صيدلاني", "الشؤون التنظيمية", "المستودعات وسلسلة الإمداد", "أخرى"] : ["Medical representative", "Pharmacist", "Regulatory affairs", "Warehouse and supply chain", "Other"] }),
-        F("city", L2("Preferred hub", "المركز المفضّل"), "select", { options: hubs }),
-        F("cv", L2("CV (PDF or Word)", "السيرة الذاتية (PDF أو Word)"), "file", { req: 1, accept: ".pdf,.doc,.docx" }),
-        F("note", L2("Anything else we should know", "معلومات إضافية"), "textarea", { span: 1 })
-      ] }
+      partner: [
+        F("company", "field.company", "text", { req: 1 }),
+        F("country", "field.country", "text", { req: 1 }),
+        F("name", "field.name", "text", { req: 1 }),
+        F("email", "field.email", "email", { req: 1 }),
+        F("phone", "field.phone", "tel"),
+        F("area", "field.area", "select", { options: areas.concat([u("opt.other")]) }),
+        F("portfolio", "field.portfolio", "textarea", { req: 1, span: 1 })
+      ],
+      inquiry: [
+        F("name", "field.name", "text", { req: 1 }),
+        F("org", "field.org", "text"),
+        F("email", "field.email", "email", { req: 1 }),
+        F("phone", "field.phone", "tel"),
+        F("subject", "field.subject", "select", { req: 1, span: 1, options: lines("opt.subject") }),
+        F("message", "field.message", "textarea", { req: 1, span: 1 })
+      ],
+      medical: [
+        F("name", "field.name", "text", { req: 1 }),
+        F("role", "field.profession", "select", { req: 1, options: lines("opt.profession") }),
+        F("email", "field.email", "email", { req: 1 }),
+        F("product", "field.product", "text", { req: 1 }),
+        F("question", "field.question", "textarea", { req: 1, span: 1 })
+      ],
+      apply: [
+        F("name", "field.fullName", "text", { req: 1 }),
+        F("email", "field.email", "email", { req: 1 }),
+        F("phone", "field.phone", "tel", { req: 1 }),
+        F("role", "field.interest", "select", { req: 1, options: lines("opt.interest") }),
+        F("city", "field.hub", "select", { options: hubs }),
+        F("cv", "field.cv", "file", { req: 1, accept: ".pdf,.doc,.docx" }),
+        F("note", "field.note", "textarea", { span: 1 })
+      ]
     };
-    return defs[kind];
+    return defs[kind] ? { h: u("form." + kind), f: defs[kind] } : null;
+  }
+  /* Bots fill every field; people never see this one. */
+  function honeypot() {
+    return '<div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="website_url" tabindex="-1" autocomplete="off"></label></div>';
   }
   function formHTML(kind) {
-    var d = formDef(kind), m = Q.FORMS[kind];
+    var d = formDef(kind), m = Q.FORMS[kind] || { team: "", when: "" };
+    if (!d) return "";
+    var fine = API ? fmt(u("formLive"), t(m.team)) : fmt(u("formPreview"), t(m.team));
     var fields = d.f.map(function (f) {
       var id = "f-" + kind + "-" + f.name;
       var ltr = { email: 1, tel: 1 }[f.type] ? ' dir="ltr"' : "";
       var req = f.req ? " required" : "";
       var ctl;
-      if (f.type === "textarea") ctl = '<textarea class="qs-input" id="' + id + '" name="' + f.name + '"' + req + "></textarea>";
-      else if (f.type === "select") ctl = '<select class="qs-input" id="' + id + '" name="' + f.name + '"' + req + '><option value="">' + (lang === "ar" ? "اختر" : "Choose") + "</option>" + f.options.map(function (o) { return "<option>" + o + "</option>"; }).join("") + "</select>";
-      else ctl = '<input class="qs-input" id="' + id + '" name="' + f.name + '" type="' + f.type + '"' + ltr + req + (f.accept ? ' accept="' + f.accept + '"' : "") + (f.type === "email" ? ' autocomplete="email"' : f.type === "tel" ? ' autocomplete="tel"' : f.name === "name" ? ' autocomplete="name"' : "") + ">";
-      return '<div class="qs-field' + (f.span ? " span-2" : "") + '"><label class="qs-field__label" for="' + id + '">' + t(f.label) + (f.req ? '<span class="qs-field__req" aria-hidden="true">*</span>' : "") + "</label>" + ctl + "</div>";
+      if (f.type === "textarea") ctl = '<textarea class="qs-input" id="' + id + '" name="' + f.name + '"' + req + ' maxlength="5000"></textarea>';
+      else if (f.type === "select") ctl = '<select class="qs-input" id="' + id + '" name="' + f.name + '"' + req + '><option value="">' + u("choose") + "</option>" + f.options.map(function (o) { return "<option>" + o + "</option>"; }).join("") + "</select>";
+      else ctl = '<input class="qs-input" id="' + id + '" name="' + f.name + '" type="' + f.type + '"' + ltr + req + (f.accept ? ' accept="' + f.accept + '"' : ' maxlength="200"') + (f.type === "email" ? ' autocomplete="email"' : f.type === "tel" ? ' autocomplete="tel"' : f.name === "name" ? ' autocomplete="name"' : "") + ">";
+      return '<div class="qs-field' + (f.span ? " span-2" : "") + '"><label class="qs-field__label" for="' + id + '">' + u(f.label) + (f.req ? '<span class="qs-field__req" aria-hidden="true">*</span>' : "") + "</label>" + ctl + "</div>";
     }).join("");
     return '<section class="blk" data-formwrap>' +
-      '<form class="form" data-form="' + kind + '" novalidate><div class="form__head"><h2>' + t(d.h) + '</h2><p class="muted">' + u("formRequired") + "</p></div>" +
-        '<div class="form__grid">' + fields + "</div>" +
-        '<div class="form__foot"><p class="form__fine">' + fmt(u("formPreview"), t(m.team)) + '</p><button class="qs-btn qs-btn--primary" type="submit">' + u("send") + "</button></div></form>" +
-      '<div class="form form-done" hidden><span class="icon-circle">' + icon("checkCircle") + "</span><h2>" + u("formSent") + "</h2><p>" + fmt(u("formReply"), t(m.team), t(m.when)) + '</p><p class="form__fine">' + fmt(u("formPreview"), t(m.team)) + '</p><button class="qs-btn qs-btn--secondary" type="button" data-form-again>' + u("formAgain") + "</button></div>" +
+      '<form class="form" data-form="' + kind + '" novalidate><div class="form__head"><h2>' + d.h + '</h2><p class="muted">' + u("formRequired") + "</p></div>" +
+        '<div class="form__grid">' + fields + "</div>" + honeypot() +
+        '<p class="form__err" role="alert" hidden>' + icon("info", "icon--md") + "<span>" + u("formError") + "</span></p>" +
+        '<div class="form__foot"><p class="form__fine">' + fine + '</p><button class="qs-btn qs-btn--primary" type="submit"><span>' + u("send") + "</span></button></div></form>" +
+      '<div class="form form-done" hidden><span class="icon-circle">' + icon("checkCircle") + "</span><h2>" + u("formSent") + "</h2><p>" + fmt(u("formReply"), t(m.team), t(m.when)) + "</p>" + (API ? "" : '<p class="form__fine">' + fine + "</p>") + '<button class="qs-btn qs-btn--secondary" type="button" data-form-again>' + u("formAgain") + "</button></div>" +
       "</section>";
+  }
+
+  /* Sends a form to Laravel when the site is served by it. The static preview
+     has no API, so it only shows the confirmation. */
+  function submitForm(form, kind, onDone) {
+    var err = form.querySelector(".form__err, .ftr__err");
+    if (!API) { onDone(); return; }
+    var btn = form.querySelector("[type=submit]"), label = btn.innerHTML;
+    btn.disabled = true; btn.innerHTML = "<span>" + u("formSending") + "</span>";
+    if (err) err.hidden = true;
+    var data = new FormData(form);
+    data.append("lang", lang);
+    fetch(API.forms + "/" + kind, { method: "POST", body: data, credentials: "same-origin", headers: { "X-CSRF-TOKEN": API.csrf, "Accept": "application/json" } })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function () { btn.disabled = false; btn.innerHTML = label; onDone(); })
+      .catch(function () { btn.disabled = false; btn.innerHTML = label; if (err) { err.hidden = false; } });
   }
 
   /* ------------------------------------------------------------ 404 */
@@ -685,7 +781,7 @@
     var out = [];
     Object.keys(Q.PAGES).forEach(function (id) {
       var p = Q.PAGES[id];
-      out.push({ id: id, title: t(p.t), sec: p.sec ? t(SEC[p.sec].t) : "", hay: (p.t.en + " " + p.t.ar + " " + p.lead.en + " " + p.lead.ar + " " + (p.sec ? SEC[p.sec].t.en + " " + SEC[p.sec].t.ar : "")).toLowerCase() });
+      out.push({ id: id, title: t(p.t), sec: secT(p.sec), hay: [p.t, p.lead, p.sec && SEC[p.sec] ? SEC[p.sec].t : null].map(function (o) { return o ? (o.en || "") + " " + (o.ar || "") : ""; }).join(" ").toLowerCase() });
     });
     return out;
   }
@@ -752,12 +848,14 @@
     var skip = app.querySelector(".skip"); if (skip) skip.textContent = u("skip");
     document.getElementById("hdr").innerHTML = headerHTML();
     var main = document.getElementById("main");
+    var prod = /^product-(\d+)$/.exec(route), pp = prod ? productById(prod[1]) : null;
+    var page = route === "home" ? null : pp && !pp.example ? productPage(pp) : Q.PAGES[route] || null;
     if (route === "home") main.innerHTML = homeHTML();
-    else if (Q.PAGES[route]) main.innerHTML = pageHTML(route);
+    else if (page) main.innerHTML = pageHTML(route, page);
     else main.innerHTML = notFoundHTML();
     document.getElementById("ftr").innerHTML = footerHTML();
     bindNewsletter();
-    document.title = (route === "home" ? u("brand") : (Q.PAGES[route] ? t(Q.PAGES[route].t) + " | " + u("brand") : u("notFound")));
+    document.title = (route === "home" ? u("brand") : (page ? t(page.t).replace(/<[^>]*>/g, "") + " | " + u("brand") : u("notFound")));
     bindMaps(main);
     bindPage(main);
     if (focus) { var h = main.querySelector("h1"); if (h) h.focus({ preventScroll: true }); }
@@ -806,8 +904,10 @@
     f.addEventListener("submit", function (e) {
       e.preventDefault();
       if (!f.checkValidity()) { f.reportValidity(); return; }
-      var done = f.parentNode.querySelector(".ftr__done");
-      f.hidden = true; done.hidden = false; done.focus();
+      submitForm(f, "newsletter", function () {
+        var done = f.parentNode.querySelector(".ftr__done");
+        f.hidden = true; done.hidden = false; done.focus();
+      });
     });
   }
 
@@ -824,9 +924,11 @@
       f.addEventListener("submit", function (e) {
         e.preventDefault();
         if (!f.checkValidity()) { f.reportValidity(); return; }
-        var done = f.parentNode.querySelector(".form-done");
-        f.hidden = true; done.hidden = false;
-        done.setAttribute("tabindex", "-1"); done.focus();
+        submitForm(f, f.getAttribute("data-form"), function () {
+          var done = f.parentNode.querySelector(".form-done");
+          f.hidden = true; done.hidden = false;
+          done.setAttribute("tabindex", "-1"); done.focus();
+        });
       });
     });
   }
@@ -876,6 +978,7 @@
     if ((a = e.target.closest("[data-form-again]"))) {
       var wrap = a.closest("[data-formwrap]"), form = wrap.querySelector("form");
       form.reset(); form.hidden = false; a.closest(".form-done").hidden = true; form.querySelector(".qs-input").focus();
+      var fe = form.querySelector(".form__err"); if (fe) fe.hidden = true;
       return;
     }
     if ((a = e.target.closest("[data-copy]"))) {

@@ -1,0 +1,1861 @@
+{
+ "UI": {
+  "en": {
+   "skip": "Skip to content",
+   "brand": "Al-Qawsan Scientific Bureau",
+   "brandAlt": "مكتب القوسان العلمي",
+   "address": "Qadisiyah District, Baghdad, Iraq",
+   "hours": "Sunday to Thursday, 8:30 to 16:00",
+   "cta": "Become a Partner",
+   "search": "Search",
+   "searchLabel": "Search the site",
+   "searchPh": "Try “cold chain”, “tenders” or “careers”",
+   "searchNone": "No page matches “%s”. Try a service name such as “registration”.",
+   "menu": "Menu",
+   "close": "Close",
+   "mainNav": "Main",
+   "home": "Home",
+   "breadcrumb": "Breadcrumb",
+   "inSection": "In this section",
+   "related": "Related pages",
+   "readMore": "Read more",
+   "tbc": "To be confirmed",
+   "example": "Example",
+   "copy": "Copy",
+   "copied": "Copied",
+   "ctaTitle": "Bringing a product to Iraq?",
+   "ctaText": "Tell us about your portfolio. Our business development team replies within two working days.",
+   "ctaContact": "Contact us",
+   "footerAbout": "Pharmaceutical distribution and scientific promotion across all 18 governorates of Iraq since 2009.",
+   "group": "Al-Qawsan Group",
+   "quick": "Quick links",
+   "services": "Our services",
+   "contact": "Contact us",
+   "rights": "All rights reserved.",
+   "privacy": "Privacy policy",
+   "terms": "Terms of use",
+   "sitemap": "Sitemap",
+   "tagline": "Your Trusted Partner in Medical & Scientific Solutions",
+   "mapTitle": "Distribution network across Iraq",
+   "mapHint": "Select a governorate to see its capital and distance from our Baghdad head office.",
+   "mapHub": "Strategic hub",
+   "mapHq": "Head office and strategic hub",
+   "mapServed": "Served governorate",
+   "mapCapital": "Capital",
+   "mapDistance": "From Baghdad head office",
+   "mapKm": "km in a straight line",
+   "mapHere": "Our head office is in Qadisiyah District, Baghdad.",
+   "mapGovs": "governorates",
+   "mapHubs": "strategic hubs",
+   "prev": "Previous slide",
+   "next": "Next slide",
+   "slide": "Slide",
+   "formRequired": "Fields marked * are required.",
+   "formPreview": "Preview: this form is not connected yet. In the live site it is sent to %s.",
+   "formSent": "Thank you. Your request is recorded.",
+   "formReply": "%s will reply %s.",
+   "formAgain": "Send another request",
+   "send": "Send request",
+   "allAreas": "All areas",
+   "notFound": "This page does not exist",
+   "notFoundText": "The link may be out of date. Use the menu or search to find what you need.",
+   "backHome": "Back to home",
+   "newsAll": "All news",
+   "draftSlot": "Article slot",
+   "draftSlotText": "The next company article will appear here once it is approved for publishing.",
+   "servicesIntro": "One partner for the whole route to market: registration, pricing, scientific promotion, storage and delivery.",
+   "partnersIntro": "Manufacturers from Europe, the Middle East, North Africa and Asia trust us with their products in Iraq.",
+   "areasIntro": "Browse the portfolio by therapeutic area.",
+   "newsIntro": "Company news and announcements.",
+   "aboutTeaserH": "An Iraqi scientific bureau built on precision",
+   "fLocation": "Location",
+   "fEmail": "Email",
+   "fCall": "Call now",
+   "newsTitle": "Our newsletter",
+   "newsText": "Company news and partner updates, about once a month.",
+   "newsPh": "name@company.com",
+   "subscribe": "Subscribe",
+   "newsPrivacy": "We use your email only to send this newsletter.",
+   "newsDone": "Thank you. You are subscribed.",
+   "newsPreview": "Preview: this form is not connected yet.",
+   "toTop": "Back to top",
+   "theme": "Theme"
+  },
+  "ar": {
+   "skip": "انتقل إلى المحتوى",
+   "brand": "مكتب القوسان العلمي",
+   "brandAlt": "Al-Qawsan Scientific Bureau",
+   "address": "حي القادسية، بغداد، العراق",
+   "hours": "من الأحد إلى الخميس، 8:30 إلى 16:00",
+   "cta": "كن شريكاً",
+   "search": "بحث",
+   "searchLabel": "البحث في الموقع",
+   "searchPh": "جرّب «سلسلة التبريد» أو «المناقصات» أو «الوظائف»",
+   "searchNone": "لا توجد صفحة تطابق «%s». جرّب اسم خدمة مثل «التسجيل».",
+   "menu": "القائمة",
+   "close": "إغلاق",
+   "mainNav": "التنقل الرئيسي",
+   "home": "الرئيسية",
+   "breadcrumb": "مسار التنقل",
+   "inSection": "في هذا القسم",
+   "related": "صفحات ذات صلة",
+   "readMore": "اقرأ المزيد",
+   "tbc": "قيد التأكيد",
+   "example": "مثال",
+   "copy": "نسخ",
+   "copied": "تم النسخ",
+   "ctaTitle": "هل تخطط لإدخال منتجك إلى العراق؟",
+   "ctaText": "حدّثنا عن محفظة منتجاتك، وسيرد عليك فريق تطوير الأعمال خلال يومَي عمل.",
+   "ctaContact": "اتصل بنا",
+   "footerAbout": "توزيع الأدوية والترويج العلمي في جميع محافظات العراق الـ18 منذ عام 2009.",
+   "group": "مجموعة القوسان",
+   "quick": "روابط سريعة",
+   "services": "خدماتنا",
+   "contact": "اتصل بنا",
+   "rights": "جميع الحقوق محفوظة.",
+   "privacy": "سياسة الخصوصية",
+   "terms": "شروط الاستخدام",
+   "sitemap": "خريطة الموقع",
+   "tagline": "شريكك الموثوق في الحلول الطبية والعلمية",
+   "mapTitle": "شبكة التوزيع في العراق",
+   "mapHint": "اختر محافظة لعرض مركزها والمسافة من مكتبنا الرئيسي في بغداد.",
+   "mapHub": "مركز استراتيجي",
+   "mapHq": "المكتب الرئيسي ومركز استراتيجي",
+   "mapServed": "محافظة مخدومة",
+   "mapCapital": "المركز",
+   "mapDistance": "المسافة من المكتب الرئيسي في بغداد",
+   "mapKm": "كم بخط مستقيم",
+   "mapHere": "يقع مكتبنا الرئيسي في حي القادسية ببغداد.",
+   "mapGovs": "محافظة",
+   "mapHubs": "مراكز استراتيجية",
+   "prev": "الشريحة السابقة",
+   "next": "الشريحة التالية",
+   "slide": "الشريحة",
+   "formRequired": "الحقول المعلّمة بـ * مطلوبة.",
+   "formPreview": "معاينة: هذا النموذج غير مربوط بعد، وفي الموقع الفعلي يُرسل إلى %s.",
+   "formSent": "شكراً لك، تم تسجيل طلبك.",
+   "formReply": "سيرد عليك %s %s.",
+   "formAgain": "إرسال طلب آخر",
+   "send": "إرسال الطلب",
+   "allAreas": "جميع المجالات",
+   "notFound": "هذه الصفحة غير موجودة",
+   "notFoundText": "قد يكون الرابط قديماً. استخدم القائمة أو البحث للوصول إلى ما تحتاجه.",
+   "backHome": "العودة إلى الرئيسية",
+   "newsAll": "جميع الأخبار",
+   "draftSlot": "مساحة خبر",
+   "draftSlotText": "سيظهر هنا خبر الشركة التالي بعد اعتماده للنشر.",
+   "servicesIntro": "شريك واحد للطريق كاملاً إلى السوق: التسجيل والتسعير والترويج العلمي والتخزين والتوزيع.",
+   "partnersIntro": "شركات مصنّعة من أوروبا والشرق الأوسط وشمال أفريقيا وآسيا تأتمننا على منتجاتها في العراق.",
+   "areasIntro": "تصفّح المحفظة حسب المجال العلاجي.",
+   "newsIntro": "أخبار الشركة وإعلاناتها.",
+   "aboutTeaserH": "مكتب علمي عراقي قائم على الدقة",
+   "fLocation": "الموقع",
+   "fEmail": "البريد الإلكتروني",
+   "fCall": "اتصل الآن",
+   "newsTitle": "نشرتنا الإخبارية",
+   "newsText": "أخبار الشركة ومستجدات الشركاء، مرة في الشهر تقريباً.",
+   "newsPh": "name@company.com",
+   "subscribe": "اشترك",
+   "newsPrivacy": "نستخدم بريدك الإلكتروني لإرسال هذه النشرة فقط.",
+   "newsDone": "شكراً لك، تم اشتراكك.",
+   "newsPreview": "معاينة: هذا النموذج غير مربوط بعد.",
+   "toTop": "العودة إلى الأعلى",
+   "theme": "المظهر"
+  }
+ },
+ "NAV": [
+  {
+   "id": "home",
+   "t": {
+    "en": "Home",
+    "ar": "الرئيسية"
+   }
+  },
+  {
+   "id": "about",
+   "t": {
+    "en": "About Us",
+    "ar": "من نحن"
+   },
+   "kids": [
+    "about-who",
+    "about-vision",
+    "about-history",
+    "about-leadership",
+    "about-quality",
+    "about-group"
+   ]
+  },
+  {
+   "id": "services",
+   "t": {
+    "en": "Services",
+    "ar": "خدماتنا"
+   },
+   "kids": [
+    "services-registration",
+    "services-pricing",
+    "services-promotion",
+    "services-cold-chain",
+    "services-distribution",
+    "services-tenders"
+   ]
+  },
+  {
+   "id": "partners",
+   "t": {
+    "en": "Partners",
+    "ar": "شركاؤنا"
+   },
+   "kids": [
+    "partners-list",
+    "partners-siphat",
+    "partners-join"
+   ]
+  },
+  {
+   "id": "products",
+   "t": {
+    "en": "Products",
+    "ar": "المنتجات"
+   },
+   "kids": [
+    "products-areas",
+    "products-list",
+    "products-detail"
+   ]
+  },
+  {
+   "id": "media",
+   "t": {
+    "en": "Media Center",
+    "ar": "المركز الإعلامي"
+   },
+   "kids": [
+    "media-news",
+    "media-events",
+    "media-gallery"
+   ]
+  },
+  {
+   "id": "careers",
+   "t": {
+    "en": "Careers",
+    "ar": "الوظائف"
+   },
+   "kids": [
+    "careers-why",
+    "careers-positions",
+    "careers-apply"
+   ]
+  },
+  {
+   "id": "contact",
+   "t": {
+    "en": "Contact Us",
+    "ar": "اتصل بنا"
+   },
+   "kids": [
+    "contact-office",
+    "contact-branches",
+    "contact-inquiry"
+   ]
+  }
+ ],
+ "PAGES": {
+  "about-who": {
+   "sec": "about",
+   "t": {
+    "en": "Who We Are",
+    "ar": "من نحن"
+   },
+   "lead": {
+    "en": "An Iraqi scientific bureau that brings certified medicines from international manufacturers to patients across the country.",
+    "ar": "مكتب علمي عراقي يوصل الأدوية المعتمدة من الشركات المصنّعة العالمية إلى المرضى في أنحاء البلاد."
+   },
+   "blocks": [
+    {
+     "type": "text",
+     "h": {
+      "en": "Our story in brief",
+      "ar": "قصتنا باختصار"
+     },
+     "p": [
+      {
+       "en": "Al-Qawsan Scientific Bureau was founded in Baghdad in 2009. We are now among Iraq’s top five private pharmaceutical companies, with more than 1,500 professionals across the group.",
+       "ar": "تأسس مكتب القوسان العلمي في بغداد عام 2009، ونحن اليوم ضمن أكبر خمس شركات أدوية خاصة في العراق، ويعمل ضمن مجموعتنا أكثر من <bdi dir=\"ltr\">1,500</bdi> موظف ومختص."
+      },
+      {
+       "en": "We work with more than 25 international manufacturers. For each of them we handle registration, pricing, scientific promotion, storage and delivery, and we serve healthcare professionals, pharmacies and the public sector as a partner of the Ministry of Health.",
+       "ar": "نعمل مع أكثر من 25 شركة مصنّعة دولية، ونتولى لكل منها التسجيل والتسعير والترويج العلمي والتخزين والتوزيع، ونخدم الكوادر الصحية والصيدليات والقطاع العام بصفتنا شريكاً لوزارة الصحة."
+      }
+     ]
+    },
+    {
+     "type": "stats"
+    },
+    {
+     "type": "features",
+     "h": {
+      "en": "Why partners choose Al-Qawsan",
+      "ar": "لماذا يختار الشركاء القوسان"
+     },
+     "items": [
+      {
+       "icon": "handshake",
+       "t": {
+        "en": "One partner for the whole route",
+        "ar": "شريك واحد للطريق كاملاً"
+       },
+       "d": {
+        "en": "Registration, pricing, promotion, storage and delivery under one agreement.",
+        "ar": "التسجيل والتسعير والترويج والتخزين والتوزيع ضمن اتفاق واحد."
+       }
+      },
+      {
+       "icon": "stethoscope",
+       "t": {
+        "en": "A scientific approach",
+        "ar": "نهج علمي"
+       },
+       "d": {
+        "en": "Promotion led by pharmacists and medical representatives who work from approved product information.",
+        "ar": "ترويج يقوده صيادلة ومندوبون علميون يعتمدون على معلومات المنتج المعتمدة."
+       }
+      },
+      {
+       "icon": "mapPin",
+       "t": {
+        "en": "National reach",
+        "ar": "انتشار وطني"
+       },
+       "d": {
+        "en": "All 18 governorates, served from five strategic hubs.",
+        "ar": "المحافظات الـ18 كافة، من خلال خمسة مراكز استراتيجية."
+       }
+      },
+      {
+       "icon": "shieldCheck",
+       "t": {
+        "en": "Certified quality",
+        "ar": "جودة معتمدة"
+       },
+       "d": {
+        "en": "GDP-certified storage and handling from receipt to delivery.",
+        "ar": "تخزين ونقل معتمدان وفق ممارسات التوزيع الجيد من الاستلام حتى التسليم."
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "about-vision": {
+   "sec": "about",
+   "t": {
+    "en": "Vision, Mission & Values",
+    "ar": "الرؤية والرسالة والقيم"
+   },
+   "lead": {
+    "en": "What we are working towards, and the values that shape how we work.",
+    "ar": "ما نسعى إليه، والقيم التي تحدد طريقة عملنا."
+   },
+   "blocks": [
+    {
+     "type": "pair",
+     "items": [
+      {
+       "t": {
+        "en": "Our vision",
+        "ar": "رؤيتنا"
+       },
+       "d": {
+        "en": "To be Iraq’s most trusted partner for bringing safe, effective medicines to every patient who needs them.",
+        "ar": "أن نكون الشريك الأكثر ثقة في العراق لإيصال الأدوية الآمنة والفعّالة إلى كل مريض يحتاجها."
+       }
+      },
+      {
+       "t": {
+        "en": "Our mission",
+        "ar": "رسالتنا"
+       },
+       "d": {
+        "en": "To connect international manufacturers with Iraqi healthcare through reliable registration, ethical scientific promotion and careful distribution.",
+        "ar": "أن نربط الشركات المصنّعة العالمية بالقطاع الصحي العراقي من خلال تسجيل موثوق وترويج علمي أخلاقي وتوزيع دقيق."
+       }
+      }
+     ]
+    },
+    {
+     "type": "values",
+     "h": {
+      "en": "Our values",
+      "ar": "قيمنا"
+     },
+     "items": [
+      {
+       "t": {
+        "en": "Commitment",
+        "ar": "الالتزام"
+       },
+       "d": {
+        "en": "We deliver what we promise, on time.",
+        "ar": "نفي بما نعد به في موعده."
+       }
+      },
+      {
+       "t": {
+        "en": "Quality of Work",
+        "ar": "الجودة في العمل"
+       },
+       "d": {
+        "en": "Every batch is stored, handled and documented to GDP.",
+        "ar": "نخزّن كل تشغيلة وننقلها ونوثقها وفق ممارسات التوزيع الجيد."
+       }
+      },
+      {
+       "t": {
+        "en": "Teamwork",
+        "ar": "العمل الجماعي"
+       },
+       "d": {
+        "en": "Regulatory, medical, sales and logistics teams work as one.",
+        "ar": "تعمل فرق الشؤون التنظيمية والطبية والمبيعات واللوجستيات كفريق واحد."
+       }
+      },
+      {
+       "t": {
+        "en": "Continuous Development",
+        "ar": "التطوير المستمر"
+       },
+       "d": {
+        "en": "Our people train continuously in science and compliance.",
+        "ar": "يتدرب فريقنا باستمرار في العلوم والامتثال."
+       }
+      },
+      {
+       "t": {
+        "en": "Responsibility",
+        "ar": "المسؤولية"
+       },
+       "d": {
+        "en": "We promote only what approved product information supports.",
+        "ar": "لا نروّج إلا لما تدعمه معلومات المنتج المعتمدة."
+       }
+      },
+      {
+       "t": {
+        "en": "Discipline",
+        "ar": "الانضباط"
+       },
+       "d": {
+        "en": "Clear procedures, followed every day.",
+        "ar": "إجراءات واضحة نلتزم بها كل يوم."
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "about-history": {
+   "sec": "about",
+   "t": {
+    "en": "Our History",
+    "ar": "مسيرتنا"
+   },
+   "lead": {
+    "en": "From one office in Baghdad in 2009 to a national network of five strategic hubs.",
+    "ar": "من مكتب واحد في بغداد عام 2009 إلى شبكة وطنية من خمسة مراكز استراتيجية."
+   },
+   "blocks": [
+    {
+     "type": "timeline",
+     "items": [
+      {
+       "y": "2009",
+       "t": {
+        "en": "Founded in Baghdad",
+        "ar": "التأسيس في بغداد"
+       },
+       "d": {
+        "en": "Al-Qawsan Scientific Bureau opens in Baghdad.",
+        "ar": "افتتاح مكتب القوسان العلمي في بغداد."
+       }
+      },
+      {
+       "y": "2015",
+       "t": {
+        "en": "Lara Scientific Office",
+        "ar": "مكتب لارا العلمي"
+       },
+       "d": {
+        "en": "Lara Scientific Office becomes part of the group.",
+        "ar": "انضمام مكتب لارا العلمي إلى المجموعة."
+       }
+      },
+      {
+       "y": "2019",
+       "t": {
+        "en": "Sanaya Scientific Office",
+        "ar": "مكتب سنايا العلمي"
+       },
+       "d": {
+        "en": "Sanaya Scientific Office becomes part of the group.",
+        "ar": "انضمام مكتب سنايا العلمي إلى المجموعة."
+       }
+      },
+      {
+       "y": "2025",
+       "t": {
+        "en": "Partnership with SIPHAT",
+        "ar": "الشراكة مع SIPHAT"
+       },
+       "d": {
+        "en": "Agreement to bring Tunisian-made medicines to Iraq.",
+        "ar": "اتفاقية لإدخال الأدوية التونسية الصنع إلى العراق."
+       }
+      },
+      {
+       "y": {
+        "en": "Today",
+        "ar": "اليوم"
+       },
+       "t": {
+        "en": "Five strategic hubs",
+        "ar": "خمسة مراكز استراتيجية"
+       },
+       "d": {
+        "en": "Baghdad, Basra, Erbil, Mosul and Najaf serve all 18 governorates.",
+        "ar": "بغداد والبصرة وأربيل والموصل والنجف تخدم المحافظات الـ18 كافة."
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "about-leadership": {
+   "sec": "about",
+   "t": {
+    "en": "Leadership Team",
+    "ar": "فريق القيادة"
+   },
+   "lead": {
+    "en": "The people responsible for our partners, our quality and our teams.",
+    "ar": "المسؤولون عن شركائنا وجودة عملنا وفرقنا."
+   },
+   "blocks": [
+    {
+     "type": "people",
+     "items": [
+      {
+       "en": "General Manager",
+       "ar": "المدير العام"
+      },
+      {
+       "en": "Scientific Director",
+       "ar": "المدير العلمي"
+      },
+      {
+       "en": "Regulatory Affairs Manager",
+       "ar": "مدير الشؤون التنظيمية"
+      },
+      {
+       "en": "Supply Chain Manager",
+       "ar": "مدير سلسلة الإمداد"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "text": {
+      "en": "Names, portraits and short biographies will be added once approved by management.",
+      "ar": "ستُضاف الأسماء والصور والسير المختصرة بعد اعتمادها من الإدارة."
+     }
+    }
+   ]
+  },
+  "about-quality": {
+   "sec": "about",
+   "t": {
+    "en": "Quality & Compliance",
+    "ar": "الجودة والامتثال"
+   },
+   "lead": {
+    "en": "GDP-certified storage and handling, with every batch traceable from receipt to delivery.",
+    "ar": "تخزين ونقل معتمدان وفق ممارسات التوزيع الجيد، مع إمكانية تتبّع كل تشغيلة من الاستلام حتى التسليم."
+   },
+   "blocks": [
+    {
+     "type": "features",
+     "items": [
+      {
+       "icon": "shieldCheck",
+       "t": {
+        "en": "Good Distribution Practice (GDP)",
+        "ar": "ممارسات التوزيع الجيد (GDP)"
+       },
+       "d": {
+        "en": "Controlled storage, traceable batches and documented handling. Al-Qawsan is GDP-certified.",
+        "ar": "تخزين خاضع للرقابة وتشغيلات قابلة للتتبع ونقل موثّق، ومكتب القوسان حاصل على شهادة GDP."
+       }
+      },
+      {
+       "icon": "thermometer",
+       "t": {
+        "en": "Temperature control",
+        "ar": "ضبط درجات الحرارة"
+       },
+       "d": {
+        "en": "Room-temperature storage at 15 to 25 °C and refrigerated storage at 2 to 8 °C.",
+        "ar": "تخزين بدرجة حرارة الغرفة بين 15 و25 درجة مئوية، وتخزين مبرّد بين 2 و8 درجات مئوية."
+       }
+      },
+      {
+       "icon": "activity",
+       "t": {
+        "en": "Pharmacovigilance",
+        "ar": "اليقظة الدوائية"
+       },
+       "d": {
+        "en": "Adverse-event reports are collected and passed to the manufacturer and the Iraqi Pharmacovigilance Center.",
+        "ar": "نجمع تقارير الأعراض الجانبية ونحيلها إلى الشركة المصنّعة والمركز العراقي لليقظة الدوائية."
+       }
+      },
+      {
+       "icon": "fileCheck",
+       "t": {
+        "en": "Recall procedure",
+        "ar": "إجراء السحب"
+       },
+       "d": {
+        "en": "A documented procedure to trace and withdraw any batch quickly.",
+        "ar": "إجراء موثّق لتتبّع أي تشغيلة وسحبها بسرعة."
+       }
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "text": {
+      "en": "Certificates and audit reports will be published here as PDF files.",
+      "ar": "ستُنشر الشهادات وتقارير التدقيق هنا بصيغة PDF."
+     }
+    }
+   ]
+  },
+  "about-group": {
+   "sec": "about",
+   "t": {
+    "en": "Group Companies",
+    "ar": "شركات المجموعة"
+   },
+   "lead": {
+    "en": "Al-Qawsan Scientific Bureau is part of Al-Qawsan Group.",
+    "ar": "مكتب القوسان العلمي جزء من مجموعة القوسان."
+   },
+   "blocks": [
+    {
+     "type": "group"
+    }
+   ]
+  },
+  "services-registration": {
+   "sec": "services",
+   "t": {
+    "en": "Registration & Regulatory Affairs",
+    "ar": "التسجيل والشؤون التنظيمية"
+   },
+   "icon": "fileCheck",
+   "lead": {
+    "en": "We prepare your registration file and follow it with the Iraqi Ministry of Health until the product is approved for sale.",
+    "ar": "نُعدّ ملف تسجيل منتجك ونتابعه لدى وزارة الصحة العراقية حتى الموافقة على تداوله."
+   },
+   "blocks": [
+    {
+     "type": "list",
+     "h": {
+      "en": "What we do",
+      "ar": "ما نقوم به"
+     },
+     "items": [
+      {
+       "en": "Dossier review and gap analysis against Iraqi requirements",
+       "ar": "مراجعة الملف وتحليل النواقص وفق المتطلبات العراقية"
+      },
+      {
+       "en": "Company and product registration submissions",
+       "ar": "تقديم طلبات تسجيل الشركة والمنتج"
+      },
+      {
+       "en": "Samples, labelling and Arabic leaflet coordination",
+       "ar": "تنسيق العينات والملصقات والنشرة العربية"
+      },
+      {
+       "en": "Variations, renewals and regulatory correspondence",
+       "ar": "التعديلات والتجديدات والمراسلات التنظيمية"
+      }
+     ]
+    },
+    {
+     "type": "steps",
+     "h": {
+      "en": "How registration works",
+      "ar": "كيف يجري التسجيل"
+     },
+     "items": [
+      {
+       "t": {
+        "en": "Review",
+        "ar": "المراجعة"
+       },
+       "d": {
+        "en": "We check your dossier against current requirements.",
+        "ar": "نراجع ملفك وفق المتطلبات الحالية."
+       }
+      },
+      {
+       "t": {
+        "en": "Company file",
+        "ar": "ملف الشركة"
+       },
+       "d": {
+        "en": "We submit the manufacturer registration.",
+        "ar": "نقدّم طلب تسجيل الشركة المصنّعة."
+       }
+      },
+      {
+       "t": {
+        "en": "Product file",
+        "ar": "ملف المنتج"
+       },
+       "d": {
+        "en": "We submit each product with samples and documents.",
+        "ar": "نقدّم كل منتج مع العينات والوثائق."
+       }
+      },
+      {
+       "t": {
+        "en": "Approval",
+        "ar": "الموافقة"
+       },
+       "d": {
+        "en": "We follow the evaluation until approval and pricing.",
+        "ar": "نتابع التقييم حتى الموافقة والتسعير."
+       }
+      }
+     ]
+    }
+   ],
+   "rel": [
+    "services-pricing",
+    "partners-list",
+    "partners-join"
+   ]
+  },
+  "services-pricing": {
+   "sec": "services",
+   "t": {
+    "en": "Pricing & Market Access",
+    "ar": "التسعير والنفاذ إلى السوق"
+   },
+   "icon": "chartUp",
+   "lead": {
+    "en": "We build a pricing and access plan for the private market and for public tenders.",
+    "ar": "نضع خطة تسعير ونفاذ إلى السوق الخاص والمناقصات الحكومية."
+   },
+   "blocks": [
+    {
+     "type": "list",
+     "h": {
+      "en": "What we do",
+      "ar": "ما نقوم به"
+     },
+     "items": [
+      {
+       "en": "Price proposal preparation for the Ministry of Health",
+       "ar": "إعداد مقترح السعر لوزارة الصحة"
+      },
+      {
+       "en": "Market and competitor analysis",
+       "ar": "تحليل السوق والمنافسين"
+      },
+      {
+       "en": "Channel plan: pharmacies, private hospitals and the public sector",
+       "ar": "خطة القنوات: الصيدليات والمستشفيات الخاصة والقطاع العام"
+      },
+      {
+       "en": "Launch planning with the promotion team",
+       "ar": "تخطيط الإطلاق مع فريق الترويج"
+      }
+     ]
+    }
+   ],
+   "rel": [
+    "services-registration",
+    "services-tenders",
+    "partners-join"
+   ]
+  },
+  "services-promotion": {
+   "sec": "services",
+   "t": {
+    "en": "Scientific Promotion",
+    "ar": "الترويج العلمي"
+   },
+   "icon": "stethoscope",
+   "lead": {
+    "en": "Our medical representatives present your products to doctors and pharmacists with accurate, approved information.",
+    "ar": "يعرض مندوبونا العلميون منتجاتك على الأطباء والصيادلة بمعلومات دقيقة ومعتمدة."
+   },
+   "blocks": [
+    {
+     "type": "list",
+     "h": {
+      "en": "What we do",
+      "ar": "ما نقوم به"
+     },
+     "items": [
+      {
+       "en": "Field visits by trained medical representatives",
+       "ar": "زيارات ميدانية يقوم بها مندوبون علميون مدرّبون"
+      },
+      {
+       "en": "Continuing medical education (CME) meetings",
+       "ar": "لقاءات التعليم الطبي المستمر"
+      },
+      {
+       "en": "Presence at scientific events and conferences",
+       "ar": "المشاركة في الفعاليات والمؤتمرات العلمية"
+      },
+      {
+       "en": "Regular field reports for each partner",
+       "ar": "تقارير ميدانية دورية لكل شريك"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "text": {
+      "en": "We never promise a medical outcome. Every message is based on approved product information and Ministry of Health registration.",
+      "ar": "لا نعد بأي نتيجة علاجية، وكل رسالة نقدّمها تستند إلى معلومات المنتج المعتمدة وتسجيله لدى وزارة الصحة."
+     }
+    }
+   ],
+   "rel": [
+    "products-areas",
+    "media-events",
+    "partners-join"
+   ]
+  },
+  "services-cold-chain": {
+   "sec": "services",
+   "t": {
+    "en": "Warehousing & Cold Chain",
+    "ar": "التخزين وسلسلة التبريد"
+   },
+   "icon": "thermometer",
+   "lead": {
+    "en": "Products are stored and handled under controlled conditions, from arrival in Iraq to dispatch.",
+    "ar": "نخزّن المنتجات وننقلها في ظروف خاضعة للرقابة من وصولها إلى العراق حتى شحنها."
+   },
+   "blocks": [
+    {
+     "type": "temps"
+    },
+    {
+     "type": "list",
+     "h": {
+      "en": "What we do",
+      "ar": "ما نقوم به"
+     },
+     "items": [
+      {
+       "en": "GDP-certified warehousing",
+       "ar": "تخزين معتمد وفق ممارسات التوزيع الجيد"
+      },
+      {
+       "en": "Continuous temperature logging for cold-chain products",
+       "ar": "تسجيل مستمر لدرجات الحرارة لمنتجات سلسلة التبريد"
+      },
+      {
+       "en": "Batch and expiry tracking: first expiry, first out",
+       "ar": "تتبّع التشغيلات وتواريخ الانتهاء: الأقرب انتهاءً يُصرف أولاً"
+      },
+      {
+       "en": "Receiving inspection and customs coordination",
+       "ar": "فحص الاستلام والتنسيق الجمركي"
+      }
+     ]
+    }
+   ],
+   "rel": [
+    "services-distribution",
+    "about-quality",
+    "partners-join"
+   ]
+  },
+  "services-distribution": {
+   "sec": "services",
+   "t": {
+    "en": "Distribution & Logistics",
+    "ar": "التوزيع والخدمات اللوجستية"
+   },
+   "icon": "truck",
+   "lead": {
+    "en": "We deliver to pharmacies, private hospitals and public institutions in all 18 governorates.",
+    "ar": "نوصل المنتجات إلى الصيدليات والمستشفيات الخاصة والمؤسسات الحكومية في المحافظات الـ18 كافة."
+   },
+   "blocks": [
+    {
+     "type": "map"
+    },
+    {
+     "type": "list",
+     "h": {
+      "en": "What we do",
+      "ar": "ما نقوم به"
+     },
+     "items": [
+      {
+       "en": "Scheduled routes from five strategic hubs",
+       "ar": "مسارات منتظمة من خمسة مراكز استراتيجية"
+      },
+      {
+       "en": "Temperature-controlled transport for cold-chain products",
+       "ar": "نقل مبرّد لمنتجات سلسلة التبريد"
+      },
+      {
+       "en": "Proof of delivery and returns handling",
+       "ar": "إثبات التسليم ومعالجة المرتجعات"
+      }
+     ]
+    }
+   ],
+   "rel": [
+    "services-cold-chain",
+    "contact-branches",
+    "partners-join"
+   ]
+  },
+  "services-tenders": {
+   "sec": "services",
+   "t": {
+    "en": "Tenders & Public Sector",
+    "ar": "المناقصات والقطاع العام"
+   },
+   "icon": "hospital",
+   "lead": {
+    "en": "We support public-sector supply through tenders from the Ministry of Health and Kimadia.",
+    "ar": "ندعم تجهيز القطاع العام عبر مناقصات وزارة الصحة وكيماديا."
+   },
+   "blocks": [
+    {
+     "type": "list",
+     "h": {
+      "en": "What we do",
+      "ar": "ما نقوم به"
+     },
+     "items": [
+      {
+       "en": "Tender monitoring and document preparation",
+       "ar": "متابعة المناقصات وإعداد الوثائق"
+      },
+      {
+       "en": "Aligning registration and pricing with tender specifications",
+       "ar": "مواءمة التسجيل والتسعير مع مواصفات المناقصة"
+      },
+      {
+       "en": "Delivery to public hospitals and health directorates",
+       "ar": "التوصيل إلى المستشفيات الحكومية ودوائر الصحة"
+      },
+      {
+       "en": "Follow-up after award",
+       "ar": "المتابعة بعد الإحالة"
+      }
+     ]
+    }
+   ],
+   "rel": [
+    "services-pricing",
+    "contact-inquiry",
+    "partners-join"
+   ]
+  },
+  "partners-list": {
+   "sec": "partners",
+   "t": {
+    "en": "International Partners",
+    "ar": "شركاؤنا الدوليون"
+   },
+   "lead": {
+    "en": "More than 25 manufacturers trust us with their products in Iraq.",
+    "ar": "أكثر من 25 شركة مصنّعة تأتمننا على منتجاتها في العراق."
+   },
+   "blocks": [
+    {
+     "type": "partners"
+    }
+   ],
+   "rel": [
+    "partners-siphat",
+    "products-list",
+    "partners-join"
+   ]
+  },
+  "partners-siphat": {
+   "sec": "partners",
+   "t": {
+    "en": "Partner profile: SIPHAT",
+    "ar": "ملف الشريك: SIPHAT"
+   },
+   "lead": {
+    "en": "Société des Industries Pharmaceutiques de Tunisie, a Tunisian pharmaceutical manufacturer.",
+    "ar": "الشركة التونسية للصناعات الصيدلانية، وهي شركة تونسية لتصنيع الأدوية."
+   },
+   "blocks": [
+    {
+     "type": "text",
+     "h": {
+      "en": "Our partnership",
+      "ar": "شراكتنا"
+     },
+     "p": [
+      {
+       "en": "In July 2025 SIPHAT and Al-Qawsan signed an agreement, in the presence of Tunisia’s Minister of Health, to export Tunisian-made medicines to the Iraqi market and to transfer pharmaceutical manufacturing technology.",
+       "ar": "في تموز 2025 وقّعت SIPHAT ومكتب القوسان العلمي، بحضور وزير الصحة التونسي، اتفاقية لتصدير الأدوية التونسية الصنع إلى السوق العراقية ونقل تكنولوجيا التصنيع الدوائي."
+      }
+     ]
+    },
+    {
+     "type": "facts",
+     "items": [
+      {
+       "k": {
+        "en": "Country",
+        "ar": "البلد"
+       },
+       "v": {
+        "en": "Tunisia",
+        "ar": "تونس"
+       }
+      },
+      {
+       "k": {
+        "en": "Partner since",
+        "ar": "شريك منذ"
+       },
+       "v": {
+        "en": "2025",
+        "ar": "2025"
+       }
+      },
+      {
+       "k": {
+        "en": "Products distributed",
+        "ar": "المنتجات الموزّعة"
+       },
+       "v": "TBC"
+      }
+     ]
+    }
+   ],
+   "rel": [
+    "media-siphat",
+    "products-list",
+    "partners-join"
+   ]
+  },
+  "partners-join": {
+   "sec": "partners",
+   "t": {
+    "en": "Become a Partner",
+    "ar": "كن شريكاً"
+   },
+   "lead": {
+    "en": "Tell us about your company and portfolio. Our business development team replies within two working days.",
+    "ar": "حدّثنا عن شركتك ومحفظة منتجاتك، وسيرد عليك فريق تطوير الأعمال خلال يومَي عمل."
+   },
+   "noCta": true,
+   "blocks": [
+    {
+     "type": "list",
+     "h": {
+      "en": "What you get",
+      "ar": "ما تحصل عليه"
+     },
+     "items": [
+      {
+       "en": "One partner for registration, pricing, promotion, storage and delivery",
+       "ar": "شريك واحد للتسجيل والتسعير والترويج والتخزين والتوزيع"
+      },
+      {
+       "en": "Coverage of all 18 governorates from five strategic hubs",
+       "ar": "تغطية المحافظات الـ18 كافة من خمسة مراكز استراتيجية"
+      },
+      {
+       "en": "GDP-certified storage, including 2 to 8 °C",
+       "ar": "تخزين معتمد وفق GDP، بما في ذلك التخزين بين 2 و8 درجات مئوية"
+      },
+      {
+       "en": "Regular market and field reports",
+       "ar": "تقارير دورية عن السوق والعمل الميداني"
+      }
+     ]
+    },
+    {
+     "type": "form",
+     "kind": "partner"
+    }
+   ],
+   "rel": [
+    "services-registration",
+    "partners-list",
+    "contact-office"
+   ]
+  },
+  "products-areas": {
+   "sec": "products",
+   "t": {
+    "en": "Therapeutic Areas",
+    "ar": "المجالات العلاجية"
+   },
+   "lead": {
+    "en": "Browse the portfolio by therapeutic area.",
+    "ar": "تصفّح المحفظة حسب المجال العلاجي."
+   },
+   "blocks": [
+    {
+     "type": "areas"
+    },
+    {
+     "type": "note",
+     "text": {
+      "en": "The list of areas will be confirmed against the registered product portfolio.",
+      "ar": "ستُعتمد قائمة المجالات بعد مطابقتها مع محفظة المنتجات المسجّلة."
+     }
+    }
+   ]
+  },
+  "products-list": {
+   "sec": "products",
+   "t": {
+    "en": "Product Listing",
+    "ar": "قائمة المنتجات"
+   },
+   "lead": {
+    "en": "Search and filter registered products by therapeutic area.",
+    "ar": "ابحث في المنتجات المسجّلة وصنّفها حسب المجال العلاجي."
+   },
+   "blocks": [
+    {
+     "type": "products"
+    }
+   ],
+   "rel": [
+    "products-detail",
+    "partners-list",
+    "contact-inquiry"
+   ]
+  },
+  "products-detail": {
+   "sec": "products",
+   "t": {
+    "en": "Product Detail",
+    "ar": "تفاصيل المنتج"
+   },
+   "lead": {
+    "en": "Each product page shows only Ministry of Health approved information.",
+    "ar": "تعرض صفحة كل منتج المعلومات المعتمدة من وزارة الصحة فقط."
+   },
+   "blocks": [
+    {
+     "type": "productDetail"
+    },
+    {
+     "type": "form",
+     "kind": "medical"
+    }
+   ],
+   "rel": [
+    "products-areas",
+    "partners-list",
+    "contact-inquiry"
+   ]
+  },
+  "media-news": {
+   "sec": "media",
+   "t": {
+    "en": "News",
+    "ar": "الأخبار"
+   },
+   "lead": {
+    "en": "Company news and announcements.",
+    "ar": "أخبار الشركة وإعلاناتها."
+   },
+   "blocks": [
+    {
+     "type": "news"
+    }
+   ]
+  },
+  "media-siphat": {
+   "sec": "media",
+   "hidden": true,
+   "parent": "media-news",
+   "date": "2025-07",
+   "t": {
+    "en": "Partnership agreement with SIPHAT, Tunisia",
+    "ar": "اتفاقية شراكة مع شركة SIPHAT التونسية"
+   },
+   "lead": {
+    "en": "An agreement to export Tunisian-made medicines to Iraq and to transfer pharmaceutical manufacturing know-how.",
+    "ar": "اتفاقية لتصدير الأدوية التونسية الصنع إلى العراق ونقل خبرات التصنيع الدوائي."
+   },
+   "blocks": [
+    {
+     "type": "text",
+     "p": [
+      {
+       "en": "Al-Qawsan Scientific Bureau and the Tunisian manufacturer SIPHAT signed a partnership agreement in July 2025. The signing took place under the supervision of Tunisia’s Minister of Health.",
+       "ar": "وقّع مكتب القوسان العلمي والشركة التونسية المصنّعة SIPHAT اتفاقية شراكة في تموز 2025، وجرى التوقيع بإشراف وزير الصحة التونسي."
+      },
+      {
+       "en": "The agreement covers the export of Tunisian-made medicines to the Iraqi market and the transfer of pharmaceutical manufacturing technology.",
+       "ar": "تشمل الاتفاقية تصدير الأدوية التونسية الصنع إلى السوق العراقية ونقل تكنولوجيا التصنيع الدوائي."
+      }
+     ]
+    },
+    {
+     "type": "source",
+     "text": {
+      "en": "Source: Tunisie Numérique, July 2025.",
+      "ar": "المصدر: Tunisie Numérique، تموز 2025."
+     },
+     "href": "https://news-tunisia.tunisienumerique.com/tunisia-and-iraq-join-forces-to-expand-pharmaceutical-exports-and-health-sovereignty/"
+    }
+   ],
+   "rel": [
+    "partners-siphat",
+    "media-news",
+    "partners-join"
+   ]
+  },
+  "media-events": {
+   "sec": "media",
+   "t": {
+    "en": "Events & Conferences",
+    "ar": "الفعاليات والمؤتمرات"
+   },
+   "lead": {
+    "en": "Scientific meetings, CME sessions and conferences we organise or attend.",
+    "ar": "اللقاءات العلمية وجلسات التعليم الطبي المستمر والمؤتمرات التي ننظمها أو نشارك فيها."
+   },
+   "blocks": [
+    {
+     "type": "events"
+    }
+   ]
+  },
+  "media-gallery": {
+   "sec": "media",
+   "t": {
+    "en": "Photo & Video Gallery",
+    "ar": "معرض الصور والفيديو"
+   },
+   "lead": {
+    "en": "Our warehouses, fleet, teams and events.",
+    "ar": "مستودعاتنا وأسطولنا وفرقنا وفعالياتنا."
+   },
+   "blocks": [
+    {
+     "type": "gallery"
+    }
+   ]
+  },
+  "careers-why": {
+   "sec": "careers",
+   "t": {
+    "en": "Why Join Us",
+    "ar": "لماذا تنضم إلينا"
+   },
+   "lead": {
+    "en": "Join more than 1,500 professionals building healthcare access across Iraq.",
+    "ar": "انضم إلى أكثر من <bdi dir=\"ltr\">1,500</bdi> موظف ومختص يعملون على إيصال الرعاية الصحية في أنحاء العراق."
+   },
+   "blocks": [
+    {
+     "type": "features",
+     "items": [
+      {
+       "icon": "users",
+       "t": {
+        "en": "Teamwork",
+        "ar": "العمل الجماعي"
+       },
+       "d": {
+        "en": "Regulatory, medical, sales and logistics teams that work as one.",
+        "ar": "فرق تنظيمية وطبية ومبيعات ولوجستيات تعمل كفريق واحد."
+       }
+      },
+      {
+       "icon": "chartUp",
+       "t": {
+        "en": "Continuous Development",
+        "ar": "التطوير المستمر"
+       },
+       "d": {
+        "en": "Regular scientific and compliance training.",
+        "ar": "تدريب علمي وتدريب على الامتثال بشكل منتظم."
+       }
+      },
+      {
+       "icon": "mapPin",
+       "t": {
+        "en": "National reach",
+        "ar": "انتشار وطني"
+       },
+       "d": {
+        "en": "Roles in Baghdad, Basra, Erbil, Mosul and Najaf.",
+        "ar": "وظائف في بغداد والبصرة وأربيل والموصل والنجف."
+       }
+      },
+      {
+       "icon": "shieldCheck",
+       "t": {
+        "en": "Responsibility",
+        "ar": "المسؤولية"
+       },
+       "d": {
+        "en": "Work that matters to patients and to the health system.",
+        "ar": "عمل له أثر في المرضى والنظام الصحي."
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "careers-positions": {
+   "sec": "careers",
+   "t": {
+    "en": "Open Positions",
+    "ar": "الوظائف الشاغرة"
+   },
+   "lead": {
+    "en": "Current vacancies across our hubs.",
+    "ar": "الوظائف المتاحة حالياً في مراكزنا."
+   },
+   "blocks": [
+    {
+     "type": "jobs"
+    }
+   ]
+  },
+  "careers-apply": {
+   "sec": "careers",
+   "t": {
+    "en": "Apply Online",
+    "ar": "قدّم طلبك"
+   },
+   "lead": {
+    "en": "Send your CV. Human Resources reviews every application.",
+    "ar": "أرسل سيرتك الذاتية، ويراجع فريق الموارد البشرية كل طلب."
+   },
+   "blocks": [
+    {
+     "type": "form",
+     "kind": "apply"
+    }
+   ]
+  },
+  "contact-office": {
+   "sec": "contact",
+   "t": {
+    "en": "Head Office",
+    "ar": "المكتب الرئيسي"
+   },
+   "lead": {
+    "en": "Visit or contact our head office in Baghdad.",
+    "ar": "تفضّل بزيارة مكتبنا الرئيسي في بغداد أو التواصل معه."
+   },
+   "blocks": [
+    {
+     "type": "office"
+    }
+   ]
+  },
+  "contact-branches": {
+   "sec": "contact",
+   "t": {
+    "en": "Branches & Coverage",
+    "ar": "الفروع والتغطية"
+   },
+   "lead": {
+    "en": "Five strategic hubs serve all 18 governorates.",
+    "ar": "خمسة مراكز استراتيجية تخدم المحافظات الـ18 كافة."
+   },
+   "blocks": [
+    {
+     "type": "map"
+    },
+    {
+     "type": "hubs"
+    }
+   ]
+  },
+  "contact-inquiry": {
+   "sec": "contact",
+   "t": {
+    "en": "Inquiry Form",
+    "ar": "نموذج الاستفسار"
+   },
+   "lead": {
+    "en": "Send us a question. Sales and Customer Service reply within one working day.",
+    "ar": "أرسل استفسارك، وسيرد عليك فريق المبيعات وخدمة العملاء خلال يوم عمل واحد."
+   },
+   "noCta": true,
+   "blocks": [
+    {
+     "type": "form",
+     "kind": "inquiry"
+    }
+   ]
+  },
+  "sitemap": {
+   "sec": null,
+   "t": {
+    "en": "Sitemap",
+    "ar": "خريطة الموقع"
+   },
+   "lead": {
+    "en": "Every page on the site, grouped by section.",
+    "ar": "جميع صفحات الموقع مصنّفة حسب القسم."
+   },
+   "blocks": [
+    {
+     "type": "sitemap"
+    }
+   ]
+  },
+  "privacy": {
+   "sec": null,
+   "t": {
+    "en": "Privacy Policy",
+    "ar": "سياسة الخصوصية"
+   },
+   "lead": {
+    "en": "How we handle the information you send us.",
+    "ar": "كيف نتعامل مع المعلومات التي ترسلها إلينا."
+   },
+   "blocks": [
+    {
+     "type": "text",
+     "p": [
+      {
+       "en": "We use the details you send through our forms only to answer your request. We do not sell or share them with third parties.",
+       "ar": "نستخدم البيانات التي ترسلها عبر نماذجنا للرد على طلبك فقط، ولا نبيعها ولا نشاركها مع أي طرف ثالث."
+      },
+      {
+       "en": "To ask us to correct or delete your details, use the inquiry form.",
+       "ar": "لطلب تصحيح بياناتك أو حذفها، استخدم نموذج الاستفسار."
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "text": {
+      "en": "Final wording to be approved by legal counsel.",
+      "ar": "تُعتمد الصيغة النهائية من المستشار القانوني."
+     }
+    }
+   ]
+  },
+  "terms": {
+   "sec": null,
+   "t": {
+    "en": "Terms of Use",
+    "ar": "شروط الاستخدام"
+   },
+   "lead": {
+    "en": "The conditions for using this website.",
+    "ar": "شروط استخدام هذا الموقع."
+   },
+   "blocks": [
+    {
+     "type": "text",
+     "p": [
+      {
+       "en": "Product information on this site is for healthcare professionals and follows Ministry of Health registration. It does not replace medical advice.",
+       "ar": "معلومات المنتجات في هذا الموقع موجهة للكوادر الصحية وتتبع تسجيل وزارة الصحة، ولا تغني عن الاستشارة الطبية."
+      },
+      {
+       "en": "Content on this site belongs to Al-Qawsan Scientific Bureau unless stated otherwise.",
+       "ar": "محتوى هذا الموقع ملك لمكتب القوسان العلمي ما لم يُذكر خلاف ذلك."
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "text": {
+      "en": "Final wording to be approved by legal counsel.",
+      "ar": "تُعتمد الصيغة النهائية من المستشار القانوني."
+     }
+    }
+   ]
+  }
+ },
+ "STATS": [
+  {
+   "icon": "mapPin",
+   "v": "18",
+   "label": {
+    "en": "Governorates Served",
+    "ar": "المحافظات المخدومة"
+   },
+   "chip": {
+    "icon": "check",
+    "t": {
+     "en": "18 of 18",
+     "ar": "18 من 18"
+    }
+   },
+   "sub": {
+    "en": "Nationwide coverage",
+    "ar": "تغطية على مستوى العراق"
+   }
+  },
+  {
+   "icon": "warehouse",
+   "v": "5",
+   "label": {
+    "en": "Strategic Hubs",
+    "ar": "المراكز الاستراتيجية"
+   },
+   "sub": {
+    "en": "Baghdad, Basra, Erbil, Mosul and Najaf",
+    "ar": "بغداد والبصرة وأربيل والموصل والنجف"
+   }
+  },
+  {
+   "icon": "users",
+   "v": "1,500+",
+   "label": {
+    "en": "Professionals",
+    "ar": "الكوادر المهنية"
+   },
+   "sub": {
+    "en": "Across Al-Qawsan Group",
+    "ar": "ضمن مجموعة القوسان"
+   }
+  },
+  {
+   "icon": "handshake",
+   "v": "25+",
+   "label": {
+    "en": "Manufacturing Partners",
+    "ar": "الشركاء المصنّعون"
+   },
+   "chip": {
+    "icon": "arrowUp",
+    "t": {
+     "en": "New",
+     "ar": "جديد"
+    }
+   },
+   "sub": {
+    "en": "SIPHAT, Tunisia (2025)",
+    "ar": "SIPHAT، تونس (2025)"
+   }
+  }
+ ],
+ "STATS_BANNER": {
+  "en": "Founded in Baghdad in 2009. Today among Iraq’s top five private pharmaceutical companies, GDP-certified and a partner of the Ministry of Health.",
+  "ar": "تأسسنا في بغداد عام 2009، ونحن اليوم ضمن أكبر خمس شركات أدوية خاصة في العراق، حاصلون على شهادة ممارسات التوزيع الجيد (GDP) وشركاء لوزارة الصحة."
+ },
+ "HUBS": [
+  "IQ-BG",
+  "IQ-BA",
+  "IQ-AR",
+  "IQ-NI",
+  "IQ-NA"
+ ],
+ "SERVICES": [
+  {
+   "id": "services-registration",
+   "icon": "fileCheck",
+   "t": {
+    "en": "Registration & Regulatory Affairs",
+    "ar": "التسجيل والشؤون التنظيمية"
+   },
+   "d": {
+    "en": "We prepare and follow your file with the Ministry of Health until approval.",
+    "ar": "نُعدّ ملفك ونتابعه لدى وزارة الصحة حتى الموافقة."
+   }
+  },
+  {
+   "id": "services-pricing",
+   "icon": "chartUp",
+   "t": {
+    "en": "Pricing & Market Access",
+    "ar": "التسعير والنفاذ إلى السوق"
+   },
+   "d": {
+    "en": "A pricing and launch plan for pharmacies, private hospitals and tenders.",
+    "ar": "خطة تسعير وإطلاق للصيدليات والمستشفيات الخاصة والمناقصات."
+   }
+  },
+  {
+   "id": "services-promotion",
+   "icon": "stethoscope",
+   "t": {
+    "en": "Scientific Promotion",
+    "ar": "الترويج العلمي"
+   },
+   "d": {
+    "en": "Medical representatives who present approved product information to doctors and pharmacists.",
+    "ar": "مندوبون علميون يعرضون معلومات المنتج المعتمدة على الأطباء والصيادلة."
+   }
+  },
+  {
+   "id": "services-cold-chain",
+   "icon": "thermometer",
+   "t": {
+    "en": "Warehousing & Cold Chain",
+    "ar": "التخزين وسلسلة التبريد"
+   },
+   "d": {
+    "en": "GDP-certified storage at room temperature and at 2 to 8 °C.",
+    "ar": "تخزين معتمد وفق GDP بدرجة حرارة الغرفة وبين 2 و8 درجات مئوية."
+   }
+  },
+  {
+   "id": "services-distribution",
+   "icon": "truck",
+   "t": {
+    "en": "Distribution & Logistics",
+    "ar": "التوزيع والخدمات اللوجستية"
+   },
+   "d": {
+    "en": "Delivery to all 18 governorates from five strategic hubs.",
+    "ar": "التوصيل إلى المحافظات الـ18 كافة من خمسة مراكز استراتيجية."
+   }
+  },
+  {
+   "id": "services-tenders",
+   "icon": "hospital",
+   "t": {
+    "en": "Tenders & Public Sector",
+    "ar": "المناقصات والقطاع العام"
+   },
+   "d": {
+    "en": "Supply to public hospitals through Ministry of Health and Kimadia tenders.",
+    "ar": "التجهيز للمستشفيات الحكومية عبر مناقصات وزارة الصحة وكيماديا."
+   }
+  }
+ ],
+ "AREAS": [
+  {
+   "id": "cardio",
+   "icon": "heart",
+   "t": {
+    "en": "Cardiology",
+    "ar": "أمراض القلب"
+   }
+  },
+  {
+   "id": "diabetes",
+   "icon": "droplet",
+   "t": {
+    "en": "Diabetes & Endocrinology",
+    "ar": "السكري والغدد الصماء"
+   }
+  },
+  {
+   "id": "anti-infectives",
+   "icon": "shield",
+   "t": {
+    "en": "Anti-infectives",
+    "ar": "مضادات العدوى"
+   }
+  },
+  {
+   "id": "respiratory",
+   "icon": "wind",
+   "t": {
+    "en": "Respiratory",
+    "ar": "أمراض الجهاز التنفسي"
+   }
+  },
+  {
+   "id": "gastro",
+   "icon": "pill",
+   "t": {
+    "en": "Gastroenterology",
+    "ar": "أمراض الجهاز الهضمي"
+   }
+  },
+  {
+   "id": "cns",
+   "icon": "activity",
+   "t": {
+    "en": "Neurology & CNS",
+    "ar": "الأعصاب والجهاز العصبي"
+   }
+  },
+  {
+   "id": "oncology",
+   "icon": "flask",
+   "t": {
+    "en": "Oncology",
+    "ar": "الأورام"
+   }
+  },
+  {
+   "id": "derma",
+   "icon": "sun",
+   "t": {
+    "en": "Dermatology",
+    "ar": "الأمراض الجلدية"
+   }
+  }
+ ],
+ "NEWS": [
+  {
+   "id": "media-siphat",
+   "date": "2025-07",
+   "t": {
+    "en": "Partnership agreement with SIPHAT, Tunisia",
+    "ar": "اتفاقية شراكة مع شركة SIPHAT التونسية"
+   },
+   "d": {
+    "en": "An agreement to export Tunisian-made medicines to Iraq and to transfer pharmaceutical manufacturing know-how.",
+    "ar": "اتفاقية لتصدير الأدوية التونسية الصنع إلى العراق ونقل خبرات التصنيع الدوائي."
+   }
+  }
+ ],
+ "FORMS": {
+  "partner": {
+   "team": {
+    "en": "Business Development",
+    "ar": "فريق تطوير الأعمال"
+   },
+   "when": {
+    "en": "within 2 working days",
+    "ar": "خلال يومَي عمل"
+   }
+  },
+  "inquiry": {
+   "team": {
+    "en": "Sales and Customer Service",
+    "ar": "فريق المبيعات وخدمة العملاء"
+   },
+   "when": {
+    "en": "within 1 working day",
+    "ar": "خلال يوم عمل واحد"
+   }
+  },
+  "medical": {
+   "team": {
+    "en": "Medical Affairs",
+    "ar": "فريق الشؤون الطبية"
+   },
+   "when": {
+    "en": "within 2 working days",
+    "ar": "خلال يومَي عمل"
+   }
+  },
+  "apply": {
+   "team": {
+    "en": "Human Resources",
+    "ar": "فريق الموارد البشرية"
+   },
+   "when": {
+    "en": "after reviewing your application",
+    "ar": "بعد مراجعة طلبك"
+   }
+  }
+ },
+ "SLIDES": [
+  {
+   "h": {
+    "en": "Your trusted partner in medical and scientific solutions",
+    "ar": "شريكك الموثوق في الحلول الطبية والعلمية"
+   },
+   "p": {
+    "en": "Since 2009 we have brought certified medicines from international manufacturers to doctors, pharmacies and hospitals in all 18 governorates of Iraq.",
+    "ar": "منذ عام 2009 نوصل الأدوية المعتمدة من الشركات المصنّعة العالمية إلى الأطباء والصيدليات والمستشفيات في محافظات العراق الـ18 كافة."
+   },
+   "a": {
+    "href": "services-registration",
+    "t": {
+     "en": "Explore our services",
+     "ar": "تعرّف على خدماتنا"
+    }
+   }
+  },
+  {
+   "h": {
+    "en": "From registration to the pharmacy shelf",
+    "ar": "من التسجيل إلى رفّ الصيدلية"
+   },
+   "p": {
+    "en": "Registration, pricing, scientific promotion, cold-chain storage and delivery, run from five strategic hubs.",
+    "ar": "التسجيل والتسعير والترويج العلمي والتخزين المبرّد والتوزيع، من خلال خمسة مراكز استراتيجية."
+   },
+   "a": {
+    "href": "partners-list",
+    "t": {
+     "en": "Meet our partners",
+     "ar": "تعرّف على شركائنا"
+    }
+   }
+  },
+  {
+   "h": {
+    "en": "A new partnership with SIPHAT, Tunisia",
+    "ar": "شراكة جديدة مع SIPHAT التونسية"
+   },
+   "p": {
+    "en": "In July 2025 we signed an agreement to bring Tunisian-made medicines to the Iraqi market.",
+    "ar": "وقّعنا في تموز 2025 اتفاقية لإدخال الأدوية التونسية الصنع إلى السوق العراقية."
+   },
+   "a": {
+    "href": "media-siphat",
+    "t": {
+     "en": "Read the announcement",
+     "ar": "اقرأ الخبر"
+    }
+   }
+  }
+ ],
+ "GROUP": [
+  {
+   "t": {
+    "en": "CAS Development",
+    "ar": "CAS Development"
+   },
+   "d": {
+    "en": "Group company. Profile to be added.",
+    "ar": "إحدى شركات المجموعة، وسيُضاف ملفها لاحقاً."
+   }
+  },
+  {
+   "t": {
+    "en": "Lara Scientific Office",
+    "ar": "مكتب لارا العلمي"
+   },
+   "d": {
+    "en": "Scientific office, part of the group since 2015.",
+    "ar": "مكتب علمي ضمن المجموعة منذ عام 2015."
+   }
+  },
+  {
+   "t": {
+    "en": "Sanaya Scientific Office",
+    "ar": "مكتب سنايا العلمي"
+   },
+   "d": {
+    "en": "Scientific office, part of the group since 2019.",
+    "ar": "مكتب علمي ضمن المجموعة منذ عام 2019."
+   }
+  }
+ ]
+}

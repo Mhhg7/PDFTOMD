@@ -1,0 +1,366 @@
+{
+ "statsBanner": {
+  "en": "Founded in Baghdad in 2009. Today among Iraq’s top five private pharmaceutical companies, GDP-certified and a partner of the Ministry of Health.",
+  "ar": "تأسسنا في بغداد عام 2009، ونحن اليوم ضمن أكبر خمس شركات أدوية خاصة في العراق، حاصلون على شهادة ممارسات التوزيع الجيد (GDP) وشركاء لوزارة الصحة."
+ },
+ "logoAlt": {
+  "en": "Al-Qawsan Scientific Bureau, مكتب القوسان العلمي",
+  "ar": "مكتب القوسان العلمي، Al-Qawsan Scientific Bureau"
+ },
+ "partnerSlot": {
+  "en": "Partner logo",
+  "ar": "شعار الشريك"
+ },
+ "keyFigures": {
+  "en": "Key figures",
+  "ar": "أرقامنا"
+ },
+ "aboutTeaserText": {
+  "en": "Al-Qawsan Scientific Bureau was founded in Baghdad in 2009. We are now among Iraq’s top five private pharmaceutical companies, with more than 1,500 professionals across the group.",
+  "ar": "تأسس مكتب القوسان العلمي في بغداد عام 2009، ونحن اليوم ضمن أكبر خمس شركات أدوية خاصة في العراق، ويعمل ضمن مجموعتنا أكثر من <bdi dir=\"ltr\">1,500</bdi> موظف ومختص."
+ },
+ "aboutPhotoCap": {
+  "en": "Photo: head office, Qadisiyah District (to be supplied)",
+  "ar": "صورة: المكتب الرئيسي، حي القادسية (تُرفق لاحقاً)"
+ },
+ "openSource": {
+  "en": "Open source",
+  "ar": "رابط المصدر"
+ },
+ "eventsEmpty": {
+  "en": "No upcoming events are published yet",
+  "ar": "لا توجد فعاليات قادمة منشورة حالياً"
+ },
+ "eventsEmptyText": {
+  "en": "Scientific meetings, CME sessions and conferences are listed here as soon as their dates are confirmed.",
+  "ar": "ننشر هنا مواعيد اللقاءات العلمية وجلسات التعليم الطبي المستمر والمؤتمرات فور تأكيدها."
+ },
+ "galleryNote": {
+  "en": "Real photographs of our warehouses, fleet and teams are supplied by marketing, with a navy overlay wherever text sits on them.",
+  "ar": "صور حقيقية لمستودعاتنا وأسطولنا وفرقنا تُرفق من فريق التسويق، مع طبقة كحلية عند وضع نص عليها."
+ },
+ "jobsEmpty": {
+  "en": "No open positions are published right now",
+  "ar": "لا توجد وظائف شاغرة منشورة حالياً"
+ },
+ "jobsEmptyText": {
+  "en": "Send your CV and Human Resources will contact you when a matching role opens in one of our five hubs.",
+  "ar": "أرسل سيرتك الذاتية، وسيتواصل معك فريق الموارد البشرية عند توفر وظيفة تناسبك في أحد مراكزنا الخمسة."
+ },
+ "applyNow": {
+  "en": "Apply now",
+  "ar": "قدّم الآن"
+ },
+ "sitemapGeneral": {
+  "en": "General",
+  "ar": "صفحات عامة"
+ },
+ "tempsTitle": {
+  "en": "Storage ranges",
+  "ar": "نطاقات التخزين"
+ },
+ "tempsCold": {
+  "en": "Refrigerated: 2 to 8 °C",
+  "ar": "مبرّد: 2 إلى 8 °م"
+ },
+ "tempsRoom": {
+  "en": "Room temperature: 15 to 25 °C",
+  "ar": "حرارة الغرفة: 15 إلى 25 °م"
+ },
+ "tempsCap": {
+  "en": "Temperature in °C. Source: GDP storage requirements.",
+  "ar": "درجة الحرارة بالمئوي. المصدر: متطلبات التخزين في ممارسات التوزيع الجيد."
+ },
+ "partnersNote": {
+  "en": "Partner logos are shown with each partner’s approval, in equal white tiles.",
+  "ar": "تُعرض شعارات الشركاء بعد موافقتهم، في مربعات بيضاء متساوية الحجم."
+ },
+ "regionNorthAfrica": {
+  "en": "North Africa",
+  "ar": "شمال أفريقيا"
+ },
+ "regionEurope": {
+  "en": "Europe",
+  "ar": "أوروبا"
+ },
+ "regionMiddleEast": {
+  "en": "Middle East",
+  "ar": "الشرق الأوسط"
+ },
+ "regionAsia": {
+  "en": "Asia",
+  "ar": "آسيا"
+ },
+ "regionAmericas": {
+  "en": "Americas",
+  "ar": "الأمريكتان"
+ },
+ "productSearch": {
+  "en": "Search products",
+  "ar": "ابحث في المنتجات"
+ },
+ "productSearchPh": {
+  "en": "Brand or generic name",
+  "ar": "الاسم التجاري أو العلمي"
+ },
+ "thProduct": {
+  "en": "Product",
+  "ar": "المنتج"
+ },
+ "thGeneric": {
+  "en": "Generic name (INN)",
+  "ar": "الاسم العلمي"
+ },
+ "thForm": {
+  "en": "Form & strength",
+  "ar": "الشكل والتركيز"
+ },
+ "thPartner": {
+  "en": "Partner",
+  "ar": "الشريك"
+ },
+ "thArea": {
+  "en": "Therapeutic area",
+  "ar": "المجال العلاجي"
+ },
+ "thStatus": {
+  "en": "Status",
+  "ar": "الحالة"
+ },
+ "registered": {
+  "en": "Registered",
+  "ar": "مسجّل"
+ },
+ "productsNone": {
+  "en": "No products match. Clear the search or choose “All areas”.",
+  "ar": "لا توجد منتجات مطابقة. امسح البحث أو اختر «جميع المجالات»."
+ },
+ "productsSource": {
+  "en": "Source: the registered product list, loaded at content upload. The rows below are layout examples.",
+  "ar": "المصدر: قائمة المنتجات المسجّلة، تُحمَّل عند رفع المحتوى. الصفوف أدناه أمثلة للتصميم."
+ },
+ "pdTitle": {
+  "en": "Product page fields",
+  "ar": "حقول صفحة المنتج"
+ },
+ "pdBrand": {
+  "en": "Brand name",
+  "ar": "الاسم التجاري"
+ },
+ "pdGeneric": {
+  "en": "Generic name (INN)",
+  "ar": "الاسم العلمي"
+ },
+ "pdForm": {
+  "en": "Dosage form and strength",
+  "ar": "الشكل الصيدلاني والتركيز"
+ },
+ "pdPack": {
+  "en": "Pack size",
+  "ar": "حجم العبوة"
+ },
+ "pdArea": {
+  "en": "Therapeutic area",
+  "ar": "المجال العلاجي"
+ },
+ "pdMaker": {
+  "en": "Manufacturer",
+  "ar": "الشركة المصنّعة"
+ },
+ "pdReg": {
+  "en": "Ministry of Health registration no.",
+  "ar": "رقم التسجيل في وزارة الصحة"
+ },
+ "pdStorage": {
+  "en": "Storage conditions",
+  "ar": "ظروف الحفظ"
+ },
+ "pdLeaflet": {
+  "en": "Patient leaflet (PDF)",
+  "ar": "النشرة الداخلية (PDF)"
+ },
+ "pdFrom": {
+  "en": "From the approved registration file",
+  "ar": "من ملف التسجيل المعتمد"
+ },
+ "pdDownload": {
+  "en": "Download",
+  "ar": "تنزيل"
+ },
+ "officeAddress": {
+  "en": "Address",
+  "ar": "العنوان"
+ },
+ "officePhone": {
+  "en": "Phone",
+  "ar": "الهاتف"
+ },
+ "officeEmail": {
+  "en": "Email",
+  "ar": "البريد الإلكتروني"
+ },
+ "officeHours": {
+  "en": "Working hours",
+  "ar": "ساعات العمل"
+ },
+ "officeWebsite": {
+  "en": "Website",
+  "ar": "الموقع الإلكتروني"
+ },
+ "openMaps": {
+  "en": "Open in Google Maps",
+  "ar": "افتح في خرائط Google"
+ },
+ "hubContacts": {
+  "en": "Address and contacts:",
+  "ar": "العنوان وأرقام التواصل:"
+ },
+ "groupCompanies": {
+  "en": "Group companies",
+  "ar": "شركات المجموعة"
+ },
+ "groupFigAria": {
+  "en": "Al-Qawsan Group: the Bureau with CAS Development and the manufacturing partner",
+  "ar": "مجموعة القوسان: مكتب القوسان العلمي مع CAS Development وشريك التصنيع"
+ },
+ "groupFigMain1": {
+  "en": "Al-Qawsan",
+  "ar": "مكتب القوسان"
+ },
+ "groupFigMain2": {
+  "en": "Scientific Bureau",
+  "ar": "العلمي"
+ },
+ "groupFigB": {
+  "en": "CAS",
+  "ar": "CAS"
+ },
+ "groupFigC1": {
+  "en": "Manufacturing",
+  "ar": "شريك التصنيع"
+ },
+ "groupFigC2": {
+  "en": "partner",
+  "ar": ""
+ },
+ "choose": {
+  "en": "Choose",
+  "ar": "اختر"
+ },
+ "formLive": {
+  "en": "Your message goes straight to %s.",
+  "ar": "تصل رسالتك مباشرة إلى %s."
+ },
+ "formSending": {
+  "en": "Sending…",
+  "ar": "جارٍ الإرسال…"
+ },
+ "formError": {
+  "en": "Sorry, this could not be sent. Please check the fields and try again.",
+  "ar": "عذراً، تعذّر الإرسال. يرجى مراجعة الحقول والمحاولة مرة أخرى."
+ },
+ "form.partner": {
+  "en": "Partnership request",
+  "ar": "طلب شراكة"
+ },
+ "form.inquiry": {
+  "en": "Send an inquiry",
+  "ar": "أرسل استفساراً"
+ },
+ "form.medical": {
+  "en": "Medical information request",
+  "ar": "طلب معلومات طبية"
+ },
+ "form.apply": {
+  "en": "Job application",
+  "ar": "طلب توظيف"
+ },
+ "field.company": {
+  "en": "Company name",
+  "ar": "اسم الشركة"
+ },
+ "field.country": {
+  "en": "Country",
+  "ar": "البلد"
+ },
+ "field.name": {
+  "en": "Your name",
+  "ar": "اسمك"
+ },
+ "field.fullName": {
+  "en": "Full name",
+  "ar": "الاسم الكامل"
+ },
+ "field.email": {
+  "en": "Email",
+  "ar": "البريد الإلكتروني"
+ },
+ "field.phone": {
+  "en": "Phone",
+  "ar": "الهاتف"
+ },
+ "field.area": {
+  "en": "Main therapeutic area",
+  "ar": "المجال العلاجي الرئيسي"
+ },
+ "field.portfolio": {
+  "en": "Tell us about your portfolio",
+  "ar": "حدّثنا عن محفظة منتجاتك"
+ },
+ "field.org": {
+  "en": "Organisation",
+  "ar": "الجهة"
+ },
+ "field.subject": {
+  "en": "Subject",
+  "ar": "الموضوع"
+ },
+ "field.message": {
+  "en": "Message",
+  "ar": "الرسالة"
+ },
+ "field.profession": {
+  "en": "Profession",
+  "ar": "المهنة"
+ },
+ "field.product": {
+  "en": "Product",
+  "ar": "المنتج"
+ },
+ "field.question": {
+  "en": "Your question",
+  "ar": "سؤالك"
+ },
+ "field.interest": {
+  "en": "Area of interest",
+  "ar": "المجال المطلوب"
+ },
+ "field.hub": {
+  "en": "Preferred hub",
+  "ar": "المركز المفضّل"
+ },
+ "field.cv": {
+  "en": "CV (PDF or Word)",
+  "ar": "السيرة الذاتية (PDF أو Word)"
+ },
+ "field.note": {
+  "en": "Anything else we should know",
+  "ar": "معلومات إضافية"
+ },
+ "opt.other": {
+  "en": "Other",
+  "ar": "أخرى"
+ },
+ "opt.subject": {
+  "en": "Sales and orders\nPartnership\nMedical information\nCareers\nOther",
+  "ar": "المبيعات والطلبات\nالشراكة\nالمعلومات الطبية\nالوظائف\nأخرى"
+ },
+ "opt.profession": {
+  "en": "Doctor\nPharmacist\nOther healthcare professional",
+  "ar": "طبيب\nصيدلاني\nكادر صحي آخر"
+ },
+ "opt.interest": {
+  "en": "Medical representative\nPharmacist\nRegulatory affairs\nWarehouse and supply chain\nOther",
+  "ar": "مندوب علمي\nصيدلاني\nالشؤون التنظيمية\nالمستودعات وسلسلة الإمداد\nأخرى"
+ }
+}
