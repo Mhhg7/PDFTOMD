@@ -20,6 +20,13 @@
   --font-body-ar: "Cairo", "Alexandria", "Segoe UI", Tahoma, sans-serif;
   --gutter: clamp(16px, 4vw, 48px);
   --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  /* Motion: entrances are slow and soft, exits quick and quiet, so hover-in and
+     hover-out never feel like the same movement played backwards. */
+  --ease-in-soft: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quick: cubic-bezier(0.4, 0, 0.2, 1);
+  --t-in: 700ms;
+  --t-out: 320ms;
+  --ease-fill: cubic-bezier(0.45, 0, 0.2, 1);
   --hdr-main: 88px;
   --hdr-h: var(--hdr-main);
   color-scheme: light;
@@ -94,20 +101,31 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible, summary:focus-v
 .nav { display: flex; align-items: stretch; margin-inline-start: var(--space-4); height: 100%; }
 .nav__list { display: flex; align-items: stretch; gap: 0; margin: 0; padding: 0; list-style: none; }
 .nav__item { position: relative; display: flex; }
-.nav__link { display: inline-flex; align-items: center; gap: 3px; padding-inline: 8px; font-weight: 600; font-size: 14.5px; color: var(--text-heading); text-decoration: none; position: relative; white-space: nowrap; transition: color 150ms var(--ease); }
+.nav__link { display: inline-flex; align-items: center; gap: 3px; padding-inline: 8px; font-weight: 600; font-size: 14.5px; color: var(--text-heading); text-decoration: none; position: relative; white-space: nowrap; transition: color 220ms var(--ease-out-quick); }
+.nav__link:hover { transition: color 450ms var(--ease-in-soft); }
 html[lang="ar"] .nav__link { font-size: 15.5px; }
 .nav__link:hover, .nav__item:focus-within > .nav__link { color: var(--text-link); }
 /* Current tab: orange-700 text and weight, no underline. */
 .nav__link[aria-current="page"], .nav__item.is-active > .nav__link { color: var(--text-link); }
-.nav__link .icon { width: 14px; height: 14px; stroke-width: 2; color: var(--text-muted); transition: transform 250ms var(--ease), color 150ms var(--ease); }
+.nav__link .icon { width: 14px; height: 14px; stroke-width: 2; color: var(--text-muted); transition: transform 280ms var(--ease-out-quick), color 220ms var(--ease-out-quick); }
+.nav__item:hover > .nav__link .icon, .nav__item:focus-within > .nav__link .icon { transition: transform 600ms var(--ease-in-soft), color 450ms var(--ease-in-soft); }
 .nav__item:hover > .nav__link .icon, .nav__item:focus-within > .nav__link .icon { transform: rotate(180deg); color: var(--text-link); }
 
-/* Motion: dropdown panels fade and rise into place (250ms, the brand's panel timing). */
+/* Dropdowns open slowly (panel settles, then its items arrive one after another)
+   and close quickly. */
 .mega { position: absolute; top: 100%; inset-inline-start: 0; min-width: 300px; padding: var(--space-3); background: var(--surface); border: var(--border-width) solid var(--border-default); border-top: 3px solid var(--accent); border-radius: 0 0 var(--radius-lg) var(--radius-lg); box-shadow: var(--shadow-lg); z-index: 60;
-  display: grid; gap: 2px; opacity: 0; visibility: hidden; transform: translateY(10px); pointer-events: none;
-  transition: opacity 200ms var(--ease), transform 250ms var(--ease), visibility 0s linear 250ms; }
-.nav__item:hover > .mega, .nav__item:focus-within > .mega { opacity: 1; visibility: visible; transform: none; pointer-events: auto; transition-delay: 0s; }
-.mega a { display: block; padding: var(--space-2) var(--space-3); border-radius: var(--radius-md); color: var(--text-body); text-decoration: none; font-size: 15px; line-height: 22px; transition: background-color 150ms var(--ease), color 150ms var(--ease), padding 150ms var(--ease); }
+  display: grid; gap: 2px; opacity: 0; visibility: hidden; transform: translateY(14px) scale(0.98); transform-origin: top center; pointer-events: none;
+  transition: opacity 220ms var(--ease-out-quick), transform 280ms var(--ease-out-quick), visibility 0s linear 280ms; }
+.nav__item:hover > .mega, .nav__item:focus-within > .mega { opacity: 1; visibility: visible; transform: none; pointer-events: auto;
+  transition: opacity 450ms var(--ease-in-soft), transform 650ms var(--ease-in-soft), visibility 0s; }
+.mega a { display: block; padding: var(--space-2) var(--space-3); border-radius: var(--radius-md); color: var(--text-body); text-decoration: none; font-size: 15px; line-height: 22px; transition: background-color 250ms var(--ease-out-quick), color 250ms var(--ease-out-quick), padding 250ms var(--ease-out-quick); }
+.mega a:hover { transition: background-color 450ms var(--ease-in-soft), color 450ms var(--ease-in-soft), padding 550ms var(--ease-in-soft); }
+@media (prefers-reduced-motion: no-preference) {
+  .nav__item:hover > .mega > *, .nav__item:focus-within > .mega > * { animation: item-in 600ms var(--ease-in-soft) both; animation-delay: calc(var(--i, 0) * 55ms + 80ms); }
+  .mega > :nth-child(2) { --i: 1; } .mega > :nth-child(3) { --i: 2; } .mega > :nth-child(4) { --i: 3; }
+  .mega > :nth-child(5) { --i: 4; } .mega > :nth-child(6) { --i: 5; } .mega > :nth-child(7) { --i: 6; }
+}
+@keyframes item-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 html[lang="ar"] .mega a { font-size: 16px; line-height: 26px; }
 .mega a:hover { background: var(--orange-50); color: var(--text-heading); padding-inline-start: var(--space-5); }
 .mega a[aria-current="page"] { background: var(--navy-50); color: var(--text-heading); font-weight: 600; }
@@ -127,30 +145,46 @@ html[lang="ar"] .mega a { font-size: 16px; line-height: 26px; }
 .burger { display: none; }
 
 /* Hover fill, only on buttons without a colour of their own (outlined, ghost, icon
-   buttons): a round orange fill grows out of the bottom reading-start corner, so its
-   leading edge is a curve. Text turns navy on orange (on-accent, 5.3:1). Filled
-   buttons (navy primary, orange accent) keep the design system's darken-one-step hover. */
-.qs-btn--secondary, .qs-btn--ghost, .iconbtn, .copybtn { position: relative; overflow: hidden; isolation: isolate; }
-.qs-btn--secondary::before, .qs-btn--ghost::before, .iconbtn::before, .copybtn::before {
+   buttons). It arrives in two waves from the bottom reading-start corner, each with a
+   curved leading edge: a pale orange wash first, then the solid orange, then the text
+   turns navy (on-accent, 5.3:1). Leaving, it drains back quickly in reverse order.
+   Filled buttons (navy primary, orange accent) keep the darken-one-step hover and lift. */
+.qs-btn--secondary, .qs-btn--ghost, .iconbtn, .copybtn { position: relative; overflow: hidden; isolation: isolate;
+  transition: color 240ms var(--ease-out-quick), border-color 240ms var(--ease-out-quick); }
+.qs-btn--secondary::before, .qs-btn--ghost::before, .iconbtn::before, .copybtn::before, .qs-btn--secondary::after, .qs-btn--ghost::after, .iconbtn::after, .copybtn::after {
   content: ""; position: absolute; z-index: -1; left: 0; bottom: 0; width: 300%; aspect-ratio: 1; border-radius: 50%;
-  background: var(--orange-500); transform: translate(-50%, 50%) scale(0); transition: transform 600ms cubic-bezier(0.65, 0, 0.35, 1); }
-[dir="rtl"] .qs-btn--secondary::before, [dir="rtl"] .qs-btn--ghost::before, [dir="rtl"] .iconbtn::before, [dir="rtl"] .copybtn::before { left: auto; right: 0; transform: translate(50%, 50%) scale(0); }
-.qs-btn--secondary:hover::before, .qs-btn--ghost:hover::before, .iconbtn:hover::before, .copybtn:hover::before,
-.qs-btn--secondary:focus-visible::before, .qs-btn--ghost:focus-visible::before, .iconbtn:focus-visible::before, .copybtn:focus-visible::before { transform: translate(-50%, 50%) scale(1); }
-[dir="rtl"] .qs-btn--secondary:hover::before, [dir="rtl"] .qs-btn--ghost:hover::before, [dir="rtl"] .iconbtn:hover::before, [dir="rtl"] .copybtn:hover::before,
-[dir="rtl"] .qs-btn--secondary:focus-visible::before, [dir="rtl"] .qs-btn--ghost:focus-visible::before, [dir="rtl"] .iconbtn:focus-visible::before, [dir="rtl"] .copybtn:focus-visible::before { transform: translate(50%, 50%) scale(1); }
-.qs-btn--secondary, .qs-btn--ghost, .iconbtn, .copybtn { transition: color 250ms var(--ease), border-color 250ms var(--ease); }
+  transform: translate(-50%, 50%) scale(0); }
+.qs-btn--secondary::before, .qs-btn--ghost::before, .iconbtn::before, .copybtn::before { background: var(--orange-200); transition: transform 380ms var(--ease-out-quick) 90ms; }
+.qs-btn--secondary::after, .qs-btn--ghost::after, .iconbtn::after, .copybtn::after { background: var(--orange-500); transition: transform 320ms var(--ease-out-quick); }
+[dir="rtl"] .qs-btn--secondary::before, [dir="rtl"] .qs-btn--ghost::before, [dir="rtl"] .iconbtn::before, [dir="rtl"] .copybtn::before, [dir="rtl"] .qs-btn--secondary::after, [dir="rtl"] .qs-btn--ghost::after, [dir="rtl"] .iconbtn::after, [dir="rtl"] .copybtn::after { left: auto; right: 0; transform: translate(50%, 50%) scale(0); }
+.qs-btn--secondary:hover::before, .qs-btn--ghost:hover::before, .iconbtn:hover::before, .copybtn:hover::before, .qs-btn--secondary:focus-visible::before, .qs-btn--ghost:focus-visible::before, .iconbtn:focus-visible::before, .copybtn:focus-visible::before { transform: translate(-50%, 50%) scale(1); transition: transform 900ms var(--ease-fill); }
+.qs-btn--secondary:hover::after, .qs-btn--ghost:hover::after, .iconbtn:hover::after, .copybtn:hover::after, .qs-btn--secondary:focus-visible::after, .qs-btn--ghost:focus-visible::after, .iconbtn:focus-visible::after, .copybtn:focus-visible::after { transform: translate(-50%, 50%) scale(1); transition: transform 1000ms var(--ease-fill) 180ms; }
+[dir="rtl"] .qs-btn--secondary:hover::before, [dir="rtl"] .qs-btn--ghost:hover::before, [dir="rtl"] .iconbtn:hover::before, [dir="rtl"] .copybtn:hover::before, [dir="rtl"] .qs-btn--secondary:focus-visible::before, [dir="rtl"] .qs-btn--ghost:focus-visible::before, [dir="rtl"] .iconbtn:focus-visible::before, [dir="rtl"] .copybtn:focus-visible::before, [dir="rtl"] .qs-btn--secondary:hover::after, [dir="rtl"] .qs-btn--ghost:hover::after, [dir="rtl"] .iconbtn:hover::after, [dir="rtl"] .copybtn:hover::after, [dir="rtl"] .qs-btn--secondary:focus-visible::after, [dir="rtl"] .qs-btn--ghost:focus-visible::after, [dir="rtl"] .iconbtn:focus-visible::after, [dir="rtl"] .copybtn:focus-visible::after { transform: translate(50%, 50%) scale(1); }
 .qs-btn--secondary:hover, .qs-btn--ghost:hover { background: var(--surface); color: var(--on-accent); border-color: var(--orange-500); }
 .iconbtn:hover, .copybtn:hover { background: transparent; color: var(--on-accent); }
 .copybtn:hover { border-color: var(--orange-500); }
+.qs-btn--secondary:hover, .qs-btn--ghost:hover, .iconbtn:hover, .copybtn:hover { transition: color 500ms var(--ease-in-soft) 420ms, border-color 600ms var(--ease-in-soft); }
 
-/* Cards that are links lift slightly on hover. */
 @media (prefers-reduced-motion: no-preference) {
-  a.qs-card { transition: border-color 150ms var(--ease), box-shadow 150ms var(--ease), transform 150ms var(--ease); }
-  a.qs-card:hover { transform: translateY(-3px); }
+  /* Filled buttons: darken and lift softly; settle back quickly. */
+  .qs-btn--primary, .qs-btn--accent, .ftr__top { transition: background-color 280ms var(--ease-out-quick), color 280ms var(--ease-out-quick), transform 300ms var(--ease-out-quick), box-shadow 300ms var(--ease-out-quick); }
+  .qs-btn--primary:hover, .qs-btn--accent:hover, .ftr__top:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg);
+    transition: background-color 600ms var(--ease-in-soft), color 600ms var(--ease-in-soft), transform 700ms var(--ease-in-soft), box-shadow 700ms var(--ease-in-soft); }
+
+  /* Cards in three beats: the card lifts, its icon ring warms to orange, then the
+     arrow slides on. Leaving, everything settles back at once, quickly. */
+  a.qs-card, .kpi, .area, a.ptile { transition: transform var(--t-out) var(--ease-out-quick), box-shadow var(--t-out) var(--ease-out-quick), border-color var(--t-out) var(--ease-out-quick), background-color var(--t-out) var(--ease-out-quick); }
+  a.qs-card:hover, .kpi:hover, .area:hover, a.ptile:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg);
+    transition: transform var(--t-in) var(--ease-in-soft), box-shadow var(--t-in) var(--ease-in-soft), border-color 500ms var(--ease-in-soft), background-color 500ms var(--ease-in-soft); }
+  .icon-circle { transition: border-color var(--t-out) var(--ease-out-quick), color var(--t-out) var(--ease-out-quick), transform var(--t-out) var(--ease-out-quick); }
+  a.qs-card:hover .icon-circle, .kpi:hover .icon-circle, .area:hover .icon-circle { border-color: var(--orange-500); color: var(--orange-700); transform: translateY(-2px);
+    transition: border-color 500ms var(--ease-in-soft) 120ms, color 500ms var(--ease-in-soft) 120ms, transform 600ms var(--ease-in-soft) 120ms; }
+  .link-more .icon { transition: transform 280ms var(--ease-out-quick); }
+  a.qs-card:hover .link-more .icon, .link-more:hover .icon { transform: translateX(5px); transition: transform 600ms var(--ease-in-soft) 200ms; }
+  [dir="rtl"] a.qs-card:hover .link-more .icon, [dir="rtl"] .link-more:hover .icon { transform: scaleX(-1) translateX(5px); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .nav__link .icon, .mega, .mega a, .qs-btn--secondary::before, .qs-btn--ghost::before, .iconbtn::before, .copybtn::before { transition: none !important; }
+  *, *::before, *::after { transition-duration: 0s !important; transition-delay: 0s !important; animation: none !important; }
 }
 
 /* 768-1259px: two-row header. Logo and tools on the first row, the full tab bar on
@@ -608,11 +642,17 @@ input[type="file"].qs-input { padding-block: 9px; height: auto; }
 .nf { display: grid; gap: var(--space-4); justify-items: start; padding-block: var(--space-16); }
 .nf .display-num { font-family: var(--font-display-en); font-size: 88px; line-height: 1; font-weight: 800; color: var(--navy-100); }
 
-/* Simple movement: blocks below the first screen ease up as they scroll into view.
-   Only elements outside the first viewport are prepared, so the page is complete at rest. */
+/* Page motion, on every page.
+   Entrance: what is on screen when a page opens arrives in a soft cascade.
+   Reveal: everything further down rises and comes into focus as it scrolls into view.
+   Both start slightly blurred and lowered, and settle with a long, soft ease. */
 @media (prefers-reduced-motion: no-preference) {
-  .rv { opacity: 0; transform: translateY(24px); transition: opacity 600ms var(--ease), transform 600ms var(--ease); transition-delay: var(--rv-delay, 0ms); }
-  .rv.is-in { opacity: 1; transform: none; }
-  .slide:not([hidden]) { animation: slide-in 500ms var(--ease); }
+  .enter { animation: page-enter 1100ms var(--ease-in-soft) both; animation-delay: var(--en-delay, 0ms); }
+  .rv { opacity: 0; transform: translateY(40px); filter: blur(6px);
+    transition: opacity 900ms var(--ease-in-soft), transform 1100ms var(--ease-in-soft), filter 900ms var(--ease-in-soft); transition-delay: var(--rv-delay, 0ms); }
+  .rv.is-in { opacity: 1; transform: none; filter: none; }
+  .slide:not([hidden]) > * { animation: page-enter 1000ms var(--ease-in-soft) both; }
+  .slide:not([hidden]) > :nth-child(2) { animation-delay: 140ms; }
+  .slide:not([hidden]) > :nth-child(3) { animation-delay: 280ms; }
 }
-@keyframes slide-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@keyframes page-enter { from { opacity: 0; transform: translateY(32px); filter: blur(8px); } to { opacity: 1; transform: none; filter: none; } }

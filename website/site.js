@@ -743,25 +743,38 @@
     requestAnimationFrame(setupReveal);
   }
 
-  /* Simple movement: blocks that start below the first screen ease up when they
-     scroll into view; anything already visible is left alone. */
+  /* Page motion, on every page. Elements visible when a page opens get a staggered
+     entrance; elements further down reveal as they scroll into view, staggered
+     within their row. */
   var revealObs = null;
-  var REVEAL_SEL = ".band .shead, .band .grid > *, .band .stats > *, .stats-banner, .about-teaser > *, .partner-strip, " +
-    ".blk, .related, .cta-band__row, .ftr__strip, .ftr__cols > *";
-  var STAGGER_PARENTS = { grid: 1, stats: 1, ftr__cols: 1 };
+  var MOTION_SEL = [
+    ".banner .crumbs", ".banner__icon", ".banner .news-date", ".banner h1", ".banner__lead",
+    ".hero .slides > .qs-overline", ".hero .slider-ctl", ".hero .mapcard",
+    ".band .shead", ".band .grid > *", ".band .stats > *", ".stats-banner", ".about-teaser > *", ".partner-strip > *",
+    ".rail", ".blk > h2", ".blk > .prose > p", ".blk > .grid > *", ".blk > .stats > *", ".checks > li",
+    ".qs-timeline__item", ".blk > .mapcard", ".blk > .filters", ".temps", ".form", ".note", ".empty",
+    ".facts > div", ".pgroup", ".table-scroll", ".office > .qs-card", ".group-fig", ".smap > div",
+    ".related h2", ".related .grid > *", ".cta-band__row > *", ".ftr__strip > li", ".ftr__cols > *", ".ftr__bottom"
+  ].join(", ");
   function setupReveal() {
     if (revealObs) revealObs.disconnect();
     if (reduceMotion || !("IntersectionObserver" in window)) return;
     revealObs = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("is-in"); revealObs.unobserve(en.target); } });
-    }, { rootMargin: "0px 0px -8% 0px" });
-    var vh = window.innerHeight;
-    document.querySelectorAll(REVEAL_SEL).forEach(function (el) {
-      if (el.getBoundingClientRect().top < vh) return;
-      var par = el.parentElement, i = Array.prototype.indexOf.call(par.children, el);
-      if ([].some.call(par.classList, function (c) { return STAGGER_PARENTS[c]; })) el.style.setProperty("--rv-delay", Math.min(i, 4) * 80 + "ms");
-      el.classList.add("rv");
-      revealObs.observe(el);
+    }, { rootMargin: "0px 0px -6% 0px" });
+    var vh = window.innerHeight, order = 0;
+    document.querySelectorAll(MOTION_SEL).forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.bottom < 0) return;
+      if (r.top < vh) {
+        el.style.setProperty("--en-delay", Math.min(order++, 10) * 90 + "ms");
+        el.classList.add("enter");
+      } else {
+        var i = Array.prototype.indexOf.call(el.parentElement.children, el);
+        el.style.setProperty("--rv-delay", Math.min(i, 5) * 110 + "ms");
+        el.classList.add("rv");
+        revealObs.observe(el);
+      }
     });
   }
 
