@@ -80,6 +80,17 @@
       areasIntro: "Browse the portfolio by therapeutic area.",
       newsIntro: "Company news and announcements.",
       aboutTeaserH: "An Iraqi scientific bureau built on precision",
+      fLocation: "Location",
+      fEmail: "Email",
+      fCall: "Call now",
+      newsTitle: "Our newsletter",
+      newsText: "Company news and partner updates, about once a month.",
+      newsPh: "name@company.com",
+      subscribe: "Subscribe",
+      newsPrivacy: "We use your email only to send this newsletter.",
+      newsDone: "Thank you. You are subscribed.",
+      newsPreview: "Preview: this form is not connected yet.",
+      toTop: "Back to top",
       theme: "Theme"
     },
     ar: {
@@ -150,6 +161,17 @@
       areasIntro: "تصفّح المحفظة حسب المجال العلاجي.",
       newsIntro: "أخبار الشركة وإعلاناتها.",
       aboutTeaserH: "مكتب علمي عراقي قائم على الدقة",
+      fLocation: "الموقع",
+      fEmail: "البريد الإلكتروني",
+      fCall: "اتصل الآن",
+      newsTitle: "نشرتنا الإخبارية",
+      newsText: "أخبار الشركة ومستجدات الشركاء، مرة في الشهر تقريباً.",
+      newsPh: "name@company.com",
+      subscribe: "اشترك",
+      newsPrivacy: "نستخدم بريدك الإلكتروني لإرسال هذه النشرة فقط.",
+      newsDone: "شكراً لك، تم اشتراكك.",
+      newsPreview: "معاينة: هذا النموذج غير مربوط بعد.",
+      toTop: "العودة إلى الأعلى",
       theme: "المظهر"
     }
   };

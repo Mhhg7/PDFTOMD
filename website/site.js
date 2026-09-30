@@ -41,6 +41,7 @@
     chevRight: '<path d="m9 18 6-6-6-6"/>',
     chevLeft: '<path d="m15 18-6-6 6-6"/>',
     arrowRight: '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
+    arrowUp: '<path d="m5 12 7-7 7 7"/><path d="M12 19V5"/>',
     mapPin: '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',
     phone: '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>',
     mail: '<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',
@@ -187,25 +188,39 @@
   /* ------------------------------------------------------------ footer */
   function footerHTML() {
     var quick = ["about-who", "partners-list", "products-areas", "media-news", "careers-why", "contact-office"];
-    return '<footer class="qs qs-footer qs-on-dark site-footer' + (lang === "ar" ? " qs-ar" : "") + '">' +
-      hexField("navy", 1280, 420, 56, "var(--opacity-pattern)") +
-      '<div class="wrap qs-footer__inner">' +
-        '<div class="qs-footer__cols">' +
-          '<div class="foot-about"><p class="foot-brand">' + u("brand") + '</p><p class="qs-footer__text">' + u("footerAbout") + "</p>" +
-            '<p class="foot-group"><strong>' + u("group") + ':</strong> CAS Development, ' + (lang === "ar" ? "مكتب لارا العلمي، مكتب سنايا العلمي" : "Lara Scientific Office, Sanaya Scientific Office") + "</p>" +
-            '<div class="social"><a href="https://www.linkedin.com/company/al-qawsan-group" target="_blank" rel="noopener" aria-label="LinkedIn">' + icon("linkedin", "icon--md") + "</a></div></div>" +
-          '<div><h2 class="qs-footer__title">' + u("quick") + "</h2><ul>" + quick.map(function (k) { return '<li><a href="#' + k + '">' + t(Q.PAGES[k].t) + "</a></li>"; }).join("") + "</ul></div>" +
-          '<div><h2 class="qs-footer__title">' + u("services") + "</h2><ul>" + Q.SERVICES.map(function (s) { return '<li><a href="#' + s.id + '">' + t(s.t) + "</a></li>"; }).join("") + "</ul></div>" +
-          '<div><h2 class="qs-footer__title">' + u("contact") + '</h2><ul class="foot-contact">' +
-            "<li>" + icon("mapPin") + "<span>" + u("address") + "</span></li>" +
-            "<li>" + icon("phone") + '<span><bdi dir="ltr">+964 XXX XXX XXXX</bdi></span></li>' +
-            "<li>" + icon("mail") + '<span><bdi dir="ltr">info@alqawsangroup.com</bdi></span></li>' +
-            "<li>" + icon("globe") + '<span><a href="https://alqawsangroup.com" target="_blank" rel="noopener" dir="ltr">www.alqawsangroup.com</a></span></li>' +
-            "<li>" + icon("clock") + "<span>" + u("hours") + "</span></li>" +
-          "</ul></div>" +
+    var ar = lang === "ar";
+    var strip = [
+      { ic: "mapPin", k: u("fLocation"), v: u("address") },
+      { ic: "mail", k: u("fEmail"), v: '<bdi dir="ltr">info@alqawsangroup.com</bdi>' },
+      { ic: "phone", k: u("fCall"), v: '<bdi dir="ltr">+964 XXX XXX XXXX</bdi>' }
+    ].map(function (x) {
+      return '<li><span class="ftr__ico">' + icon(x.ic) + '</span><span class="ftr__kv"><span class="ftr__k">' + x.k + '</span><span class="ftr__v">' + x.v + "</span></span></li>";
+    }).join("");
+    return '<footer class="ftr' + (ar ? " qs-ar" : "") + '">' +
+      '<div class="ftr__arch">' + hexField("navy", 1280, 480, 56, "var(--opacity-pattern)") +
+        '<div class="wrap ftr__stripwrap"><ul class="ftr__strip" aria-label="' + u("contact") + '">' + strip + "</ul></div>" +
+        '<div class="ftr__panel">' + hexField("watermark", 1280, 520, 60) +
+          '<div class="wrap ftr__cols">' +
+            '<div class="ftr__about"><p class="ftr__brand">' + u("brand") + '</p><p class="ftr__brand-alt" lang="' + (ar ? "en" : "ar") + '">' + u("brandAlt") + "</p>" +
+              '<p class="ftr__text">' + u("footerAbout") + "</p>" +
+              '<p class="ftr__meta"><strong>' + u("group") + ":</strong> CAS Development, " + (ar ? "مكتب لارا العلمي، مكتب سنايا العلمي" : "Lara Scientific Office, Sanaya Scientific Office") + "</p>" +
+              '<p class="ftr__meta">' + icon("clock", "icon--sm") + u("hours") + "</p>" +
+              '<div class="ftr__social"><a href="https://www.linkedin.com/company/al-qawsan-group" target="_blank" rel="noopener" aria-label="LinkedIn">' + icon("linkedin", "icon--md") + '</a><a href="https://alqawsangroup.com" target="_blank" rel="noopener" aria-label="www.alqawsangroup.com">' + icon("globe", "icon--md") + "</a></div></div>" +
+            '<nav aria-labelledby="ftr-q"><h2 class="ftr__title" id="ftr-q">' + u("quick") + "</h2><ul>" + quick.map(function (k) { return '<li><a href="#' + k + '">' + t(Q.PAGES[k].t) + "</a></li>"; }).join("") + "</ul></nav>" +
+            '<nav aria-labelledby="ftr-s"><h2 class="ftr__title" id="ftr-s">' + u("services") + "</h2><ul>" + Q.SERVICES.map(function (x) { return '<li><a href="#' + x.id + '">' + t(x.t) + "</a></li>"; }).join("") + "</ul></nav>" +
+            '<div class="ftr__news"><h2 class="ftr__title">' + u("newsTitle") + '</h2><p class="ftr__text">' + u("newsText") + "</p>" +
+              '<form class="ftr__form" data-news novalidate><label class="qs-field__label" for="f-news-email">' + u("fEmail") + '</label>' +
+                '<input class="qs-input ftr__input" id="f-news-email" name="email" type="email" dir="ltr" autocomplete="email" required placeholder="' + u("newsPh") + '">' +
+                '<button class="qs-btn qs-btn--primary ftr__btn" type="submit">' + u("subscribe") + "</button>" +
+                '<p class="ftr__fine">' + u("newsPrivacy") + ' <a href="#privacy">' + u("privacy") + "</a></p></form>" +
+              '<div class="ftr__done" hidden tabindex="-1"><p class="ftr__done-h">' + icon("checkCircle", "icon--md") + u("newsDone") + '</p><p class="ftr__fine">' + u("newsPreview") + "</p></div>" +
+            "</div>" +
+          "</div>" +
+          '<div class="wrap ftr__bottom"><span aria-hidden="true"></span>' +
+            '<div class="ftr__legal"><p>© <bdi dir="ltr">2026</bdi> ' + u("brand") + " | " + u("rights") + '</p><nav aria-label="' + u("sitemap") + '"><a href="#privacy">' + u("privacy") + '</a><a href="#terms">' + u("terms") + '</a><a href="#sitemap">' + u("sitemap") + "</a></nav></div>" +
+            '<button class="ftr__top" type="button" data-act="top" aria-label="' + u("toTop") + '">' + icon("arrowUp") + "</button>" +
+          "</div>" +
         "</div>" +
-        '<div class="qs-footer__legal foot-legal"><span>© <bdi dir="ltr">2026</bdi> ' + u("brand") + ". " + u("rights") + "</span>" +
-          '<nav aria-label="' + u("sitemap") + '"><a href="#privacy">' + u("privacy") + '</a><a href="#terms">' + u("terms") + '</a><a href="#sitemap">' + u("sitemap") + "</a></nav></div>" +
       "</div></footer>";
   }
 
@@ -717,12 +732,23 @@
     else if (Q.PAGES[route]) main.innerHTML = pageHTML(route);
     else main.innerHTML = notFoundHTML();
     document.getElementById("ftr").innerHTML = footerHTML();
+    bindNewsletter();
     document.title = (route === "home" ? u("brand") : (Q.PAGES[route] ? t(Q.PAGES[route].t) + " | " + u("brand") : u("notFound")));
     bindMaps(main);
     bindPage(main);
     if (focus) { var h = main.querySelector("h1"); if (h) h.focus({ preventScroll: true }); }
     firstRender = false;
     startSlider();
+  }
+
+  function bindNewsletter() {
+    var f = document.querySelector("form[data-news]"); if (!f) return;
+    f.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!f.checkValidity()) { f.reportValidity(); return; }
+      var done = f.parentNode.querySelector(".ftr__done");
+      f.hidden = true; done.hidden = false; done.focus();
+    });
   }
 
   function bindPage(main) {
@@ -759,6 +785,7 @@
       var act = a.getAttribute("data-act");
       if (act === "drawer" || act === "search") openOverlay(act);
       else if (act === "close") closeOverlay();
+      else if (act === "top") { window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" }); var br = document.querySelector(".brand"); if (br) br.focus({ preventScroll: true }); }
       return;
     }
     if ((a = e.target.closest("[data-slide]"))) { showSlide(+a.getAttribute("data-slide")); stopSlider(); return; }
