@@ -197,11 +197,17 @@
   ];
 
   /* ------------------------------------------------------------ shared data */
+  /* Key-figure cards. Every figure is an approved brand fact (design-system README);
+     chips state a fact, never an unsourced growth rate. */
   var STATS = [
-    { v: "18", t: L("governorates served across Iraq", "محافظة نخدمها في أنحاء العراق"), tone: "navy" },
-    { v: "5", t: L("strategic hubs: Baghdad, Basra, Erbil, Mosul and Najaf", "مراكز استراتيجية: بغداد والبصرة وأربيل والموصل والنجف"), tone: "orange" },
-    { v: "1,500+", t: L("professionals across the group", "موظف ومختص ضمن المجموعة"), tone: "navy" },
-    { v: "25+", t: L("international manufacturing partners", "شريكاً دولياً من الشركات المصنّعة"), tone: "orange" }
+    { icon: "mapPin", v: "18", label: L("Governorates Served", "المحافظات المخدومة"),
+      chip: { icon: "check", t: L("18 of 18", "18 من 18") }, sub: L("Nationwide coverage", "تغطية على مستوى العراق") },
+    { icon: "warehouse", v: "5", label: L("Strategic Hubs", "المراكز الاستراتيجية"),
+      sub: L("Baghdad, Basra, Erbil, Mosul and Najaf", "بغداد والبصرة وأربيل والموصل والنجف") },
+    { icon: "users", v: "1,500+", label: L("Professionals", "الكوادر المهنية"),
+      sub: L("Across Al-Qawsan Group", "ضمن مجموعة القوسان") },
+    { icon: "handshake", v: "25+", label: L("Manufacturing Partners", "الشركاء المصنّعون"),
+      chip: { icon: "arrowUp", t: L("New", "جديد") }, sub: L("SIPHAT, Tunisia (2025)", "SIPHAT، تونس (2025)") }
   ];
   var STATS_BANNER = L(
     "Founded in Baghdad in 2009. Today among Iraq’s top five private pharmaceutical companies, GDP-certified and a partner of the Ministry of Health.",

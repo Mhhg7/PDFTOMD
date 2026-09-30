@@ -217,7 +217,13 @@ a.qs-card { text-decoration: none; color: inherit; transition: border-color 150m
 a.qs-card:hover { border-color: var(--navy-200); box-shadow: var(--shadow-lg); }
 a.qs-card:hover .qs-card__title { color: var(--navy-900); }
 .qs-card .link-more { margin-top: auto; }
-.icon-circle { width: 48px; height: 48px; border-radius: var(--radius-full); background: var(--navy-50); color: var(--navy-800); display: inline-grid; place-items: center; }
+/* Icon ring: outlined navy icon in a white circle with a hairline ring (design-system
+   rule: navy-800 icons on light grounds; orange only inside a white circle on navy). */
+.icon-circle { width: 48px; height: 48px; border-radius: var(--radius-full); background: var(--surface); border: var(--border-width) solid var(--border-strong); color: var(--navy-800); display: inline-grid; place-items: center; flex: none; box-sizing: border-box; }
+.icon-circle--lg { width: 64px; height: 64px; }
+.icon-circle--lg .icon { width: 28px; height: 28px; }
+.card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-4); }
+.card-top .qs-card__title { padding-top: var(--space-2); }
 
 .tbc { vertical-align: middle; }
 
@@ -296,9 +302,25 @@ html[lang="ar"] .iraq .lbl { font-family: var(--font-body-ar); font-size: 12px; 
 
 .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-4); }
 @media (max-width: 1023px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 480px) { .stats { grid-template-columns: minmax(0, 1fr); } .qs-stat { min-height: 0; } }
-.qs-stat { align-content: start; min-height: 150px; }
-html[lang="ar"] .qs-stat__label { font-family: var(--font-body-ar); }
+/* Inside an inner page the content column is narrower, so two cards per row. */
+.content .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 560px) { .stats, .content .stats { grid-template-columns: minmax(0, 1fr); } }
+
+/* Key-figure card, after the client's reference: label and icon ring on top, the
+   figure in navy, then a fact chip and one line of context in muted text. */
+.kpi { display: grid; gap: var(--space-4); align-content: start; padding: var(--space-6); background: var(--surface); border: var(--border-width) solid var(--border-default); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); min-width: 0; }
+.kpi__top { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-3); }
+.kpi__label { font-size: 17px; line-height: 24px; font-weight: 600; color: var(--gray-800); padding-top: var(--space-2); }
+html[lang="ar"] .kpi__label { font-size: 18px; line-height: 28px; }
+.kpi__value { font-family: var(--font-display-en); font-size: clamp(40px, 3.6vw, 52px); line-height: 1.05; font-weight: 700; color: var(--text-heading); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+html[lang="ar"] .kpi__value { font-family: var(--font-display-ar); letter-spacing: 0; }
+.kpi__foot { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); }
+/* Status chip: the word carries the meaning in navy; green lives in the ground and
+   the icon, because success text on success-bg is below the contrast floor. */
+.kpi__chip { display: inline-flex; align-items: center; gap: var(--space-1); height: 28px; padding-inline: var(--space-3); border-radius: var(--radius-full); background: var(--success-bg); color: var(--navy-800); font-size: 14px; font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.kpi__chip .icon { color: var(--success); stroke-width: 2.25; }
+.kpi__sub { font-size: 15px; line-height: 22px; color: var(--text-muted); }
+html[lang="ar"] .kpi__sub { font-size: 16px; line-height: 26px; }
 .stats-banner { margin-top: var(--space-4); background: var(--surface-inverse); color: var(--text-inverse); border-radius: var(--radius-lg); padding: var(--space-5); font-size: 17px; line-height: 28px; font-weight: 500; }
 html[lang="ar"] .stats-banner { font-size: 18px; line-height: 32px; }
 

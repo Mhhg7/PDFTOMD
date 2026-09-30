@@ -1,6 +1,6 @@
 /* Al-Qawsan Scientific Bureau - website app.
    Vanilla JS, hash-routed, bilingual (EN / AR with RTL). Markup uses the design
-   system's component classes (qs-btn, qs-card, qs-stat, qs-badge, qs-timeline,
+   system's component classes (qs-btn, qs-card, qs-badge, qs-timeline,
    qs-field, qs-table, qs-footer) so it renders exactly as components/bundle.css
    specifies, without a React dependency. HexPattern geometry is ported from
    components/bundle.js. */
@@ -311,13 +311,10 @@
     }).join("");
     var dots = Q.SLIDES.map(function (s, i) { return '<button type="button" data-slide="' + i + '" aria-label="' + u("slide") + " " + (i + 1) + '" aria-current="' + (i === slideIdx) + '"></button>'; }).join("");
 
-    var stats = Q.STATS.map(function (s) {
-      return '<div class="qs-stat qs-stat--' + s.tone + '"><div class="qs-stat__pattern" aria-hidden="true">' + hexField(s.tone === "navy" ? "navy" : "orange", 320, 160, 34) + "</div>" +
-        '<p class="qs-stat__value"><bdi dir="ltr">' + s.v + '</bdi></p><p class="qs-stat__label">' + t(s.t) + "</p></div>";
-    }).join("");
+    var stats = Q.STATS.map(kpiCard).join("");
 
     var services = Q.SERVICES.map(function (s) {
-      return '<a class="qs-card svc" href="#' + s.id + '"><span class="icon-circle">' + icon(s.icon) + '</span><h3 class="qs-heading qs-card__title">' + t(s.t) + '</h3><p class="qs-card__body">' + t(s.d) + '</p><span class="link-more">' + u("readMore") + icon("arrowRight", "icon--sm") + "</span></a>";
+      return '<a class="qs-card svc" href="#' + s.id + '"><div class="card-top"><h3 class="qs-heading qs-card__title">' + t(s.t) + '</h3><span class="icon-circle">' + icon(s.icon) + "</span></div>" + '<p class="qs-card__body">' + t(s.d) + '</p><span class="link-more">' + u("readMore") + icon("arrowRight", "icon--sm") + "</span></a>";
     }).join("");
 
     var partners = partnerTile(true) + [1, 2, 3, 4, 5, 6].map(function () { return '<div class="ptile ptile--slot">' + (lang === "ar" ? "شعار الشريك" : "Partner logo") + "</div>"; }).join("");
@@ -335,16 +332,16 @@
         "</div>" +
       "</section>" +
 
-      '<section class="band" aria-label="' + (lang === "ar" ? "أرقامنا" : "Key numbers") + '"><div class="wrap"><div class="stats">' + stats + '</div><p class="stats-banner">' + t(Q.STATS_BANNER) + "</p></div></section>" +
+      '<section class="band band--alt" aria-label="' + (lang === "ar" ? "أرقامنا" : "Key figures") + '"><div class="wrap"><div class="stats">' + stats + '</div><p class="stats-banner">' + t(Q.STATS_BANNER) + "</p></div></section>" +
 
-      '<section class="band band--alt"><div class="wrap about-teaser"><div class="about-teaser__copy">' + overline(t(SEC.about.t)) +
+      '<section class="band"><div class="wrap about-teaser"><div class="about-teaser__copy">' + overline(t(SEC.about.t)) +
         '<h2 class="' + (lang === "ar" ? "ar-h2" : "h2") + '">' + u("aboutTeaserH") + "</h2>" +
         '<p class="' + (lang === "ar" ? "ar-body-lg" : "body-lg") + '">' + t(Q.PAGES["about-who"].blocks[0].p[0]) + "</p>" +
         "<div>" + btn(u("readMore"), "about-who", "secondary") + "</div></div>" +
         photoSlot(lang === "ar" ? "صورة: المكتب الرئيسي، حي القادسية (تُرفق لاحقاً)" : "Photo: head office, Qadisiyah District (to be supplied)") +
       "</div></section>" +
 
-      '<section class="band"><div class="wrap"><div class="shead shead--row"><div>' + overline(t(SEC.services.t)) + '<h2 class="' + (lang === "ar" ? "ar-h2" : "h2") + '">' + u("servicesIntro") + "</h2></div></div>" +
+      '<section class="band band--alt"><div class="wrap"><div class="shead shead--row"><div>' + overline(t(SEC.services.t)) + '<h2 class="' + (lang === "ar" ? "ar-h2" : "h2") + '">' + u("servicesIntro") + "</h2></div></div>" +
         '<div class="grid grid--3">' + services + "</div></div></section>" +
 
       '<section class="band band--navy">' + hexField("navy", 1280, 420, 56, "var(--opacity-pattern)") + '<div class="wrap">' +
@@ -362,6 +359,14 @@
         '<div class="grid grid--3">' + newsCards() + "</div></div></section>" +
 
       ctaBand();
+  }
+
+  /* Key-figure card: formal label and outlined icon ring on top, the figure, then a
+     fact chip and a line of context. */
+  function kpiCard(s) {
+    var chip = s.chip ? '<span class="kpi__chip">' + icon(s.chip.icon, "icon--sm") + "<span>" + t(s.chip.t) + "</span></span>" : "";
+    return '<div class="kpi"><div class="kpi__top"><p class="kpi__label">' + t(s.label) + '</p><span class="icon-circle icon-circle--lg">' + icon(s.icon) + "</span></div>" +
+      '<p class="kpi__value"><bdi dir="ltr">' + s.v + '</bdi></p><p class="kpi__foot">' + chip + '<span class="kpi__sub">' + t(s.sub) + "</span></p></div>";
   }
 
   function photoSlot(caption, sq) {
@@ -444,9 +449,7 @@
           return '<div class="qs-card"><h3 class="qs-heading qs-card__title">' + t(x.t) + '</h3><p class="qs-card__body">' + t(x.d) + "</p></div>";
         }).join("") + "</div></section>";
       case "stats":
-        return '<section class="blk"><div class="stats">' + Q.STATS.map(function (s) {
-          return '<div class="qs-stat qs-stat--' + s.tone + '"><div class="qs-stat__pattern" aria-hidden="true">' + hexField(s.tone === "navy" ? "navy" : "orange", 320, 160, 34) + '</div><p class="qs-stat__value"><bdi dir="ltr">' + s.v + '</bdi></p><p class="qs-stat__label">' + t(s.t) + "</p></div>";
-        }).join("") + '</div><p class="stats-banner">' + t(Q.STATS_BANNER) + "</p></section>";
+        return '<section class="blk"><div class="stats">' + Q.STATS.map(kpiCard).join("") + '</div><p class="stats-banner">' + t(Q.STATS_BANNER) + "</p></section>";
       case "timeline":
         return '<section class="blk"><div class="qs-timeline qs-timeline--horizontal">' + b.items.map(function (x) {
           return '<div class="qs-timeline__item"><span class="qs-timeline__rule" aria-hidden="true"></span><span class="qs-timeline__node" aria-hidden="true"></span>' +
