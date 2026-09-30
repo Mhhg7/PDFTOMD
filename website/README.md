@@ -31,12 +31,29 @@ python3 -m http.server 8000
 - Colours, radii, spacing, shadows, focus treatment and component markup come from
   `design-system/` (`qs-btn`, `qs-card`, `qs-stat`, `qs-badge`, `qs-timeline`, `qs-field`,
   `qs-table`, `qs-footer`, HexPattern geometry).
-- Fonts are **Alexandria** (headings) and **Cairo** (body) in both languages, at the
-  client's request. This overrides the design system's Montserrat / Inter / IBM Plex Sans
-  Arabic through the `--font-*` tokens in `site.css`.
+- Fonts, at the client's request: **Tajarib** for Arabic headings, **Alexandria** for
+  English headings, **Cairo** for body text in both languages. This overrides the design
+  system's Montserrat / Inter / IBM Plex Sans Arabic through the `--font-*` tokens in
+  `site.css`.
 - The map follows the brand rule: served governorates in `navy-800`, the five hubs
   (Baghdad, Basra, Erbil, Mosul, Najaf) as `orange-500` pins, connector lines drawn once.
-- There is no logo file yet (the design system ships none), so the name is set in type.
+- The logo is the client-supplied lockup at `assets/logos/alqawsan-horizontal-color.png`
+  (a vector SVG from marketing would be sharper).
+
+## Tajarib font files (not in this repository)
+
+Tajarib is by Harf Type / Harf Library (abdulmalik@harflibrary.com). Its licence is free
+and allows commercial use on websites, but forbids making the font files available for
+download, modifying them or converting them. This repository is public, so the files are
+**not committed** (`website/fonts/tajarib/` is in `.gitignore`).
+
+To use them, copy these original files, unchanged, into `website/fonts/tajarib/`:
+
+- `Tajarib_Typeface_Medium.otf`
+- `Tajarib_Typeface_Bold.otf`
+- `Tajarib_Typeface_Black.otf`
+
+Without them, Arabic headings fall back to Alexandria and everything else still works.
 
 ## Still to supply
 

@@ -8,15 +8,22 @@
    and the orange call-to-action band. One stylesheet serves LTR and RTL through
    logical properties.
 
-   Deliberate deviation, requested by the client: Alexandria (display) and Cairo
-   (body) replace Montserrat/Inter and Cairo/IBM Plex Sans Arabic in both languages.
-   Both families carry Arabic and Latin. The site is light-only by design; the brand
+   Type, chosen by the client: Arabic headings are set in Tajarib (Harf Type, free
+   commercial licence; files are not committed because the licence forbids making
+   them downloadable - see README), Arabic and English body text in Cairo, English
+   headings in Alexandria. These replace Montserrat/Inter/IBM Plex Sans Arabic. The site is light-only by design; the brand
    system defines no dark palette, so every surface sets its colour explicitly. */
+
+/* Tajarib, used unmodified from the supplied .otf files (see README for where to
+   put them). If they are missing, Arabic headings fall back to Alexandria. */
+@font-face { font-family: "Tajarib"; src: url("fonts/tajarib/Tajarib_Typeface_Medium.otf") format("opentype"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Tajarib"; src: url("fonts/tajarib/Tajarib_Typeface_Bold.otf") format("opentype"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Tajarib"; src: url("fonts/tajarib/Tajarib_Typeface_Black.otf") format("opentype"); font-weight: 900; font-style: normal; font-display: swap; }
 
 :root {
   --font-display-en: "Alexandria", "Cairo", system-ui, "Segoe UI", Arial, sans-serif;
   --font-body-en: "Cairo", "Alexandria", system-ui, "Segoe UI", Arial, sans-serif;
-  --font-display-ar: "Alexandria", "Cairo", "Segoe UI", Tahoma, sans-serif;
+  --font-display-ar: "Tajarib", "Alexandria", "Cairo", "Segoe UI", Tahoma, sans-serif;
   --font-body-ar: "Cairo", "Alexandria", "Segoe UI", Tahoma, sans-serif;
   --gutter: clamp(16px, 4vw, 48px);
   --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
