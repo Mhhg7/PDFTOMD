@@ -81,6 +81,11 @@
     return '<svg class="icon ' + (cls || "") + (DIR_ICONS[name] ? " icon--dir" : "") + '" viewBox="0 0 24 24" aria-hidden="true" focusable="false">' + I[name] + "</svg>";
   }
 
+  /* The supplied logo lockup (Arc + Arabic + English wordmarks). Never mirrored. */
+  function logo(cls) {
+    return '<img class="' + cls + '" src="assets/logos/alqawsan-horizontal-color.png" width="399" height="234" alt="' + esc(lang === "ar" ? "مكتب القوسان العلمي، Al-Qawsan Scientific Bureau" : "Al-Qawsan Scientific Bureau, مكتب القوسان العلمي") + '">';
+  }
+
   /* ------------------------------------------------------------ design-system pieces */
   function badge(text, tone) {
     return '<span class="qs-badge qs-badge--' + (tone || "warning") + ' tbc"><span class="qs-badge__dot" aria-hidden="true"></span><span>' + text + "</span></span>";
@@ -138,15 +143,8 @@
       return '<li class="nav__item' + (active ? " is-active" : "") + '">' + link + mega + "</li>";
     }).join("");
     return '' +
-      '<div class="util"><div class="wrap util__row">' +
-        '<span class="util__item util__item--addr">' + icon("mapPin", "icon--sm") + u("address") + "</span>" +
-        '<span class="util__item">' + icon("phone", "icon--sm") + '<bdi dir="ltr">+964 XXX XXX XXXX</bdi></span>' +
-        '<span class="util__item util__item--wide">' + icon("mail", "icon--sm") + '<bdi dir="ltr">info@alqawsangroup.com</bdi></span>' +
-        '<span class="util__item util__item--hours util__item--wide">' + icon("clock", "icon--sm") + u("hours") + "</span>" +
-        '<span class="util__end"><a class="util__item" href="https://www.linkedin.com/company/al-qawsan-group" target="_blank" rel="noopener" aria-label="LinkedIn">' + icon("linkedin", "icon--sm") + "</a></span>" +
-      "</div></div>" +
       '<div class="mainbar"><div class="wrap mainbar__row">' +
-        '<a class="brand" href="#home"><span class="brand__main">' + u("brand") + '</span><span class="brand__alt" lang="' + (lang === "ar" ? "en" : "ar") + '">' + u("brandAlt") + "</span></a>" +
+        '<a class="brand" href="#home">' + logo("brand__logo") + "</a>" +
         '<nav class="nav" aria-label="' + u("mainNav") + '"><ul class="nav__list">' + nav + "</ul></nav>" +
         '<div class="hdr-tools">' +
           '<button class="iconbtn hdr-search" type="button" data-act="search" aria-label="' + u("searchLabel") + '">' + icon("search") + "</button>" +
@@ -154,7 +152,7 @@
             '<button type="button" lang="en" data-lang="en" aria-pressed="' + (lang === "en") + '">EN</button>|' +
             '<button type="button" lang="ar" data-lang="ar" aria-pressed="' + (lang === "ar") + '">عربي</button>' +
           "</span>" +
-          btn(u("cta"), "partners-join", "accent", "qs-btn--sm hdr-cta") +
+          '<a class="qs-btn qs-btn--accent hdr-cta" href="#partners-join">' + icon("handshake", "icon--md") + "<span>" + u("cta") + "</span></a>" +
           '<button class="iconbtn burger" type="button" data-act="drawer" aria-label="' + u("menu") + '" aria-expanded="false">' + icon("menu") + "</button>" +
         "</div>" +
       "</div></div>";
@@ -170,7 +168,7 @@
     }).join("");
     return '<div class="scrim" data-act="close"></div>' +
       '<div class="drawer" role="dialog" aria-modal="true" aria-label="' + u("menu") + '">' +
-        '<div class="drawer__head"><span class="brand"><span class="brand__main">' + u("brand") + '</span></span><button class="iconbtn" type="button" data-act="close" aria-label="' + u("close") + '">' + icon("x") + "</button></div>" +
+        '<div class="drawer__head"><span class="brand">' + logo("brand__logo brand__logo--sm") + '</span><button class="iconbtn" type="button" data-act="close" aria-label="' + u("close") + '">' + icon("x") + "</button></div>" +
         '<nav class="drawer__body" aria-label="' + u("mainNav") + '"><a href="#" class="drawer-search" data-act="search">' + u("searchLabel") + icon("search") + "</a>" + items + btn(u("cta"), "partners-join", "accent") + "</nav>" +
       "</div>";
   }
@@ -201,7 +199,7 @@
         '<div class="wrap ftr__stripwrap"><ul class="ftr__strip" aria-label="' + u("contact") + '">' + strip + "</ul></div>" +
         '<div class="ftr__panel">' + hexField("watermark", 1280, 520, 60) +
           '<div class="wrap ftr__cols">' +
-            '<div class="ftr__about"><p class="ftr__brand">' + u("brand") + '</p><p class="ftr__brand-alt" lang="' + (ar ? "en" : "ar") + '">' + u("brandAlt") + "</p>" +
+            '<div class="ftr__about">' + logo("ftr__logo") +
               '<p class="ftr__text">' + u("footerAbout") + "</p>" +
               '<p class="ftr__meta"><strong>' + u("group") + ":</strong> CAS Development, " + (ar ? "مكتب لارا العلمي، مكتب سنايا العلمي" : "Lara Scientific Office, Sanaya Scientific Office") + "</p>" +
               '<p class="ftr__meta">' + icon("clock", "icon--sm") + u("hours") + "</p>" +
