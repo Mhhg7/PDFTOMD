@@ -159,17 +159,30 @@
   }
 
   function drawerHTML() {
-    var items = Q.NAV.map(function (n) {
-      if (!n.kids) return '<a href="#' + n.id + '"' + (route === n.id ? ' aria-current="page"' : "") + ">" + t(n.t) + "</a>";
-      var open = secOf(route) === n.id ? " open" : "";
-      return "<details" + open + "><summary>" + t(n.t) + icon("chevDown") + "</summary>" + n.kids.map(function (k) {
-        return '<a href="#' + k + '"' + (k === route ? ' aria-current="page"' : "") + ">" + t(Q.PAGES[k].t) + "</a>";
-      }).join("") + "</details>";
+    var n = 0;
+    var items = Q.NAV.map(function (nav) {
+      var i = ++n;
+      if (!nav.kids) return '<a class="dl" style="--i:' + i + '" href="#' + nav.id + '"' + (route === nav.id ? ' aria-current="page"' : "") + ">" + t(nav.t) + "</a>";
+      var cur = secOf(route) === nav.id, pid = "acc-" + nav.id;
+      return '<div class="acc' + (cur ? " is-open is-current" : "") + '" style="--i:' + i + '">' +
+        '<button type="button" class="dl" data-acc aria-expanded="' + cur + '" aria-controls="' + pid + '">' + t(nav.t) + icon("chevDown") + "</button>" +
+        '<div class="acc__panel" id="' + pid + '"><div class="acc__inner"><ul>' + nav.kids.map(function (k) {
+          return '<li><a href="#' + k + '"' + (k === route ? ' aria-current="page"' : "") + (cur ? "" : ' tabindex="-1"') + ">" + t(Q.PAGES[k].t) + "</a></li>";
+        }).join("") + "</ul></div></div></div>";
     }).join("");
     return '<div class="scrim" data-act="close"></div>' +
       '<div class="drawer" role="dialog" aria-modal="true" aria-label="' + u("menu") + '">' +
-        '<div class="drawer__head"><span class="brand">' + logo("brand__logo brand__logo--sm") + '</span><button class="iconbtn" type="button" data-act="close" aria-label="' + u("close") + '">' + icon("x") + "</button></div>" +
-        '<nav class="drawer__body" aria-label="' + u("mainNav") + '"><a href="#" class="drawer-search" data-act="search">' + u("searchLabel") + icon("search") + "</a>" + items + btn(u("cta"), "partners-join", "accent") + "</nav>" +
+        '<div class="drawer__head"><a class="brand" href="#home">' + logo("brand__logo brand__logo--sm") + '</a><button class="iconbtn" type="button" data-act="close" aria-label="' + u("close") + '">' + icon("x") + "</button></div>" +
+        '<nav class="drawer__body" aria-label="' + u("mainNav") + '">' +
+          '<button type="button" class="dl dl--search" style="--i:0" data-act="search"><span>' + u("searchLabel") + "</span>" + icon("search") + "</button>" + items + "</nav>" +
+        '<div class="drawer__foot">' +
+          '<a class="qs-btn qs-btn--accent" style="--i:' + (n + 1) + '" href="#partners-join">' + icon("handshake", "icon--md") + "<span>" + u("cta") + "</span></a>" +
+          '<ul class="drawer__contact" style="--i:' + (n + 2) + '"><li>' + icon("phone") + '<bdi dir="ltr">+964 XXX XXX XXXX</bdi></li><li>' + icon("mail") + '<bdi dir="ltr">info@alqawsangroup.com</bdi></li></ul>' +
+          '<div class="drawer__row" style="--i:' + (n + 3) + '"><span class="lang" role="group" aria-label="Language / اللغة">' +
+            '<button type="button" lang="en" data-lang="en" aria-pressed="' + (lang === "en") + '">EN</button>|' +
+            '<button type="button" lang="ar" data-lang="ar" aria-pressed="' + (lang === "ar") + '">عربي</button></span>' +
+            '<span class="ftr__social"><a href="https://www.linkedin.com/company/al-qawsan-group" target="_blank" rel="noopener" aria-label="LinkedIn">' + icon("linkedin", "icon--md") + "</a></span></div>" +
+        "</div>" +
       "</div>";
   }
 
@@ -689,8 +702,11 @@
   /* ------------------------------------------------------------ overlays */
   var overlay = document.getElementById("overlay");
   var lastFocus = null;
+  var closeTimer = null;
   function openOverlay(kind) {
-    lastFocus = document.activeElement;
+    if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; overlay.classList.remove("is-closing"); }
+    if (!overlay.hidden && document.activeElement && overlay.contains(document.activeElement)) { /* switching drawer -> search */ }
+    else lastFocus = document.activeElement;
     overlay.innerHTML = kind === "drawer" ? drawerHTML() : searchHTML();
     overlay.hidden = false;
     document.body.style.overflow = "hidden";
@@ -700,11 +716,18 @@
     if (kind === "search") document.getElementById("q-input").addEventListener("input", function (e) { runSearch(e.target.value); });
   }
   function closeOverlay() {
-    if (overlay.hidden) return;
-    overlay.hidden = true; overlay.innerHTML = "";
-    document.body.style.overflow = "";
-    var burger = document.querySelector(".burger"); if (burger) burger.setAttribute("aria-expanded", "false");
-    if (lastFocus && document.contains(lastFocus)) lastFocus.focus();
+    if (overlay.hidden || closeTimer) return;
+    var finish = function () {
+      closeTimer = null;
+      overlay.classList.remove("is-closing");
+      overlay.hidden = true; overlay.innerHTML = "";
+      document.body.style.overflow = "";
+      var burger = document.querySelector(".burger"); if (burger) burger.setAttribute("aria-expanded", "false");
+      if (lastFocus && document.contains(lastFocus)) lastFocus.focus({ preventScroll: true });
+    };
+    if (reduceMotion) { finish(); return; }
+    overlay.classList.add("is-closing");
+    closeTimer = setTimeout(finish, 330);
   }
 
   /* ------------------------------------------------------------ slider */
@@ -814,7 +837,18 @@
     if (e.target.closest(".skip")) { e.preventDefault(); var m = document.getElementById("main"); m.tabIndex = -1; m.focus(); return; }
     if ((a = e.target.closest("[data-lang]"))) {
       var nl = a.getAttribute("data-lang");
-      if (nl !== lang) { lang = nl; store("qs-lang", lang); render(false); var b = document.querySelector('[data-lang="' + lang + '"]'); if (b) b.focus(); }
+      if (nl !== lang) {
+        var inDrawer = !overlay.hidden && !!overlay.querySelector(".drawer");
+        lang = nl; store("qs-lang", lang); render(false);
+        if (inDrawer) overlay.innerHTML = drawerHTML();
+        var b = (inDrawer ? overlay : document).querySelector('[data-lang="' + lang + '"]'); if (b) b.focus();
+      }
+      return;
+    }
+    if ((a = e.target.closest("[data-acc]"))) {
+      var acc = a.parentNode, open = !acc.classList.contains("is-open");
+      acc.classList.toggle("is-open", open); a.setAttribute("aria-expanded", String(open));
+      acc.querySelectorAll(".acc__inner a").forEach(function (l) { if (open) l.removeAttribute("tabindex"); else l.setAttribute("tabindex", "-1"); });
       return;
     }
     if ((a = e.target.closest("[data-act]"))) {

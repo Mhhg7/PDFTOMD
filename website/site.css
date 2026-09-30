@@ -134,7 +134,6 @@ html[lang="ar"] .mega a { font-size: 16px; line-height: 26px; }
 .hdr-tools { margin-inline-start: auto; display: flex; align-items: center; gap: var(--space-2); }
 .hdr-tools .qs-btn { white-space: nowrap; }
 .hdr-cta .icon { width: 20px; height: 20px; }
-.drawer-search { display: none; }
 .iconbtn { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: var(--radius-md); border: 0; background: transparent; color: var(--text-heading); cursor: pointer; }
 .lang { display: inline-flex; align-items: center; font-weight: 600; font-size: 14px; color: var(--text-muted); white-space: nowrap; }
 .lang button { border: 0; background: none; font: inherit; color: inherit; cursor: pointer; padding: var(--space-2); border-radius: var(--radius-sm); min-height: 44px; transition: color 150ms var(--ease); }
@@ -187,19 +186,14 @@ html[lang="ar"] .mega a { font-size: 16px; line-height: 26px; }
   *, *::before, *::after { transition-duration: 0s !important; transition-delay: 0s !important; animation: none !important; }
 }
 
-/* 768-1259px: two-row header. Logo and tools on the first row, the full tab bar on
-   the second, so laptops keep the tabs. Phones (under 768px) use the side menu. */
-@media (min-width: 768px) and (max-width: 1259px) {
-  :root { --hdr-h: 136px; }
-  .mainbar__row { flex-wrap: wrap; height: auto; row-gap: 0; }
-  .mainbar__row > .brand, .mainbar__row > .hdr-tools { min-height: 88px; }
-  .nav { order: 3; flex-basis: 100%; margin-inline: calc(var(--gutter) * -1); padding-inline: calc(var(--gutter) - 8px); height: 48px; }
-  .nav__item:nth-last-child(-n+2) > .mega { inset-inline-start: auto; inset-inline-end: 0; }
+/* Phones and tablets (under 1260px): logo, search, language, CTA and the side menu.
+   The full tab bar is for desktops only. */
+@media (max-width: 1259px) {
+  .nav { display: none; }
+  .burger { display: inline-grid; }
 }
 @media (max-width: 767px) {
   :root { --hdr-main: 72px; --hdr-h: 72px; }
-  .nav { display: none; }
-  .burger { display: inline-grid; }
   .brand__logo { height: 56px; }
 }
 @media (max-width: 400px) {
@@ -208,7 +202,6 @@ html[lang="ar"] .mega a { font-size: 16px; line-height: 26px; }
 }
 @media (max-width: 480px) {
   .hdr-search { display: none; }
-  .drawer-search { display: flex; }
   .lang button { padding-inline: 6px; }
 }
 @media (max-width: 640px) {
@@ -216,23 +209,63 @@ html[lang="ar"] .mega a { font-size: 16px; line-height: 26px; }
   .mainbar__row { gap: var(--space-3); }
 }
 
-/* ------------------------------------------------------------- Drawer & search */
+/* ------------------------------------------------------------- Side menu & search
+   Opening: the page dims and softly blurs, the panel glides in from the reading end,
+   then its rows arrive one after another. Closing is quicker and plays in reverse. */
 
-.scrim { position: fixed; inset: 0; background: rgba(15,30,51,0.45); z-index: 80; }
-.drawer { position: fixed; inset-block: 0; inset-inline-end: 0; width: min(380px, 100%); background: var(--surface); z-index: 90; display: flex; flex-direction: column; box-shadow: var(--shadow-lg); padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
-.drawer__head { display: flex; align-items: center; justify-content: space-between; padding: var(--space-3) var(--space-4); border-bottom: var(--border-width) solid var(--border-default); }
-.drawer__body { overflow-y: auto; padding: var(--space-3) var(--space-4) var(--space-6); display: grid; gap: 2px; align-content: start; }
-.drawer a, .drawer summary { display: flex; align-items: center; justify-content: space-between; min-height: 48px; padding-inline: var(--space-3); border-radius: var(--radius-md); color: var(--text-heading); font-weight: 600; text-decoration: none; cursor: pointer; }
-.drawer summary { list-style: none; }
-.drawer summary::-webkit-details-marker { display: none; }
-.drawer details[open] > summary .icon { transform: rotate(180deg); }
-.drawer details a { font-weight: 400; color: var(--text-body); padding-inline-start: var(--space-6); min-height: 44px; }
-.drawer a[aria-current="page"] { background: var(--navy-50); }
-.drawer .qs-btn { margin-top: var(--space-4); justify-content: center; }
-@media (prefers-reduced-motion: no-preference) { .drawer { animation: drawer-in 250ms var(--ease); } }
+.scrim { position: fixed; inset: 0; background: rgba(15,30,51,0.5); z-index: 80; -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
+.drawer { position: fixed; inset-block: 0; inset-inline-end: 0; width: min(420px, 100%); background: var(--surface); z-index: 90; display: flex; flex-direction: column; box-shadow: var(--shadow-lg);
+  padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); overscroll-behavior: contain; }
+.drawer__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); padding: var(--space-3) var(--space-5); border-bottom: var(--border-width) solid var(--border-default); }
+.drawer__body { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: var(--space-4) var(--space-4) var(--space-6); display: grid; gap: var(--space-1); align-content: start; }
+.dl { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); width: 100%; min-height: 54px; padding-inline: var(--space-4); border: 0; border-radius: var(--radius-md); background: transparent;
+  font: inherit; font-weight: 600; font-size: 17px; color: var(--text-heading); text-decoration: none; text-align: start; cursor: pointer; transition: background-color 250ms var(--ease-out-quick), color 250ms var(--ease-out-quick); }
+html[lang="ar"] .dl { font-size: 18px; }
+.dl .icon { width: 18px; height: 18px; color: var(--text-muted); transition: transform 300ms var(--ease-out-quick), color 250ms var(--ease-out-quick); }
+.dl[aria-current="page"], .acc.is-current > .dl { color: var(--text-link); }
+.dl--search { color: var(--text-muted); font-weight: 500; border: var(--border-width) solid var(--border-strong); margin-bottom: var(--space-3); }
+.dl--search .icon { color: var(--navy-800); }
+.acc.is-open > .dl { background: var(--navy-50); }
+.acc.is-open > .dl .icon { transform: rotate(180deg); color: var(--text-link); transition: transform 500ms var(--ease-in-soft), color 400ms var(--ease-in-soft); }
+.acc__panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 300ms var(--ease-out-quick); }
+.acc.is-open > .acc__panel { grid-template-rows: 1fr; transition: grid-template-rows 550ms var(--ease-in-soft); }
+.acc__inner { overflow: hidden; min-height: 0; }
+.acc__inner ul { list-style: none; margin: var(--space-1) 0 var(--space-2); padding: 0; margin-inline-start: var(--space-5); border-inline-start: 2px solid var(--border-default); display: grid; }
+.acc__inner a { display: block; padding: var(--space-3) var(--space-4); color: var(--text-body); text-decoration: none; font-size: 16px; line-height: 22px; border-radius: 0 var(--radius-md) var(--radius-md) 0; transition: color 250ms var(--ease-out-quick), background-color 250ms var(--ease-out-quick); }
+[dir="rtl"] .acc__inner a { border-radius: var(--radius-md) 0 0 var(--radius-md); }
+html[lang="ar"] .acc__inner a { font-size: 17px; line-height: 26px; }
+.acc__inner a[aria-current="page"] { color: var(--text-link); font-weight: 600; background: var(--orange-50); }
+.drawer__foot { display: grid; gap: var(--space-4); padding: var(--space-5); border-top: var(--border-width) solid var(--border-default); background: var(--surface-alt); }
+.drawer__foot .qs-btn { justify-content: center; width: 100%; box-sizing: border-box; height: var(--control-height-lg); }
+.drawer__contact { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); font-size: 15px; color: var(--text-muted); }
+.drawer__contact li { display: flex; align-items: center; gap: var(--space-3); }
+.drawer__contact .icon { width: 18px; height: 18px; color: var(--navy-800); }
+.drawer__row { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
+.drawer__row .ftr__social { margin: 0; }
+@media (hover: hover) {
+  .dl:hover { background: var(--navy-50); }
+  .acc__inner a:hover { color: var(--text-heading); background: var(--navy-50); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .scrim { animation: scrim-in 450ms var(--ease-in-soft) both; }
+  .drawer { animation: drawer-in 650ms var(--ease-in-soft) both; }
+  [dir="rtl"] .drawer { animation-name: drawer-in-rtl; }
+  .drawer__body > *, .drawer__foot > * { animation: item-in 600ms var(--ease-in-soft) both; animation-delay: calc(var(--i, 0) * 55ms + 180ms); }
+  .is-closing .scrim { animation: scrim-out 300ms var(--ease-out-quick) both; }
+  .is-closing .drawer { animation: drawer-out 320ms var(--ease-out-quick) both; }
+  [dir="rtl"] .is-closing .drawer { animation-name: drawer-out-rtl; }
+  .is-closing .drawer__body > *, .is-closing .drawer__foot > * { animation: none; }
+  .search__panel { animation: panel-in 550ms var(--ease-in-soft) both; }
+  .is-closing .search__panel { animation: panel-out 260ms var(--ease-out-quick) both; }
+}
+@keyframes scrim-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scrim-out { from { opacity: 1; } to { opacity: 0; } }
 @keyframes drawer-in { from { transform: translateX(100%); } to { transform: none; } }
-[dir="rtl"] .drawer { animation-name: drawer-in-rtl; }
+@keyframes drawer-out { from { transform: none; } to { transform: translateX(100%); } }
 @keyframes drawer-in-rtl { from { transform: translateX(-100%); } to { transform: none; } }
+@keyframes drawer-out-rtl { from { transform: none; } to { transform: translateX(-100%); } }
+@keyframes panel-in { from { opacity: 0; transform: translateY(-16px) scale(0.98); } to { opacity: 1; transform: none; } }
+@keyframes panel-out { from { opacity: 1; transform: none; } to { opacity: 0; transform: translateY(-10px); } }
 
 .search { position: fixed; inset-inline: 0; top: 0; z-index: 90; padding-top: calc(env(safe-area-inset-top, 0px) + var(--space-10)); }
 .search__panel { background: var(--surface); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); padding: var(--space-5); display: grid; gap: var(--space-4); max-width: 720px; margin-inline: auto; }
@@ -656,3 +689,29 @@ input[type="file"].qs-input { padding-block: 9px; height: auto; }
   .slide:not([hidden]) > :nth-child(3) { animation-delay: 280ms; }
 }
 @keyframes page-enter { from { opacity: 0; transform: translateY(32px); filter: blur(8px); } to { opacity: 1; transform: none; filter: none; } }
+
+/* Touch screens: no sticky hover after a tap. Hover lifts and fills are dropped and a
+   short press gives the feedback instead. Keyboard focus still shows the fill. */
+@media (hover: none) {
+  a.qs-card:hover, .kpi:hover, .area:hover, a.ptile:hover, .qs-btn--primary:hover, .qs-btn--accent:hover, .ftr__top:hover { transform: none; }
+  .qs-btn--secondary:hover::before, .qs-btn--secondary:hover::after, .qs-btn--ghost:hover::before, .qs-btn--ghost:hover::after, .iconbtn:hover::before, .iconbtn:hover::after, .copybtn:hover::before, .copybtn:hover::after { transform: translate(-50%, 50%) scale(0); }
+  [dir="rtl"] .qs-btn--secondary:hover::before, [dir="rtl"] .qs-btn--secondary:hover::after, [dir="rtl"] .qs-btn--ghost:hover::before, [dir="rtl"] .qs-btn--ghost:hover::after, [dir="rtl"] .iconbtn:hover::before, [dir="rtl"] .iconbtn:hover::after, [dir="rtl"] .copybtn:hover::before, [dir="rtl"] .copybtn:hover::after { transform: translate(50%, 50%) scale(0); }
+  .qs-btn--secondary:hover { border-color: var(--navy-800); }
+  a.qs-card:hover .icon-circle, .kpi:hover .icon-circle, .area:hover .icon-circle { transform: none; border-color: var(--border-strong); color: var(--navy-800); }
+  a.qs-card:hover .link-more .icon { transform: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .qs-btn, .iconbtn, .copybtn, .ftr__top, a.qs-card, .area, a.ptile, .dl, .chip { transition: transform 160ms var(--ease-out-quick); -webkit-tap-highlight-color: transparent; }
+    .qs-btn:active, .iconbtn:active, .copybtn:active, .ftr__top:active, a.qs-card:active, .area:active, a.ptile:active, .dl:active, .chip:active { transform: scale(0.97); }
+  }
+}
+
+/* Short screens (small phones, landscape phones): a more compact side menu. */
+@media (max-height: 760px) {
+  .drawer__foot { gap: var(--space-3); padding: var(--space-4); }
+  .drawer__contact { display: none; }
+  .dl { min-height: 48px; }
+}
+@media (max-height: 480px) {
+  .drawer { overflow-y: auto; }
+  .drawer__body { flex: none; overflow: visible; }
+}
