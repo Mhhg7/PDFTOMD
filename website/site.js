@@ -394,10 +394,10 @@
       (sec ? "<li>" + icon("chevRight") + '<a href="#' + hrefOf(sec.id) + '">' + t(sec.t) + "</a></li>" : "") +
       (p.parent ? "<li>" + icon("chevRight") + '<a href="#' + p.parent + '">' + t(Q.PAGES[p.parent].t) + "</a></li>" : "") +
       "<li>" + icon("chevRight") + '<span aria-current="page">' + t(p.t) + "</span></li></ol></nav>";
-    var pagehead = '<header class="pagehead"><div class="wrap">' + crumbs +
-      (p.icon ? '<span class="icon-circle icon-circle--lg">' + icon(p.icon) + "</span>" : "") +
-      (p.date ? '<p class="news-date"><bdi dir="ltr">' + p.date + "</bdi></p>" : "") +
-      '<h1 tabindex="-1">' + t(p.t) + '</h1><p class="pagehead__lead">' + t(p.lead) + "</p></div></header>";
+    var banner = '<section class="banner">' + hexField("navy", 1280, 360, 52, "var(--opacity-pattern)") + '<div class="wrap">' + crumbs +
+      (p.icon ? '<span class="banner__icon">' + icon(p.icon) + "</span>" : "") +
+      (p.date ? '<p class="news-date" style="color:var(--text-on-dark-muted)"><bdi dir="ltr">' + p.date + "</bdi></p>" : "") +
+      '<h1 tabindex="-1">' + t(p.t) + '</h1><p class="banner__lead">' + t(p.lead) + "</p></div></section>";
 
     var rail = "";
     if (sec && sec.kids) {
@@ -407,7 +407,7 @@
     }
     var blocks = p.blocks.map(block).join("");
     var rel = relatedHTML(id, p);
-    return pagehead + '<div class="wrap inner' + (rail ? "" : " inner--full") + '">' + rail + '<div class="content">' + blocks + rel + "</div></div>" + (p.noCta ? "" : ctaBand());
+    return banner + '<div class="wrap inner' + (rail ? "" : " inner--full") + '">' + rail + '<div class="content">' + blocks + rel + "</div></div>" + (p.noCta ? "" : ctaBand());
   }
 
   function relatedHTML(id, p) {
