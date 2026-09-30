@@ -23,6 +23,12 @@ php artisan admin:user you@example.com      # prints a password
 php artisan serve                           # http://localhost:8000 and /admin
 ```
 
+If the page stays blank, check the terminal running `php artisan serve` and
+`storage/logs/laravel.log`. The usual causes are: `php -v` below 8.3, `composer install`
+not run (no `vendor/` folder), no `.env` or app key, or `migrate` not run (the site keeps
+sessions in the database). Open the address `php artisan serve` prints, including
+`:8000`.
+
 `php artisan db:seed --class=SiteContentSeeder` puts the launch content back. It
 replaces what was edited in the dashboard, so don't run it on a live site. Form messages,
 photos and users stay.
