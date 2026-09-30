@@ -740,6 +740,29 @@
     if (focus) { var h = main.querySelector("h1"); if (h) h.focus({ preventScroll: true }); }
     firstRender = false;
     startSlider();
+    requestAnimationFrame(setupReveal);
+  }
+
+  /* Simple movement: blocks that start below the first screen ease up when they
+     scroll into view; anything already visible is left alone. */
+  var revealObs = null;
+  var REVEAL_SEL = ".band .shead, .band .grid > *, .band .stats > *, .stats-banner, .about-teaser > *, .partner-strip, " +
+    ".blk, .related, .cta-band__row, .ftr__strip, .ftr__cols > *";
+  var STAGGER_PARENTS = { grid: 1, stats: 1, ftr__cols: 1 };
+  function setupReveal() {
+    if (revealObs) revealObs.disconnect();
+    if (reduceMotion || !("IntersectionObserver" in window)) return;
+    revealObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("is-in"); revealObs.unobserve(en.target); } });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    var vh = window.innerHeight;
+    document.querySelectorAll(REVEAL_SEL).forEach(function (el) {
+      if (el.getBoundingClientRect().top < vh) return;
+      var par = el.parentElement, i = Array.prototype.indexOf.call(par.children, el);
+      if ([].some.call(par.classList, function (c) { return STAGGER_PARENTS[c]; })) el.style.setProperty("--rv-delay", Math.min(i, 4) * 80 + "ms");
+      el.classList.add("rv");
+      revealObs.observe(el);
+    });
   }
 
   function bindNewsletter() {
@@ -823,8 +846,6 @@
     if (e.key === "/" && !/INPUT|TEXTAREA|SELECT/.test((document.activeElement || {}).tagName || "") && overlay.hidden) { e.preventDefault(); openOverlay("search"); }
   });
 
-  var hdr = document.getElementById("hdr");
-  window.addEventListener("scroll", function () { hdr.classList.toggle("is-scrolled", window.scrollY > 40); }, { passive: true });
 
   function fromHash() {
     var h = (location.hash || "").replace(/^#/, "");

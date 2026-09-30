@@ -77,8 +77,7 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible, summary:focus-v
 
 /* ------------------------------------------------------------- Header */
 
-.site-header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: var(--surface); transition: box-shadow 250ms var(--ease); }
-.site-header.is-scrolled { box-shadow: var(--shadow-lg); }
+.site-header { position: relative; z-index: 50; background: var(--surface); }
 
 .mainbar { border-bottom: var(--border-width) solid var(--border-default); }
 .mainbar__row { display: flex; align-items: center; gap: var(--space-4); height: var(--hdr-main); }
@@ -94,10 +93,8 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible, summary:focus-v
 .nav__link { display: inline-flex; align-items: center; gap: 3px; padding-inline: 8px; font-weight: 600; font-size: 14.5px; color: var(--text-heading); text-decoration: none; position: relative; white-space: nowrap; transition: color 150ms var(--ease); }
 html[lang="ar"] .nav__link { font-size: 15.5px; }
 .nav__link:hover, .nav__item:focus-within > .nav__link { color: var(--text-link); }
-/* Motion: the accent underline draws in from the reading start. */
-.nav__link::after { content: ""; position: absolute; inset-inline: 8px; bottom: 0; height: 3px; border-radius: 3px 3px 0 0; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 250ms var(--ease); }
-[dir="rtl"] .nav__link::after { transform-origin: right; }
-.nav__link:hover::after, .nav__item:focus-within > .nav__link::after, .nav__link[aria-current="page"]::after, .nav__item.is-active > .nav__link::after { transform: scaleX(1); }
+/* Current tab: orange-700 text and weight, no underline. */
+.nav__link[aria-current="page"], .nav__item.is-active > .nav__link { color: var(--text-link); }
 .nav__link .icon { width: 14px; height: 14px; stroke-width: 2; color: var(--text-muted); transition: transform 250ms var(--ease), color 150ms var(--ease); }
 .nav__item:hover > .nav__link .icon, .nav__item:focus-within > .nav__link .icon { transform: rotate(180deg); color: var(--text-link); }
 
@@ -125,20 +122,23 @@ html[lang="ar"] .mega a { font-size: 16px; line-height: 26px; }
 .lang [lang="en"] { font-family: var(--font-body-en); }
 .burger { display: none; }
 
-/* Hover fill: every button fills with orange from the reading start. Navy text on
-   orange (on-accent, 5.3:1); the orange CTA fills a step darker with white text, the
-   design system's own hover pair for the accent button. */
-.qs-btn, .iconbtn, .ftr__top { position: relative; overflow: hidden; isolation: isolate; }
-.qs-btn::before, .iconbtn::before, .ftr__top::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--orange-500); transform: scaleX(0); transform-origin: left; transition: transform 300ms var(--ease); }
-[dir="rtl"] .qs-btn::before, [dir="rtl"] .iconbtn::before, [dir="rtl"] .ftr__top::before { transform-origin: right; }
-.qs-btn:hover::before, .qs-btn:focus-visible::before, .iconbtn:hover::before, .iconbtn:focus-visible::before, .ftr__top:hover::before, .ftr__top:focus-visible::before { transform: scaleX(1); }
-.qs-btn--primary:hover, .qs-btn--secondary:hover, .qs-btn--ghost:hover { background: var(--navy-800); color: var(--on-accent); border-color: var(--orange-500); }
-.qs-btn--secondary:hover, .qs-btn--ghost:hover { background: var(--surface); }
-.qs-btn--accent::before { background: var(--orange-600); }
-.qs-btn--accent:hover { background: var(--orange-500); color: var(--text-inverse); }
-.iconbtn:hover, .ftr__top:hover { background: transparent; color: var(--on-accent); }
-.ftr__top:hover { background: var(--navy-800); }
-.qs-btn[disabled]::before { display: none; }
+/* Hover fill, only on buttons without a colour of their own (outlined, ghost, icon
+   buttons): a round orange fill grows out of the bottom reading-start corner, so its
+   leading edge is a curve. Text turns navy on orange (on-accent, 5.3:1). Filled
+   buttons (navy primary, orange accent) keep the design system's darken-one-step hover. */
+.qs-btn--secondary, .qs-btn--ghost, .iconbtn, .copybtn { position: relative; overflow: hidden; isolation: isolate; }
+.qs-btn--secondary::before, .qs-btn--ghost::before, .iconbtn::before, .copybtn::before {
+  content: ""; position: absolute; z-index: -1; left: 0; bottom: 0; width: 300%; aspect-ratio: 1; border-radius: 50%;
+  background: var(--orange-500); transform: translate(-50%, 50%) scale(0); transition: transform 600ms cubic-bezier(0.65, 0, 0.35, 1); }
+[dir="rtl"] .qs-btn--secondary::before, [dir="rtl"] .qs-btn--ghost::before, [dir="rtl"] .iconbtn::before, [dir="rtl"] .copybtn::before { left: auto; right: 0; transform: translate(50%, 50%) scale(0); }
+.qs-btn--secondary:hover::before, .qs-btn--ghost:hover::before, .iconbtn:hover::before, .copybtn:hover::before,
+.qs-btn--secondary:focus-visible::before, .qs-btn--ghost:focus-visible::before, .iconbtn:focus-visible::before, .copybtn:focus-visible::before { transform: translate(-50%, 50%) scale(1); }
+[dir="rtl"] .qs-btn--secondary:hover::before, [dir="rtl"] .qs-btn--ghost:hover::before, [dir="rtl"] .iconbtn:hover::before, [dir="rtl"] .copybtn:hover::before,
+[dir="rtl"] .qs-btn--secondary:focus-visible::before, [dir="rtl"] .qs-btn--ghost:focus-visible::before, [dir="rtl"] .iconbtn:focus-visible::before, [dir="rtl"] .copybtn:focus-visible::before { transform: translate(50%, 50%) scale(1); }
+.qs-btn--secondary, .qs-btn--ghost, .iconbtn, .copybtn { transition: color 250ms var(--ease), border-color 250ms var(--ease); }
+.qs-btn--secondary:hover, .qs-btn--ghost:hover { background: var(--surface); color: var(--on-accent); border-color: var(--orange-500); }
+.iconbtn:hover, .copybtn:hover { background: transparent; color: var(--on-accent); }
+.copybtn:hover { border-color: var(--orange-500); }
 
 /* Cards that are links lift slightly on hover. */
 @media (prefers-reduced-motion: no-preference) {
@@ -146,7 +146,7 @@ html[lang="ar"] .mega a { font-size: 16px; line-height: 26px; }
   a.qs-card:hover { transform: translateY(-3px); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .nav__link::after, .nav__link .icon, .mega, .mega a, .qs-btn::before, .iconbtn::before, .ftr__top::before { transition: none !important; }
+  .nav__link .icon, .mega, .mega a, .qs-btn--secondary::before, .qs-btn--ghost::before, .iconbtn::before, .copybtn::before { transition: none !important; }
 }
 
 /* 768-1259px: two-row header. Logo and tools on the first row, the full tab bar on
@@ -361,8 +361,8 @@ html[lang="ar"] .stats-banner { font-size: 18px; line-height: 32px; }
 .band--navy .strip-ctl .iconbtn { color: var(--text-inverse); border: var(--border-width-strong) solid var(--navy-400); }
 .band--navy .strip-ctl .iconbtn:hover { color: var(--on-accent); border-color: var(--orange-500); }
 /* On the orange band an orange fill would vanish, so buttons there fill with white. */
-.cta-band .qs-btn::before { background: var(--surface); }
-.cta-band .qs-btn:hover { color: var(--on-accent); border-color: var(--surface); }
+.cta-band .qs-btn--secondary::before { background: var(--navy-800); }
+.cta-band .qs-btn--secondary:hover { color: var(--text-inverse); border-color: var(--navy-800); }
 
 .area { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-4); border-radius: var(--radius-lg); border: var(--border-width) solid var(--border-default); background: var(--surface); color: var(--text-heading); text-decoration: none; font-weight: 600; min-height: 72px; cursor: pointer; font: inherit; font-weight: 600; text-align: start; width: 100%; }
 .area:hover { border-color: var(--navy-200); background: var(--navy-50); }
@@ -470,7 +470,7 @@ html[lang="ar"] .banner__lead { font-size: 21px; line-height: 36px; max-width: 5
 .inner { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: var(--space-10); padding-block: var(--space-10) var(--space-12); align-items: start; }
 .inner--full { grid-template-columns: minmax(0, 1fr); }
 @media (max-width: 1023px) { .inner { grid-template-columns: minmax(0, 1fr); gap: var(--space-6); padding-block: var(--space-6) var(--space-10); } }
-.rail { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--hdr-h) + var(--space-5)); display: grid; gap: var(--space-2); }
+.rail { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--space-5)); display: grid; gap: var(--space-2); }
 .rail__title { font-size: 14px; font-weight: 600; color: var(--text-muted); padding-inline: var(--space-3); }
 .rail ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
 .rail a { display: block; padding: var(--space-2) var(--space-3); border-radius: var(--radius-md); color: var(--text-body); text-decoration: none; font-size: 15px; line-height: 22px; }
@@ -603,3 +603,12 @@ input[type="file"].qs-input { padding-block: 9px; height: auto; }
 
 .nf { display: grid; gap: var(--space-4); justify-items: start; padding-block: var(--space-16); }
 .nf .display-num { font-family: var(--font-display-en); font-size: 88px; line-height: 1; font-weight: 800; color: var(--navy-100); }
+
+/* Simple movement: blocks below the first screen ease up as they scroll into view.
+   Only elements outside the first viewport are prepared, so the page is complete at rest. */
+@media (prefers-reduced-motion: no-preference) {
+  .rv { opacity: 0; transform: translateY(24px); transition: opacity 600ms var(--ease), transform 600ms var(--ease); transition-delay: var(--rv-delay, 0ms); }
+  .rv.is-in { opacity: 1; transform: none; }
+  .slide:not([hidden]) { animation: slide-in 500ms var(--ease); }
+}
+@keyframes slide-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
