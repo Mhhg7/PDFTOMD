@@ -77,9 +77,13 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible, summary:focus-v
 
 /* ------------------------------------------------------------- Header */
 
-.site-header { position: relative; z-index: 50; background: var(--surface); }
+/* No header bar: the header has no background or bottom line of its own. On the
+   homepage it sits on the hero, so the hero's ground and pattern run behind it. */
+.site-header { position: relative; z-index: 50; background: transparent; }
+.route-home .site-header { position: absolute; top: 0; inset-inline: 0; }
+.route-home .hero { padding-top: var(--hdr-h); }
 
-.mainbar { border-bottom: var(--border-width) solid var(--border-default); }
+.mainbar { border-bottom: 0; }
 .mainbar__row { display: flex; align-items: center; gap: var(--space-4); height: var(--hdr-main); }
 
 /* Logo lockup: reading-start corner, never mirrored; 120px minimum width (brand book). */
@@ -155,7 +159,7 @@ html[lang="ar"] .mega a { font-size: 16px; line-height: 26px; }
   :root { --hdr-h: 136px; }
   .mainbar__row { flex-wrap: wrap; height: auto; row-gap: 0; }
   .mainbar__row > .brand, .mainbar__row > .hdr-tools { min-height: 88px; }
-  .nav { order: 3; flex-basis: 100%; margin-inline: calc(var(--gutter) * -1); padding-inline: calc(var(--gutter) - 8px); height: 48px; border-top: var(--border-width) solid var(--border-default); }
+  .nav { order: 3; flex-basis: 100%; margin-inline: calc(var(--gutter) * -1); padding-inline: calc(var(--gutter) - 8px); height: 48px; }
   .nav__item:nth-last-child(-n+2) > .mega { inset-inline-start: auto; inset-inline-end: 0; }
 }
 @media (max-width: 767px) {

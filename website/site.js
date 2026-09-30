@@ -725,7 +725,7 @@
   function render(focus) {
     root.lang = lang;
     root.dir = lang === "ar" ? "rtl" : "ltr";
-    app.className = "qs" + (lang === "ar" ? " qs-ar" : "");
+    app.className = "qs" + (lang === "ar" ? " qs-ar" : "") + (route === "home" ? " route-home" : "");
     var skip = app.querySelector(".skip"); if (skip) skip.textContent = u("skip");
     document.getElementById("hdr").innerHTML = headerHTML();
     var main = document.getElementById("main");
