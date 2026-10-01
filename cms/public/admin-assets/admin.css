@@ -252,3 +252,47 @@ select.qs-input { cursor: pointer; }
 .adm-block__fold::after { content: "▾"; margin-inline-start: var(--space-2); color: var(--text-muted); font-size: 12px; }
 .adm-block__fold[aria-expanded="false"]::after { content: "▸"; }
 textarea.qs-input { overflow-y: hidden; }
+
+/* ---- sales panel */
+.adm-side__tag { margin: 0 var(--space-4) var(--space-2); font-size: 12px; color: var(--orange-400); letter-spacing: 0.04em; }
+.adm-nav__sub { padding-inline-start: 44px !important; font-size: 13px !important; color: #c3cee0 !important; }
+.adm-nav__sub.is-on { color: #fff !important; }
+.sl-title { display: flex !important; flex-direction: row; gap: var(--space-4); align-items: center; }
+.sl-title__logo { width: 110px; height: 56px; object-fit: contain; background: #fff; border: 1px solid var(--border-default); border-radius: var(--radius-md); padding: 4px 8px; }
+.sl-bar { display: flex; gap: var(--space-3); align-items: flex-start; justify-content: space-between; flex-wrap: wrap; }
+.sl-view { display: inline-flex; border: 1px solid var(--border-strong); border-radius: var(--radius-md); overflow: hidden; }
+.sl-view a { width: 40px; height: 38px; display: grid; place-items: center; color: var(--text-muted); }
+.sl-view a.is-on { background: var(--navy-800); color: #fff; }
+.sl-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: var(--space-4); }
+.sl-card { background: var(--surface); border: 1px solid var(--border-default); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; box-shadow: var(--shadow-sm); }
+.sl-card.is-off { opacity: 0.6; }
+.sl-card__ph { aspect-ratio: 339 / 222; background: #fff; border-bottom: 3px solid var(--orange-500); display: grid; place-items: center; color: var(--text-muted); }
+.sl-card__ph img { width: 100%; height: 100%; object-fit: contain; padding: 8px; }
+.sl-card__ph .ai { width: 32px; height: 32px; }
+.sl-card__body { padding: var(--space-3) var(--space-4) var(--space-4); display: grid; gap: 4px; flex: 1; align-content: start; }
+.sl-card__name { font-size: 16px !important; }
+.sl-card__meta { margin: 0; font-weight: 600; font-size: 14px; color: var(--text-heading); }
+.sl-card__ing, .sl-card__co { margin: 0; font-size: 13px; color: var(--text-muted); }
+.sl-card__foot { margin-top: auto; padding-top: var(--space-2); display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap; }
+.sl-card__foot .qs-btn { margin-inline-start: auto; }
+.sl-price { font-weight: 700; color: var(--navy-800); background: var(--orange-50); border-radius: var(--radius-sm); padding: 2px 8px; font-size: 14px; }
+.sl-num { text-align: end; white-space: nowrap; }
+.adm-table tr.is-off td { opacity: 0.55; }
+.sl-logo { height: 36px; width: 80px; object-fit: contain; }
+.sl-roles { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--space-3) var(--space-5); font-size: 13px; }
+.sl-roles div { display: grid; gap: 2px; }
+.sl-rolepick { border: 0; padding: 0; margin: 0; display: grid; gap: var(--space-2); }
+.sl-rolepick legend { margin-bottom: var(--space-2); }
+.sl-rolepick__opt { display: flex; gap: var(--space-3); align-items: flex-start; padding: var(--space-3); border: 1px solid var(--border-default); border-radius: var(--radius-md); cursor: pointer; }
+.sl-rolepick__opt:has(input:checked) { border-color: var(--navy-800); background: var(--navy-50); }
+.sl-rolepick__opt input { margin-top: 3px; accent-color: var(--navy-800); }
+.sl-rolepick__opt > span { display: grid; gap: 2px; font-size: 14px; }
+.sl-rolepick[disabled] { opacity: 0.6; }
+@media (max-width: 560px) {
+  .sl-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); }
+  .sl-card__body { padding: var(--space-2) var(--space-3) var(--space-3); }
+  .sl-card__name { font-size: 15px !important; }
+  .sl-card__meta { font-size: 13px; }
+  .sl-card__ing { display: none; }
+  .sl-title__logo { width: 84px; height: 44px; }
+}

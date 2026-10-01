@@ -31,6 +31,7 @@
   </div>
   <nav class="adm-nav">
     <a href="{{ route('admin.home') }}" @class(['is-on' => $is('admin.home')])>{!! Catalog::svg('home') !!}Overview</a>
+    <a href="{{ route('sales.home') }}">{!! Catalog::svg('briefcase') !!}Sales panel</a>
     <a href="{{ route('admin.submissions.index') }}" @class(['is-on' => $is('admin.submissions.*')])>{!! Catalog::svg('inbox') !!}Inbox @if($unread)<span class="adm-count">{{ $unread }}</span>@endif</a>
     <p class="adm-nav__h">Website</p>
     <a href="{{ route('admin.pages.index') }}" @class(['is-on' => $is('admin.pages.*')])>{!! Catalog::svg('layout') !!}Pages</a>

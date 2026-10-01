@@ -1,0 +1,72 @@
+/* Order sheet: A4 pages built to the Figma "Order Sheet - Template" (794 × 1123 px). */
+:root { --navy: #1b365d; --orange: #f7931e; --ghost: #c9cfda; --muted: #aebfd9; --z: 1; }
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: #e7eaf0; font-family: Inter, system-ui, sans-serif; color: #1b365d; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.ai { width: 15px; height: 15px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* toolbar (screen only) */
+.tb { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 16px; background: #fff; border-bottom: 1px solid #dfe3ea; font-family: Alexandria, Inter, sans-serif; font-size: 14px; }
+.tb__btn { display: inline-flex; align-items: center; gap: 6px; height: 38px; padding: 0 14px; border-radius: 8px; border: 2px solid var(--navy); background: #fff; color: var(--navy); font: inherit; font-weight: 600; text-decoration: none; cursor: pointer; }
+.tb__btn.is-on { background: #e7f5ee; border-color: #1e8e5a; color: #14613d; }
+.tb__btn--primary { background: var(--navy); color: #fff; margin-inline-start: auto; }
+.tb__btn--primary:hover { background: #0f2240; }
+.tb__btn:focus-visible, .tb select:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; }
+.tb select { height: 38px; padding: 0 10px; border-radius: 8px; border: 1px solid #c9cfda; font: inherit; color: var(--navy); background: #fff; }
+.tb__info { color: #5b6474; }
+
+.sheets { display: grid; justify-content: center; gap: 24px; padding: 24px 12px 48px; }
+.sheets__empty { font-family: Alexandria, Inter, sans-serif; padding: 48px; background: #fff; border-radius: 12px; }
+
+/* page */
+.sheet { position: relative; width: 794px; height: 1123px; overflow: hidden; background: #fff; zoom: var(--z); box-shadow: 0 12px 32px rgba(15, 30, 51, 0.16); break-after: page; page-break-after: always; }
+.sheet:last-child { break-after: auto; page-break-after: auto; }
+
+.sheet__hd { position: absolute; inset: 0 0 auto 0; height: 118px; background: var(--navy); overflow: hidden; }
+.sheet__hex { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.12; }
+.sheet__brand { position: absolute; left: 32px; top: 26px; width: 151px; height: 66px; background: #fff; border-radius: 8px; padding: 5px 12px; overflow: hidden; }
+.sheet__brand img { width: 100%; height: 100%; min-height: 0; object-fit: contain; display: block; }
+.sheet__title { position: absolute; left: 232px; right: 232px; top: 50%; transform: translateY(-50%); margin: 0; text-align: center; color: #fff; font-family: "Plus Jakarta Sans", Inter, sans-serif; font-weight: 800; font-size: 25px; line-height: 32px; letter-spacing: 0.75px; }
+.sheet__co { position: absolute; left: 630px; top: 30px; width: 135px; height: 67px; background: #fff; border-radius: 8px; display: grid; place-items: center; padding: 4px 8px; overflow: hidden; }
+.sheet__co:has(img) { display: block; }
+.sheet__co img { width: 100%; height: 100%; min-height: 0; object-fit: contain; display: block; }
+.sheet__co span { font-weight: 700; font-size: 14px; text-align: center; color: var(--navy); }
+
+.sheet__grid { position: absolute; left: 18px; right: 24px; top: 133px; display: flex; flex-wrap: wrap; gap: 22px; align-content: flex-start; }
+
+/* product card */
+.card { position: relative; width: 365px; height: 424px; background: var(--orange); border-radius: 12px; filter: drop-shadow(0 4px 6px rgba(15, 30, 51, 0.14)); color: #fff; }
+.card__ph { position: absolute; left: 13px; right: 13px; top: 13px; height: 222px; background: #fff; border: 1px dashed var(--ghost); border-radius: 8px; overflow: hidden; display: grid; place-items: center; }
+.card__ph img { width: 100%; height: 100%; object-fit: contain; padding: 6px; display: block; }
+.card__info { position: absolute; left: 13px; right: 13px; top: 242px; height: 171px; margin: 0; display: grid; grid-template-rows: repeat(4, minmax(0, 1fr)); }
+.card__row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 6px 11px 6px 2px; border-bottom: 1px solid rgba(255, 255, 255, 0.7); min-width: 0; }
+.card__row:last-child { border-bottom: 0; }
+.card__row dt { flex: none; font-weight: 700; font-size: 12px; letter-spacing: 0.8px; white-space: nowrap; }
+.card__row dd { flex: 1 0 0; min-width: 1px; margin: 0; text-align: right; font-weight: 600; font-size: 14px; line-height: 18px; overflow-wrap: anywhere; }
+.card__row--brand dd { font-size: 15px; line-height: 19px; }
+.card__row--ing dd { font-weight: 500; font-size: 13px; line-height: 17px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* with prices: a slightly shorter photo makes room for a fifth row */
+.card--price .card__ph { height: 196px; }
+.card--price .card__info { top: 216px; height: 197px; grid-template-rows: repeat(5, minmax(0, 1fr)); }
+.card--price .card__row { padding-block: 4px; }
+.card__row--price dd { font-size: 15px; font-weight: 700; }
+
+.sheet__ft { position: absolute; inset: auto 0 0 0; height: 86px; background: var(--navy); color: #fff; }
+.sheet__contact { position: absolute; left: 32px; top: 50%; transform: translateY(-50%); display: grid; gap: 7px; }
+.sheet__contact p, .sheet__phone { margin: 0; display: flex; align-items: center; gap: 9px; font-weight: 500; font-size: 13px; line-height: 16px; white-space: nowrap; }
+.sheet__contact .ai, .sheet__phone .ai { color: var(--orange); }
+.sheet__phone { position: absolute; left: 396px; top: 50%; transform: translateY(-50%); font-weight: 600; font-size: 15px; }
+.sheet__qr { position: absolute; left: 704px; top: 14px; width: 58px; height: 58px; border-radius: 6px; background: #fff; padding: 3px; display: grid; place-items: center; }
+.sheet__qr svg { width: 100%; height: 100%; display: block; }
+.sheet__qr.is-empty { background: transparent; border: 1px dashed rgba(255, 255, 255, 0.55); }
+.sheet__qr.is-empty span { font-weight: 600; font-size: 9px; letter-spacing: 1px; color: var(--muted); }
+
+@page { size: A4; margin: 0; }
+@media print {
+  body { background: #fff; }
+  .tb { display: none; }
+  .sheets { display: block; padding: 0; }
+  .sheet { zoom: 1; box-shadow: none; width: 210mm; height: 297mm; }
+}

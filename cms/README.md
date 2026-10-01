@@ -49,6 +49,41 @@ photos and users stay.
 
 Changes show on the site as soon as they are saved (the content cache clears on every save).
 
+## Sales panel (`/sales`), private
+
+A separate area for the sales team. The public website never reads any of it.
+- **Catalog:** products grouped by company. Each product has a brand name, active
+  ingredient, dose, dosage form, price, photo and internal notes. You can browse it as
+  cards or as a table, and search across all companies.
+- **Order sheets:** A4 pages built to the Figma "order sheet" design. Each page has 4
+  products and the company's logo, and the footer has a QR code. **Print or save as PDF**
+  from the browser. A PRICE row is added only when someone allowed to see prices switches
+  it on.
+- **Roles:** every user has one role. Users are managed under Sales → Users.
+
+| Role | Sees | Can change |
+|---|---|---|
+| Viewer | Products, order sheets. **No prices** | Nothing |
+| Sales | Products and **prices**, sheets with or without prices | Nothing |
+| Editor | Same as Sales | Products and companies |
+| Manager | Same as Sales | Same as Editor, plus users (up to Manager), sheet footer, activity log |
+| Admin | Everything | Everything, including the website dashboard and Admins |
+
+**Privacy:**
+- Prices are removed on the server for Viewers, so they are not just hidden on screen.
+- Photos and logos are stored in `storage/app/private/sales/` and are only sent to
+  signed-in users.
+- Switching a user off ends their session at once.
+- Every change and every printout with prices is written to the activity log.
+
+Create users with a role from the command line:
+`php artisan admin:user name@example.com --role=sales`
+
+The starting catalog (28 products from the Figma sheets for Unimed, CAS Switzerland
+and SDI) lives in `database/seeders/data/sales/`. It is **not in git** because this
+repository is public. It ships only in the private project zip, and `php artisan
+db:seed` loads it into an empty catalog.
+
 ## Safety
 
 - Text typed in the dashboard keeps only `<b>`, `<strong>`, `<em>`, `<br>` and
@@ -89,6 +124,8 @@ only show their confirmation.
 | `app/Admin/Blocks.php` | Page section types for the page editor |
 | `app/Support/FormSpec.php` | Form fields and validation rules |
 | `database/seeders/data/` | The launch content (`site.json`, `ui-extra.json`) |
+| `app/Http/Controllers/Sales/`, `resources/views/sales/` | Sales panel and the order sheet (`sheet.blade.php`, `public/admin-assets/sheet.css`) |
+| `app/Support/Roles.php` | The five roles and what each can do |
 | `tests/Feature/` | `php artisan test` |
 
 ## Design decisions

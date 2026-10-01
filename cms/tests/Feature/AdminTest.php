@@ -24,7 +24,7 @@ class AdminTest extends TestCase
     {
         parent::setUp();
         $this->seed(SiteContentSeeder::class);
-        $this->user = User::factory()->create(['email' => 'admin@example.com', 'password' => 'correct-horse-9']);
+        $this->user = User::factory()->create(['email' => 'admin@example.com', 'password' => 'correct-horse-9', 'role' => 'admin']);
     }
 
     public function test_guests_are_sent_to_the_login(): void
@@ -48,7 +48,7 @@ class AdminTest extends TestCase
         $this->actingAs($this->user);
         $page = Page::query()->first();
         $urls = ['/admin', '/admin/pages', '/admin/pages/create', "/admin/pages/{$page->id}/edit", '/admin/text', '/admin/text?q=phone',
-            '/admin/settings', '/admin/media', '/admin/submissions', '/admin/users', '/admin/users/create'];
+            '/admin/settings', '/admin/media', '/admin/submissions', '/sales/users', '/sales/users/create'];
         foreach (array_keys(Resources::all()) as $r) {
             $urls[] = "/admin/r/{$r}";
             $first = Resources::get($r)['model']::query()->first();
@@ -150,8 +150,9 @@ class AdminTest extends TestCase
     public function test_users_cannot_delete_themselves(): void
     {
         $this->actingAs($this->user);
-        $this->delete("/admin/users/{$this->user->id}")->assertSessionHas('err');
-        $this->post('/admin/users', ['name' => 'Editor', 'email' => 'ed@example.com', 'password' => 'short', 'password_confirmation' => 'short'])->assertSessionHasErrors('password');
-        $this->post('/admin/users', ['name' => 'Editor', 'email' => 'ed@example.com', 'password' => 'long-enough-1', 'password_confirmation' => 'long-enough-1'])->assertRedirect('/admin/users');
+        $this->delete("/sales/users/{$this->user->id}")->assertSessionHas('err');
+        $this->post('/sales/users', ['name' => 'Editor', 'email' => 'ed@example.com', 'role' => 'editor', 'password' => 'short', 'password_confirmation' => 'short'])->assertSessionHasErrors('password');
+        $this->post('/sales/users', ['name' => 'Editor', 'email' => 'ed@example.com', 'role' => 'editor', 'password' => 'long-enough-1', 'password_confirmation' => 'long-enough-1'])->assertRedirect('/sales/users');
+        $this->assertSame('editor', User::query()->where('email', 'ed@example.com')->value('role'));
     }
 }

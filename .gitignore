@@ -27,3 +27,7 @@ Thumbs.db
 # Licensed Tajarib font files (Harf Library). The licence forbids making them
 # available for download, and this repository is public, so they are never committed.
 cms/public/fonts/tajarib/
+
+# Private sales catalog seed (product data and photos for the order sheets).
+# The repository is public and the catalog is for signed-in sales staff only.
+cms/database/seeders/data/sales/
