@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Modern Pharmaceutical Sales Strategies</title>
+<style>
+@font-face{font-family:'Fraunces';src:url('fonts/Fraunces[SOFT,WONK,opsz,wght].ttf') format('truetype');font-weight:100 900;font-style:normal}
+@font-face{font-family:'Fraunces';src:url('fonts/Fraunces-Italic[SOFT,WONK,opsz,wght].ttf') format('truetype');font-weight:100 900;font-style:italic}
+@font-face{font-family:'DM Sans';src:url('fonts/DMSans[opsz,wght].ttf') format('truetype');font-weight:100 1000;font-style:normal}
+@font-face{font-family:'DM Sans';src:url('fonts/DMSans-Italic[opsz,wght].ttf') format('truetype');font-weight:100 1000;font-style:italic}
+@font-face{font-family:'DM Mono';src:url('fonts/DMMono-Regular.ttf') format('truetype');font-weight:400}
+@font-face{font-family:'DM Mono';src:url('fonts/DMMono-Medium.ttf') format('truetype');font-weight:500}
+@page{size:1920px 1080px;margin:0}
+:root{--ink:#111B2D;--ink2:#1E2A3F;--paper:#F8F6F1;--card:#EFECE4;--text:#161E2B;--muted:#5C6678;--line:#D6D1C7;--amber:#E7A82A;--amberT:#9E6608;--blue:#286BD9;--blueT:#174DA8;--green:#1C8759;--greenT:#126B45;--coral:#D9614D;--coralT:#B2412F;--tA:#FCEFD5;--tB:#E2ECFC;--tG:#DDF1E7;--tC:#FCE4DF;--soft:#C9D3E3;--white:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--paper)}
+body{font-family:'DM Sans',sans-serif;color:var(--text);-webkit-font-smoothing:antialiased}
+.slide{width:1920px;height:1080px;position:relative;overflow:hidden;background:var(--paper);page-break-after:always;break-after:page}
+.slide.dark{background:var(--ink);color:var(--white)}
+.serif{font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'SOFT' 50,'WONK' 0}
+.mono{font-family:'DM Mono',monospace}
+.kicker{position:absolute;left:120px;top:72px;font-weight:600;font-size:19px;letter-spacing:.14em;text-transform:uppercase;color:var(--amberT)}
+.title{position:absolute;left:120px;top:108px;width:1680px;font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'SOFT' 50;font-weight:560;font-size:60px;line-height:1.08;letter-spacing:-.012em;color:var(--ink)}
+.footer{position:absolute;left:120px;right:120px;bottom:44px;height:30px;display:flex;align-items:center;justify-content:space-between;font-size:17px;color:var(--muted)}
+.dark .footer{color:var(--soft)}
+.prog{display:flex;align-items:center;gap:14px;height:30px;padding:0 20px;position:relative}
+.prog::before,.prog::after{content:'';position:absolute;top:0;bottom:0;width:8px;border:2px solid var(--muted)}
+.prog::before{left:0;border-right:none}.prog::after{right:0;border-left:none}
+.prog i{width:12px;height:12px;border-radius:50%;background:var(--line);display:block}
+.prog i.on{background:var(--amber)}
+.pg{font-variant-numeric:tabular-nums;letter-spacing:.06em}
+/* brackets */
+.brk{position:absolute}
+.brk::before,.brk::after{content:'';position:absolute;top:0;bottom:0;width:var(--bw,34px);border:var(--bs,5px) solid var(--bc,var(--ink))}
+.brk::before{left:0;border-right:none}.brk::after{right:0;border-left:none}
+/* chips & discs */
+.disc{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-variation-settings:'opsz' 72;font-weight:600;font-size:26px;color:#fff;background:var(--ink);flex:none}
+.chip{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.chip b{width:10px;height:10px;border-radius:50%;display:block}
+.card{border-radius:26px;background:#fff}
+.tip{position:relative;border-radius:22px;padding:24px 28px 26px 92px}
+.tip .badge{position:absolute;left:26px;top:22px;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:22px}
+.tip h4{font-size:21px;font-weight:650;margin:6px 0 6px}
+.tip p{font-size:20px;line-height:1.5}
+.lbl{font-size:16px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.deliv{position:absolute;display:flex;align-items:center;gap:20px;padding:18px 26px;border-radius:20px;background:var(--ink);color:#fff}
+.deliv .lbl{color:var(--amber);font-size:14px}
+.deliv .t{font-family:'Fraunces',serif;font-variation-settings:'opsz' 72;font-size:25px;font-weight:520}
+.q{font-family:'Fraunces',serif;font-style:italic;font-variation-settings:'opsz' 72,'SOFT' 100;font-weight:380}
+</style>
+</head>
+<body>
+
+<!-- ============ 1 · COVER ============ -->
+<section class="slide dark">
+  <div style="position:absolute;left:120px;top:250px;width:860px">
+    <div class="lbl" style="color:var(--amber);font-size:20px;letter-spacing:.18em">Field playbook</div>
+    <div class="serif" style="margin-top:30px;font-size:112px;line-height:.98;font-weight:560;letter-spacing:-.025em">Modern Pharmaceutical Sales Strategies</div>
+    <div style="margin-top:38px;font-size:30px;font-weight:300;color:var(--soft);line-height:1.45">Reverse negotiation · financial modelling · behavioural science</div>
+    <div style="margin-top:44px;width:120px;height:6px;background:var(--amber)"></div>
+    <div style="margin-top:30px;font-size:22px;color:var(--soft);font-weight:400">Six strategies &nbsp;·&nbsp; six institutional deliverables</div>
+  </div>
+  <div class="brk" style="left:1110px;top:150px;width:690px;height:780px;--bc:var(--amber);--bs:9px;--bw:64px"></div>
+  <svg style="position:absolute;left:1110px;top:150px" width="690" height="780" viewBox="0 0 690 780">
+    <g font-family="DM Sans" font-size="15" font-weight="600" letter-spacing="2.2" fill="#C9D3E3" text-anchor="middle">
+      <!-- grid 2 x 3 ; centres x 235/455, y 175/390/605 -->
+      <!-- 01 negotiation: two speech circles -->
+      <g transform="translate(235,160)"><circle cx="-18" cy="0" r="46" fill="none" stroke="#E7A82A" stroke-width="5"/><circle cx="22" cy="10" r="46" fill="#E7A82A" fill-opacity=".22" stroke="#E7A82A" stroke-width="5"/><text y="96">01 NEGOTIATE</text></g>
+      <!-- 02 pharmonomics: bars -->
+      <g transform="translate(455,160)"><rect x="-52" y="10" width="24" height="40" fill="#286BD9" fill-opacity=".45"/><rect x="-14" y="-14" width="24" height="64" fill="#286BD9" fill-opacity=".7"/><rect x="24" y="-44" width="24" height="94" fill="#286BD9"/><line x1="-62" y1="52" x2="60" y2="52" stroke="#C9D3E3" stroke-width="3"/><text y="96">02 MODEL</text></g>
+      <!-- 03 nudge: 3x3 grid one lit -->
+      <g transform="translate(235,375)"><g fill="none" stroke="#E7A82A" stroke-width="3"><rect x="-48" y="-48" width="28" height="28"/><rect x="-14" y="-48" width="28" height="28"/><rect x="20" y="-48" width="28" height="28"/><rect x="-48" y="-14" width="28" height="28"/><rect x="20" y="-14" width="28" height="28"/><rect x="-48" y="20" width="28" height="28"/><rect x="-14" y="20" width="28" height="28"/><rect x="20" y="20" width="28" height="28"/></g><rect x="-14" y="-14" width="28" height="28" fill="#E7A82A"/><text y="96">03 NUDGE</text></g>
+      <!-- 04 war games: clock quarters -->
+      <g transform="translate(455,375)"><circle r="52" fill="none" stroke="#1C8759" stroke-width="5"/><path d="M0 0 L0 -52 A52 52 0 0 1 52 0 Z" fill="#1C8759" fill-opacity=".35"/><g stroke="#D9614D" stroke-width="5" stroke-linecap="round"><line x1="0" y1="-60" x2="0" y2="-70"/><line x1="60" y1="0" x2="70" y2="0"/><line x1="0" y1="60" x2="0" y2="70"/><line x1="-60" y1="0" x2="-70" y2="0"/></g><text y="96">04 SIMULATE</text></g>
+      <!-- 05 red team: opposing halves -->
+      <g transform="translate(235,590)"><path d="M-6 -50 A50 50 0 0 0 -6 50 Z" fill="#D9614D"/><path d="M6 -50 A50 50 0 0 1 6 50 Z" fill="#286BD9"/><text y="96">05 RED TEAM</text></g>
+      <!-- 06 AI persona: radar -->
+      <g transform="translate(455,590)"><polygon points="0,-54 51,-17 32,44 -32,44 -51,-17" fill="none" stroke="#1C8759" stroke-width="3"/><polygon points="0,-27 26,-8 16,22 -16,22 -26,-8" fill="none" stroke="#1C8759" stroke-opacity=".5" stroke-width="2"/><polygon points="0,-46 40,-13 22,30 -26,36 -36,-12" fill="#1C8759" fill-opacity=".35" stroke="#1C8759" stroke-width="3"/><text y="96">06 REHEARSE</text></g>
+    </g>
+  </svg>
+  <div class="footer"><span>Modern Pharmaceutical Sales Strategies</span><span class="pg">01 / 11</span></div>
+</section>
+
+<!-- ============ 2 · OVERVIEW ============ -->
+<section class="slide">
+  <div class="kicker">Overview</div>
+  <div class="title">Six strategies, one shift: from pitching to proving</div>
+  <div style="position:absolute;right:120px;top:84px;display:flex;gap:30px">
+    <span class="chip" style="color:var(--amberT)"><b style="background:var(--amber)"></b>Psychology</span>
+    <span class="chip" style="color:var(--blueT)"><b style="background:var(--blue)"></b>Finance</span>
+    <span class="chip" style="color:var(--greenT)"><b style="background:var(--green)"></b>Simulation</span>
+  </div>
+  <div class="brk" style="left:120px;top:270px;width:1680px;height:600px;--bw:44px;--bs:5px"></div>
+  <div style="position:absolute;left:190px;top:310px;width:1540px;height:520px;display:grid;grid-template-columns:repeat(6,1fr);gap:20px">
+    <!-- cards -->
+    <div class="card" style="background:var(--tA);padding:30px 26px;display:flex;flex-direction:column"><div class="disc" style="background:var(--amberT)">1</div><div class="serif" style="font-size:30px;font-weight:560;line-height:1.12;margin-top:30px">FBI<br>Negotiation</div><div style="font-size:19px;line-height:1.5;margin-top:18px;color:var(--text)">Lead the client to a “safe no”, then let calibrated questions do the work.</div><div class="chip" style="margin-top:auto;color:var(--amberT)"><b style="background:var(--amber)"></b>Psychology</div></div>
+    <div class="card" style="background:var(--tB);padding:30px 26px;display:flex;flex-direction:column"><div class="disc" style="background:var(--blueT)">2</div><div class="serif" style="font-size:30px;font-weight:560;line-height:1.12;margin-top:30px">Pharm&shy;onomics</div><div style="font-size:19px;line-height:1.5;margin-top:18px">Talk shelf return and cash flow with the pharmacist, not price.</div><div class="chip" style="margin-top:auto;color:var(--blueT)"><b style="background:var(--blue)"></b>Finance</div></div>
+    <div class="card" style="background:var(--tA);padding:30px 26px;display:flex;flex-direction:column"><div class="disc" style="background:var(--amberT)">3</div><div class="serif" style="font-size:30px;font-weight:560;line-height:1.12;margin-top:30px">Behavioural Nudge Matrix</div><div style="font-size:19px;line-height:1.5;margin-top:18px">Arrange the choice so the right option feels natural and low-risk.</div><div class="chip" style="margin-top:auto;color:var(--amberT)"><b style="background:var(--amber)"></b>Psychology</div></div>
+    <div class="card" style="background:var(--tG);padding:30px 26px;display:flex;flex-direction:column"><div class="disc" style="background:var(--greenT)">4</div><div class="serif" style="font-size:30px;font-weight:560;line-height:1.12;margin-top:30px">Business War Games</div><div style="font-size:19px;line-height:1.5;margin-top:18px">Rehearse sudden market shocks in real time, under pressure.</div><div class="chip" style="margin-top:auto;color:var(--greenT)"><b style="background:var(--green)"></b>Simulation</div></div>
+    <div class="card" style="background:var(--tG);padding:30px 26px;display:flex;flex-direction:column"><div class="disc" style="background:var(--greenT)">5</div><div class="serif" style="font-size:30px;font-weight:560;line-height:1.12;margin-top:30px">Red<br>Teaming</div><div style="font-size:19px;line-height:1.5;margin-top:18px">Attack your own product before a competitor does.</div><div class="chip" style="margin-top:auto;color:var(--greenT)"><b style="background:var(--green)"></b>Simulation</div></div>
+    <div class="card" style="background:var(--tG);padding:30px 26px;display:flex;flex-direction:column"><div class="disc" style="background:var(--greenT)">6</div><div class="serif" style="font-size:30px;font-weight:560;line-height:1.12;margin-top:30px">AI Persona Simulator</div><div style="font-size:19px;line-height:1.5;margin-top:18px">Practise on a virtual physician and get scored on five dimensions.</div><div class="chip" style="margin-top:auto;color:var(--greenT)"><b style="background:var(--green)"></b>Simulation</div></div>
+  </div>
+  <div style="position:absolute;left:120px;top:905px;font-size:21px;color:var(--muted)">Each strategy ends in an <b style="color:var(--text);font-weight:600">institutional deliverable</b>, a tool the whole team keeps using after the training.</div>
+  <div class="footer"><span>Modern Pharmaceutical Sales Strategies</span><div style="display:flex;gap:40px;align-items:center"><div class="prog"><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="pg">02 / 11</span></div></div>
+</section>
+
+<!-- ============ 3 · FBI NEGOTIATION ============ -->
+<section class="slide">
+  <div class="kicker">Strategy 1 · Psychology</div>
+  <div class="title">FBI negotiation: from persuasion to reverse negotiation</div>
+  <!-- flow -->
+  <div style="position:absolute;left:120px;top:262px;width:1680px;display:flex;align-items:stretch;gap:0">
+    <div class="card" style="flex:1;padding:28px 30px;background:#fff;border:3px solid var(--amber)"><div class="lbl" style="color:var(--amberT)">Step 1</div><div class="serif" style="font-size:30px;font-weight:560;margin-top:10px">Accusation audit</div><div style="font-size:19px;line-height:1.45;margin-top:10px;color:var(--muted)">Voice their objections first</div></div>
+    <svg width="64" height="150" viewBox="0 0 64 150" style="flex:none;align-self:center"><path d="M18 48 L42 75 L18 102" fill="none" stroke="#9E6608" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div class="card" style="flex:1;padding:28px 30px;background:#fff;border:3px solid var(--amber)"><div class="lbl" style="color:var(--amberT)">Step 2</div><div class="serif" style="font-size:30px;font-weight:560;margin-top:10px">A “safe no”</div><div style="font-size:19px;line-height:1.45;margin-top:10px;color:var(--muted)">The client feels in control</div></div>
+    <svg width="64" height="150" viewBox="0 0 64 150" style="flex:none;align-self:center"><path d="M18 48 L42 75 L18 102" fill="none" stroke="#9E6608" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div class="card" style="flex:1;padding:28px 30px;background:#fff;border:3px solid var(--amber)"><div class="lbl" style="color:var(--amberT)">Step 3</div><div class="serif" style="font-size:30px;font-weight:560;margin-top:10px">Calibrated questions</div><div style="font-size:19px;line-height:1.45;margin-top:10px;color:var(--muted)">Open “how” questions invite collaboration</div></div>
+    <svg width="64" height="150" viewBox="0 0 64 150" style="flex:none;align-self:center"><path d="M18 48 L42 75 L18 102" fill="none" stroke="#9E6608" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div class="card" style="flex:1;padding:28px 30px;background:var(--amber);border:3px solid var(--amber)"><div class="lbl" style="color:var(--ink)">Outcome</div><div class="serif" style="font-size:30px;font-weight:560;margin-top:10px">They solve it</div><div style="font-size:19px;line-height:1.45;margin-top:10px;color:var(--ink)">The client works out the answer themselves</div></div>
+  </div>
+  <!-- accusation audit quote -->
+  <div class="card" style="position:absolute;left:120px;top:500px;width:900px;height:410px;background:var(--tA);padding:40px 46px">
+    <div class="lbl" style="color:var(--amberT)">Accusation audit · opening line</div>
+    <div class="q" style="font-size:34px;line-height:1.38;margin-top:22px;color:var(--ink)">“Doctor, you probably think I’m here to repeat the same scientific pitch you hear every day, and that our product is priced higher without justification.”</div>
+    <div style="position:absolute;left:46px;bottom:36px;display:flex;align-items:center;gap:14px;font-size:20px;color:var(--text)"><span style="width:12px;height:12px;border-radius:50%;background:var(--green)"></span>Impact: raising the objection first neutralises their defensive posture.</div>
+  </div>
+  <!-- closed vs calibrated -->
+  <div style="position:absolute;left:1070px;top:500px;width:730px">
+    <div class="lbl" style="color:var(--muted)">Closed question · removed</div>
+    <div style="margin-top:14px;padding:20px 26px;border-radius:18px;background:var(--card);font-size:21px;color:var(--muted);text-decoration:line-through;text-decoration-color:var(--coral);text-decoration-thickness:2px">“Will you prescribe our product?”</div>
+    <div class="lbl" style="color:var(--amberT);margin-top:30px">Calibrated · open “how” questions</div>
+    <div style="margin-top:14px;padding:20px 26px;border-radius:18px;background:#fff;border-left:6px solid var(--amber);font-size:21px;line-height:1.45">“How can I support you in cases that don’t respond to first-line treatment?”</div>
+    <div style="margin-top:14px;padding:20px 26px;border-radius:18px;background:#fff;border-left:6px solid var(--amber);font-size:21px;line-height:1.45">“How can we overcome the price barrier for the patient without affecting treatment quality?”</div>
+  </div>
+  <div class="footer"><span>Deliverable: <b style="color:var(--text);font-weight:600">FBI Negotiation Playbook</b>, covering the top 10 market objections, each paired with calibrated questions</span><div style="display:flex;gap:40px;align-items:center"><div class="prog"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div><span class="pg">03 / 11</span></div></div>
+</section>
+
+<!-- ============ 4 · PHARMONOMICS ============ -->
+<section class="slide">
+  <div class="kicker" style="color:var(--blueT)">Strategy 2 · Finance</div>
+  <div class="title">Pharmonomics: speak the pharmacy’s financial language</div>
+  <!-- GMROI card -->
+  <div class="card" style="position:absolute;left:120px;top:262px;width:760px;height:648px;padding:40px 44px">
+    <div class="lbl" style="color:var(--blueT)">Shelf return, not simple margin</div>
+    <div style="display:flex;align-items:center;gap:22px;margin-top:28px">
+      <span class="serif" style="font-size:40px;font-weight:560">GMROI</span><span style="font-size:36px;color:var(--muted)">=</span>
+      <span style="display:inline-flex;flex-direction:column;align-items:center;font-size:26px;line-height:1.25"><span style="padding:0 10px 8px">Gross margin</span><span style="border-top:2.5px solid var(--ink);padding:8px 10px 0">Average inventory cost</span></span>
+    </div>
+    <div style="font-size:18px;color:var(--muted);margin-top:16px">Gross Margin Return on Inventory: profit earned per unit of money tied up on the shelf.</div>
+    <div style="margin-top:34px;display:flex;flex-direction:column;gap:26px">
+      <div><div style="display:flex;justify-content:space-between;font-size:19px"><span><b style="font-weight:600">Slow mover</b> &nbsp;30% margin · 2 turns / year</span><span class="mono" style="font-weight:500">0.86</span></div><div style="margin-top:10px;height:30px;border-radius:8px;background:var(--card)"><div style="width:54%;height:100%;border-radius:8px;background:var(--soft)"></div></div></div>
+      <div><div style="display:flex;justify-content:space-between;font-size:19px"><span><b style="font-weight:600">Fast mover</b> &nbsp;20% margin · 6 turns / year</span><span class="mono" style="font-weight:500;color:var(--blueT)">1.50</span></div><div style="margin-top:10px;height:30px;border-radius:8px;background:var(--card)"><div style="width:94%;height:100%;border-radius:8px;background:var(--blue)"></div></div></div>
+    </div>
+    <div style="margin-top:28px;font-size:19px;line-height:1.5">Lower margin, higher return: this <b style="font-weight:600">opportunity cost</b> is what a slower competitor product costs the shelf.</div>
+    <div style="position:absolute;left:44px;bottom:30px;font-size:15px;color:var(--muted);letter-spacing:.04em">Illustrative figures · GMROI = margin × turns at cost ÷ (1 − margin)</div>
+  </div>
+  <!-- calculator phone -->
+  <div style="position:absolute;left:940px;top:262px;width:380px;height:648px;border-radius:46px;background:var(--ink);padding:22px">
+    <div style="width:100%;height:100%;border-radius:30px;background:#fff;padding:28px 26px;display:flex;flex-direction:column">
+      <div class="lbl" style="color:var(--blueT);font-size:14px">Pharmonomics calculator</div>
+      <div style="margin-top:20px;display:flex;flex-direction:column;gap:12px;font-size:16px">
+        <div style="border:2px solid var(--line);border-radius:12px;padding:10px 14px"><span style="color:var(--muted)">1 · Daily foot traffic</span></div>
+        <div style="border:2px solid var(--line);border-radius:12px;padding:10px 14px"><span style="color:var(--muted)">2 · Product price</span></div>
+        <div style="border:2px solid var(--line);border-radius:12px;padding:10px 14px"><span style="color:var(--muted)">3 · Monthly turnover rate</span></div>
+      </div>
+      <div class="lbl" style="margin-top:24px;color:var(--muted);font-size:13px">Monthly free cash flow</div>
+      <svg width="288" height="200" viewBox="0 0 288 200" style="margin-top:12px">
+        <line x1="0" y1="180" x2="288" y2="180" stroke="#D6D1C7" stroke-width="2"/>
+        <rect x="40" y="96" width="70" height="84" rx="6" fill="#C9D3E3"/>
+        <rect x="170" y="36" width="70" height="144" rx="6" fill="#286BD9"/>
+        <text x="75" y="198" font-family="DM Sans" font-size="13" fill="#5C6678" text-anchor="middle" dy="0">today</text>
+        <text x="205" y="198" font-family="DM Sans" font-size="13" fill="#5C6678" text-anchor="middle">reallocated</text>
+        <text x="205" y="24" font-family="DM Mono" font-size="20" font-weight="500" fill="#174DA8" text-anchor="middle">+$X</text>
+      </svg>
+    </div>
+  </div>
+  <!-- right column -->
+  <div style="position:absolute;left:1380px;top:262px;width:420px">
+    <div class="lbl" style="color:var(--blueT)">Shown live, in front of the pharmacist</div>
+    <div class="q" style="font-size:30px;line-height:1.4;margin-top:22px;color:var(--ink)">“Reallocate half a metre of shelf from a slower competitor item to our product, and your monthly free cash flow rises by $X.”</div>
+    <div class="tip" style="background:var(--tB);margin-top:44px"><div class="badge" style="background:var(--blue)">3</div><h4 style="color:var(--blueT)">Only three inputs</h4><p>Foot traffic, price and expected turnover give an instant chart of the economic impact.</p></div>
+  </div>
+  <div class="footer"><span>Deliverable: <b style="color:var(--text);font-weight:600">Portable financial calculator</b> that turns a pitch into a quantitative financial proposal</span><div style="display:flex;gap:40px;align-items:center"><div class="prog"><i></i><i class="on"></i><i></i><i></i><i></i><i></i></div><span class="pg">04 / 11</span></div></div>
+</section>
+
+<!-- ============ 5 · NUDGE MATRIX ============ -->
+<section class="slide">
+  <div class="kicker">Strategy 3 · Psychology</div>
+  <div class="title">Behavioural Nudge Matrix: design the choice, not the argument</div>
+  <div class="brk" style="left:120px;top:262px;width:1680px;height:640px;--bw:40px;--bs:5px"></div>
+  <!-- header row -->
+  <div style="position:absolute;left:190px;top:290px;width:1540px;display:grid;grid-template-columns:330px 560px 1fr 170px;gap:30px" class="lbl">
+    <span style="color:var(--muted)">Bias</span><span style="color:var(--muted)">Technique</span><span style="color:var(--muted)">Visual cue</span><span style="color:var(--muted);display:flex;justify-content:center;gap:4px;font-size:13px"><i style="width:80px;text-align:center;font-style:normal">Clinic</i><i style="width:80px;text-align:center;font-style:normal">Pharmacy</i></span>
+  </div>
+  <!-- rows -->
+  <div style="position:absolute;left:190px;top:336px;width:1540px;display:flex;flex-direction:column;gap:18px">
+    <!-- row 1 -->
+    <div style="display:grid;grid-template-columns:330px 560px 1fr 170px;gap:30px;align-items:center;background:#fff;border-radius:22px;padding:22px 0 22px 28px;height:168px">
+      <div><div class="serif" style="font-size:28px;font-weight:560">Status quo bias</div><div style="font-size:17px;color:var(--muted);margin-top:6px">Defaulting to familiar treatments out of habit</div></div>
+      <div style="font-size:19px;line-height:1.5"><b style="font-weight:600;color:var(--amberT)">Loss-aversion reframing.</b> Present staying with the older competitor treatment as the risk of remaining with an outdated option.</div>
+      <svg width="300" height="120" viewBox="0 0 300 120"><text x="0" y="22" font-family="DM Sans" font-size="15" fill="#5C6678">stay</text><rect x="70" y="8" width="150" height="22" rx="5" fill="#FCE4DF"/><rect x="70" y="8" width="70" height="22" rx="5" fill="#D9614D"/><text x="230" y="25" font-family="DM Sans" font-size="15" fill="#B2412F">risk</text><text x="0" y="82" font-family="DM Sans" font-size="15" fill="#5C6678">switch</text><rect x="70" y="68" width="150" height="22" rx="5" fill="#FCEFD5"/><rect x="70" y="68" width="150" height="22" rx="5" fill="#E7A82A"/><text x="230" y="85" font-family="DM Sans" font-size="15" fill="#9E6608">gain</text></svg>
+      <div style="display:flex;justify-content:center;gap:4px"><span style="width:80px;display:flex;justify-content:center"><b style="width:18px;height:18px;border-radius:50%;background:var(--amber)"></b></span><span style="width:80px;display:flex;justify-content:center"><b style="width:18px;height:18px;border-radius:50%;border:2px solid var(--line)"></b></span></div>
+    </div>
+    <!-- row 2 -->
+    <div style="display:grid;grid-template-columns:330px 560px 1fr 170px;gap:30px;align-items:center;background:#fff;border-radius:22px;padding:22px 0 22px 28px;height:168px">
+      <div><div class="serif" style="font-size:28px;font-weight:560">Anchoring</div><div style="font-size:17px;color:var(--muted);margin-top:6px">The first option shapes how the rest are judged</div></div>
+      <div style="font-size:19px;line-height:1.5"><b style="font-weight:600;color:var(--amberT)">Choice architecture.</b> Structure order packages so the middle package, the real target, reads as the best value.</div>
+      <svg width="300" height="120" viewBox="0 0 300 120"><rect x="6" y="54" width="70" height="56" rx="8" fill="none" stroke="#D6D1C7" stroke-width="3"/><rect x="104" y="20" width="90" height="90" rx="10" fill="#E7A82A"/><rect x="222" y="34" width="76" height="76" rx="8" fill="none" stroke="#D6D1C7" stroke-width="3"/><text x="41" y="90" font-family="DM Sans" font-size="16" font-weight="600" fill="#5C6678" text-anchor="middle">S</text><text x="149" y="73" font-family="DM Sans" font-size="20" font-weight="700" fill="#fff" text-anchor="middle">M</text><text x="260" y="80" font-family="DM Sans" font-size="16" font-weight="600" fill="#5C6678" text-anchor="middle">L</text></svg>
+      <div style="display:flex;justify-content:center;gap:4px"><span style="width:80px;display:flex;justify-content:center"><b style="width:18px;height:18px;border-radius:50%;border:2px solid var(--line)"></b></span><span style="width:80px;display:flex;justify-content:center"><b style="width:18px;height:18px;border-radius:50%;background:var(--amber)"></b></span></div>
+    </div>
+    <!-- row 3 -->
+    <div style="display:grid;grid-template-columns:330px 560px 1fr 170px;gap:30px;align-items:center;background:#fff;border-radius:22px;padding:22px 0 22px 28px;height:168px">
+      <div><div class="serif" style="font-size:28px;font-weight:560">Hidden signals</div><div style="font-size:17px;color:var(--muted);margin-top:6px">Skepticism, hesitation or sudden interest</div></div>
+      <div style="font-size:19px;line-height:1.5"><b style="font-weight:600;color:var(--amberT)">Micro-expression analysis.</b> Record role-play visits with actors and review them in slow motion to read split-second cues.</div>
+      <svg width="300" height="120" viewBox="0 0 300 120"><rect x="0" y="22" width="300" height="76" rx="8" fill="#111B2D"/><g fill="#F8F6F1"><rect x="12" y="30" width="8" height="6" rx="1"/><rect x="40" y="30" width="8" height="6" rx="1"/><rect x="68" y="30" width="8" height="6" rx="1"/><rect x="96" y="30" width="8" height="6" rx="1"/><rect x="124" y="30" width="8" height="6" rx="1"/><rect x="152" y="30" width="8" height="6" rx="1"/><rect x="180" y="30" width="8" height="6" rx="1"/><rect x="208" y="30" width="8" height="6" rx="1"/><rect x="236" y="30" width="8" height="6" rx="1"/><rect x="264" y="30" width="8" height="6" rx="1"/><rect x="12" y="84" width="8" height="6" rx="1"/><rect x="40" y="84" width="8" height="6" rx="1"/><rect x="68" y="84" width="8" height="6" rx="1"/><rect x="96" y="84" width="8" height="6" rx="1"/><rect x="124" y="84" width="8" height="6" rx="1"/><rect x="152" y="84" width="8" height="6" rx="1"/><rect x="180" y="84" width="8" height="6" rx="1"/><rect x="208" y="84" width="8" height="6" rx="1"/><rect x="236" y="84" width="8" height="6" rx="1"/><rect x="264" y="84" width="8" height="6" rx="1"/></g><g fill="#1E2A3F"><rect x="10" y="42" width="62" height="36" rx="3"/><rect x="82" y="42" width="62" height="36" rx="3"/><rect x="226" y="42" width="62" height="36" rx="3"/></g><rect x="154" y="42" width="62" height="36" rx="3" fill="#E7A82A"/><text x="185" y="15" font-family="DM Mono" font-size="13" fill="#9E6608" text-anchor="middle">0.2 s</text></svg>
+      <div style="display:flex;justify-content:center;gap:4px"><span style="width:80px;display:flex;justify-content:center"><b style="width:18px;height:18px;border-radius:50%;background:var(--amber)"></b></span><span style="width:80px;display:flex;justify-content:center"><b style="width:18px;height:18px;border-radius:50%;background:var(--amber)"></b></span></div>
+    </div>
+  </div>
+  <div style="position:absolute;left:120px;top:922px;font-size:17px;color:var(--muted)">Guardrail: every frame must rest on approved, evidence-based product information and the local code of promotional practice.</div>
+  <div class="footer"><span>Deliverable: <b style="color:var(--text);font-weight:600">Behavioural Nudge Matrix</b>, mapping each bias to a framing technique for clinics and pharmacies</span><div style="display:flex;gap:40px;align-items:center"><div class="prog"><i></i><i></i><i class="on"></i><i></i><i></i><i></i></div><span class="pg">05 / 11</span></div></div>
+</section>
+
+<!-- ============ 6 · WAR GAMES ============ -->
+<section class="slide">
+  <div class="kicker" style="color:var(--greenT)">Strategy 4 · Simulation</div>
+  <div class="title">Business War Games: rehearse the market shock</div>
+  <div style="position:absolute;left:120px;top:250px;font-size:21px;color:var(--muted);width:1100px">A crisis command room. An unannounced alert every <b style="color:var(--text)">15 minutes</b>, and a response due within <b style="color:var(--text)">10</b>.</div>
+  <svg style="position:absolute;left:120px;top:320px" width="1680" height="190" viewBox="0 0 1680 190">
+    <g font-family="DM Mono" font-size="18" fill="#5C6678" text-anchor="middle">
+      <line x1="40" y1="100" x2="1640" y2="100" stroke="#111B2D" stroke-width="4"/>
+      <!-- minute ticks every 5 min: 0..60 => 1600px, 26.67px/min -->
+      <g stroke="#D6D1C7" stroke-width="2"><line x1="173.3" y1="90" x2="173.3" y2="110"/><line x1="306.7" y1="90" x2="306.7" y2="110"/><line x1="573.3" y1="90" x2="573.3" y2="110"/><line x1="706.7" y1="90" x2="706.7" y2="110"/><line x1="973.3" y1="90" x2="973.3" y2="110"/><line x1="1106.7" y1="90" x2="1106.7" y2="110"/><line x1="1373.3" y1="90" x2="1373.3" y2="110"/><line x1="1506.7" y1="90" x2="1506.7" y2="110"/></g>
+      <!-- response windows (10 min = 266.7px) -->
+      <g fill="#1C8759" fill-opacity=".85"><rect x="40" y="118" width="266.7" height="16" rx="8"/><rect x="440" y="118" width="266.7" height="16" rx="8"/><rect x="840" y="118" width="266.7" height="16" rx="8"/><rect x="1240" y="118" width="266.7" height="16" rx="8"/></g>
+      <!-- injections -->
+      <g fill="#D9614D"><path d="M40 62 L58 80 L40 98 L22 80 Z"/><path d="M440 62 L458 80 L440 98 L422 80 Z"/><path d="M840 62 L858 80 L840 98 L822 80 Z"/><path d="M1240 62 L1258 80 L1240 98 L1222 80 Z"/></g>
+      <text x="40" y="44">00′</text><text x="440" y="44">15′</text><text x="840" y="44">30′</text><text x="1240" y="44">45′</text><text x="1640" y="44">60′</text>
+      <line x1="1640" y1="88" x2="1640" y2="112" stroke="#111B2D" stroke-width="4"/>
+      <text x="173" y="166" fill="#126B45" font-family="DM Sans" font-size="16" font-weight="600">10-minute response</text>
+    </g>
+  </svg>
+  <!-- scenario cards -->
+  <div style="position:absolute;left:120px;top:540px;width:1680px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px">
+    <div class="card" style="background:var(--tC);padding:28px 30px;height:200px"><div class="lbl" style="color:var(--coralT)">Alert · 00′</div><div class="serif" style="font-size:27px;font-weight:540;line-height:1.25;margin-top:14px">Official price adjustment decreed by the regulator</div></div>
+    <div class="card" style="background:var(--tC);padding:28px 30px;height:200px"><div class="lbl" style="color:var(--coralT)">Alert · 15′</div><div class="serif" style="font-size:27px;font-weight:540;line-height:1.25;margin-top:14px">Parallel shipment enters the market at dumped prices</div></div>
+    <div class="card" style="background:var(--tC);padding:28px 30px;height:200px"><div class="lbl" style="color:var(--coralT)">Alert · 30′</div><div class="serif" style="font-size:27px;font-weight:540;line-height:1.25;margin-top:14px">A key opinion leader cancels an upcoming conference</div></div>
+    <div class="card" style="background:#fff;border:3px dashed var(--line);padding:28px 30px;height:200px"><div class="lbl" style="color:var(--muted)">Alert · 45′</div><div class="serif" style="font-size:27px;font-weight:540;line-height:1.25;margin-top:14px;color:var(--muted)">Unannounced: the team never knows what comes next</div></div>
+  </div>
+  <!-- response checklist -->
+  <div style="position:absolute;left:120px;top:775px;width:1680px;display:flex;align-items:center;gap:26px">
+    <div class="lbl" style="color:var(--greenT);width:230px">Within 10 minutes</div>
+    <div style="flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+      <div style="display:flex;align-items:center;gap:16px;background:var(--tG);border-radius:18px;padding:20px 24px;font-size:20px"><span class="disc" style="width:40px;height:40px;font-size:19px;background:var(--green)">1</span>Reallocate the marketing budget</div>
+      <div style="display:flex;align-items:center;gap:16px;background:var(--tG);border-radius:18px;padding:20px 24px;font-size:20px"><span class="disc" style="width:40px;height:40px;font-size:19px;background:var(--green)">2</span>Adjust commercial and scientific messages</div>
+      <div style="display:flex;align-items:center;gap:16px;background:var(--tG);border-radius:18px;padding:20px 24px;font-size:20px"><span class="disc" style="width:40px;height:40px;font-size:19px;background:var(--green)">3</span>Issue new directives to the field</div>
+    </div>
+  </div>
+  <div class="footer"><span>Deliverable: <b style="color:var(--text);font-weight:600">Market Disruption SOP</b>, a standard rapid-response protocol for regulatory or competitive shocks</span><div style="display:flex;gap:40px;align-items:center"><div class="prog"><i></i><i></i><i></i><i class="on"></i><i></i><i></i></div><span class="pg">06 / 11</span></div></div>
+</section>
+
+<!-- ============ 7 · RED TEAMING ============ -->
+<section class="slide">
+  <div class="kicker" style="color:var(--greenT)">Strategy 5 · Simulation</div>
+  <div class="title">Red teaming: attack your own product first</div>
+  <div style="position:absolute;left:120px;top:262px;width:1680px;height:470px;display:grid;grid-template-columns:1fr 120px 1fr">
+    <div class="card" style="background:var(--tC);padding:38px 42px">
+      <div class="chip" style="color:var(--coralT)"><b style="background:var(--coral);width:14px;height:14px"></b>Red team · the competitor</div>
+      <div class="serif" style="font-size:34px;font-weight:560;margin-top:18px;line-height:1.2">Virtual budget, full tactical freedom</div>
+      <div style="margin-top:26px;display:flex;flex-direction:column;gap:14px;font-size:21px">
+        <div style="display:flex;gap:16px;align-items:center"><span style="width:28px;height:4px;background:var(--coral);border-radius:2px"></span>Slash prices</div>
+        <div style="display:flex;gap:16px;align-items:center"><span style="width:28px;height:4px;background:var(--coral);border-radius:2px"></span>Amplify concerns about side effects</div>
+        <div style="display:flex;gap:16px;align-items:center"><span style="width:28px;height:4px;background:var(--coral);border-radius:2px"></span>Offer aggressive incentives to pharmacies</div>
+      </div>
+      <div style="margin-top:26px;font-size:19px;color:var(--coralT)">Goal: a complete plan to pull physicians away from the product.</div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:center"><div class="serif" style="width:84px;height:84px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;font-style:italic">vs</div></div>
+    <div class="card" style="background:var(--tB);padding:38px 42px">
+      <div class="chip" style="color:var(--blueT)"><b style="background:var(--blue);width:14px;height:14px"></b>Blue team · the company</div>
+      <div class="serif" style="font-size:34px;font-weight:560;margin-top:18px;line-height:1.2">Offensive defence</div>
+      <div style="margin-top:26px;font-size:21px;line-height:1.55">Not passive excuses or basic scientific justifications. Build <b style="font-weight:600;color:var(--blueT)">counter-framing tactics</b> that actively reshape how the physician or pharmacist sees the market.</div>
+    </div>
+  </div>
+  <!-- battlecards -->
+  <div style="position:absolute;left:120px;top:770px;width:1680px;display:flex;align-items:center;gap:40px">
+    <div style="position:relative;width:420px;height:150px">
+      <div class="card" style="position:absolute;left:36px;top:0;width:340px;height:120px;background:var(--soft)"></div>
+      <div class="card" style="position:absolute;left:18px;top:14px;width:340px;height:120px;background:#DCE3EE"></div>
+      <div class="card" style="position:absolute;left:0;top:28px;width:340px;height:120px;background:#fff;border:2px solid var(--line);padding:20px 24px"><div class="lbl" style="color:var(--blueT);font-size:13px">Product battlecard</div><div class="serif" style="font-size:22px;margin-top:8px;font-weight:540">Attack · counter-frame · proof</div></div>
+    </div>
+    <div style="flex:1">
+      <div class="serif" style="font-size:30px;font-weight:560">One battlecard for each product line</div>
+      <div style="display:flex;gap:14px;margin-top:16px;align-items:center"><span style="font-size:19px;color:var(--muted);margin-right:8px">Updated quarterly</span>
+        <span class="mono" style="padding:6px 16px;border-radius:999px;background:var(--ink);color:#fff;font-size:16px">Q1</span><span class="mono" style="padding:6px 16px;border-radius:999px;background:var(--card);font-size:16px">Q2</span><span class="mono" style="padding:6px 16px;border-radius:999px;background:var(--card);font-size:16px">Q3</span><span class="mono" style="padding:6px 16px;border-radius:999px;background:var(--card);font-size:16px">Q4</span></div>
+    </div>
+  </div>
+  <div class="footer"><span>Deliverable: <b style="color:var(--text);font-weight:600">Product Battlecards</b>, refreshed every quarter to reflect competitor shifts</span><div style="display:flex;gap:40px;align-items:center"><div class="prog"><i></i><i></i><i></i><i></i><i class="on"></i><i></i></div><span class="pg">07 / 11</span></div></div>
+</section>
+
+<!-- ============ 8 · AI PERSONA ============ -->
+<section class="slide">
+  <div class="kicker" style="color:var(--greenT)">Strategy 6 · Simulation</div>
+  <div class="title">AI Persona Simulator: rehearse before the clinic door</div>
+  <!-- pipeline -->
+  <div style="position:absolute;left:120px;top:262px;width:1020px;display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;gap:24px;align-items:center;background:#fff;border-radius:24px;padding:26px 30px"><span class="disc" style="background:var(--greenT)">1</span><div><div class="serif" style="font-size:28px;font-weight:560">Load a custom knowledge base</div><div style="font-size:19px;color:var(--muted);margin-top:6px">Scientific literature, clinical papers and product brochures, in a custom GPT or Gemini agent</div></div></div>
+    <div style="display:flex;gap:24px;align-items:center;background:#fff;border-radius:24px;padding:26px 30px"><span class="disc" style="background:var(--greenT)">2</span><div><div class="serif" style="font-size:28px;font-weight:560">Assign a persona with a Mega-Prompt</div><div style="font-size:19px;color:var(--muted);margin-top:6px">A skeptical university professor, or a physician running a high-volume, time-pressured clinic</div></div></div>
+    <div style="display:flex;gap:24px;align-items:center;background:#fff;border-radius:24px;padding:26px 30px"><span class="disc" style="background:var(--greenT)">3</span><div><div class="serif" style="font-size:28px;font-weight:560">Rehearse live, by voice or text</div><div style="font-size:19px;color:var(--muted);margin-top:6px">The AI stays in character, raises objections and questions the scientific claims</div></div></div>
+    <div style="display:flex;gap:24px;align-items:center;background:var(--tG);border-radius:24px;padding:26px 30px"><span class="disc" style="background:var(--green)">4</span><div><div class="serif" style="font-size:28px;font-weight:560">Get scored on five dimensions</div><div style="font-size:19px;color:var(--muted);margin-top:6px">A 1–10 score with brief, actionable feedback for each dimension</div></div></div>
+  </div>
+  <!-- radar -->
+  <div class="card" style="position:absolute;left:1190px;top:262px;width:610px;height:648px;padding:30px">
+    <div class="lbl" style="color:var(--greenT)">Pitch scorecard</div>
+    <svg width="550" height="560" viewBox="-310 -290 620 580" style="margin-top:4px">
+      <g fill="none" stroke="#D6D1C7" stroke-width="2">
+        <polygon points="0,-180 171.2,-55.6 105.8,145.6 -105.8,145.6 -171.2,-55.6"/>
+        <polygon points="0,-120 114.1,-37.1 70.5,97.1 -70.5,97.1 -114.1,-37.1"/>
+        <polygon points="0,-60 57.1,-18.5 35.3,48.5 -35.3,48.5 -57.1,-18.5"/>
+        <line x1="0" y1="0" x2="0" y2="-180"/><line x1="0" y1="0" x2="171.2" y2="-55.6"/><line x1="0" y1="0" x2="105.8" y2="145.6"/><line x1="0" y1="0" x2="-105.8" y2="145.6"/><line x1="0" y1="0" x2="-171.2" y2="-55.6"/>
+      </g>
+      <!-- illustrative scores 8,6,7,5,9 of 10 -->
+      <polygon points="0,-144 102.7,-33.4 74.1,101.9 -52.9,72.8 -154.1,-50.1" fill="#1C8759" fill-opacity=".22" stroke="#1C8759" stroke-width="4" stroke-linejoin="round"/>
+      <g fill="#1C8759"><circle cx="0" cy="-144" r="7"/><circle cx="102.7" cy="-33.4" r="7"/><circle cx="74.1" cy="101.9" r="7"/><circle cx="-52.9" cy="72.8" r="7"/><circle cx="-154.1" cy="-50.1" r="7"/></g>
+      <g font-family="DM Sans" font-size="18" font-weight="600" fill="#161E2B">
+        <text x="0" y="-206" text-anchor="middle">Scientific accuracy</text>
+        <text x="186" y="-64" text-anchor="start">Conciseness</text>
+        <text x="120" y="182" text-anchor="middle">Product-to-benefit</text>
+        <text x="-120" y="182" text-anchor="middle">Time management</text>
+        <text x="-186" y="-64" text-anchor="end">Tone of</text>
+        <text x="-186" y="-42" text-anchor="end">influence</text>
+      </g>
+      <text x="0" y="250" font-family="DM Sans" font-size="15" fill="#5C6678" text-anchor="middle">Illustrative scores · scale 1–10</text>
+    </svg>
+  </div>
+  <div class="footer"><span>Deliverable: <b style="color:var(--text);font-weight:600">Prompt Engineering Guide for Pharma</b> and an in-house training bot</span><div style="display:flex;gap:40px;align-items:center"><div class="prog"><i></i><i></i><i></i><i></i><i></i><i class="on"></i></div><span class="pg">08 / 11</span></div></div>
+</section>
+
+<!-- ============ 9 · MEGA-PROMPT ============ -->
+<section class="slide">
+  <div class="kicker" style="color:var(--greenT)">Strategy 6 · Toolkit</div>
+  <div class="title">Sample Mega-Prompt: the skeptical university professor</div>
+  <div style="position:absolute;left:120px;top:250px;width:1180px;height:690px;border-radius:26px;background:var(--ink);padding:38px 40px 30px 30px;color:#E6EBF3" class="mono">
+    <div style="display:flex;flex-direction:column;gap:22px;font-size:16.5px;line-height:1.55"><div style="border-left:6px solid var(--amber);padding-left:22px;white-space:pre-wrap"><span style="color:#F2C46A">Role &amp; Persona Assignment:</span>
+You are playing the role of Dr. [Doctor's Name], a Skeptical University Professor
+and Senior Consultant in Cardiology running a high-volume, time-constrained clinic.</div><div style="border-left:6px solid var(--blue);padding-left:22px;white-space:pre-wrap"><span style="color:#8FB4F2">Persona Traits &amp; Behavioral Rules:</span>
+- You are highly analytical, deeply skeptical of standard sales pitches, and
+  protective of your time.
+- You value rigorous clinical trial endpoints, real-world safety data, and
+  mechanism-of-action details over marketing claims.
+- If I attempt a traditional, pushy sales pitch, react with skepticism or
+  disinterest. Only engage if I use tactical empathy, address potential
+  objections upfront, or ask calibrated open questions.</div><div style="border-left:6px solid var(--green);padding-left:22px;white-space:pre-wrap"><span style="color:#7FD1A8">Simulation Workflow:</span>
+1. Begin in character with a brief, time-pressured greeting as I enter your office.
+2. Respond dynamically based on the clinical brochures and papers in your knowledge base.
+3. Raise realistic objections about side-effect profiles, pricing, or head-to-head
+   trial limitations.
+4. Remain strictly in character until I type the command: <span style="color:#fff;background:rgba(217,97,77,.6);padding:1px 7px;border-radius:4px">EVALUATE_PITCH</span></div><div style="border-left:6px solid var(--coral);padding-left:22px;white-space:pre-wrap"><span style="color:#F0A090">Post-Simulation Evaluation Protocol:</span>
+Once triggered by EVALUATE_PITCH, step out of character and score my pitch 1–10 on:
+1. Scientific Accuracy  2. Conciseness  3. Linking Product to Benefits
+4. Time Management  5. Tone of Influence, with brief actionable feedback for each.</div></div></div>
+  </div>
+  <!-- legend / how to use -->
+  <div style="position:absolute;left:1350px;top:250px;width:450px">
+    <div class="lbl" style="color:var(--muted)">Anatomy of the prompt</div>
+    <div style="margin-top:18px;display:flex;flex-direction:column;gap:12px;font-size:20px">
+      <div style="display:flex;gap:14px;align-items:center"><span style="width:6px;height:28px;background:var(--amber);border-radius:3px"></span>Who the AI plays</div>
+      <div style="display:flex;gap:14px;align-items:center"><span style="width:6px;height:28px;background:var(--blue);border-radius:3px"></span>How the persona behaves</div>
+      <div style="display:flex;gap:14px;align-items:center"><span style="width:6px;height:28px;background:var(--green);border-radius:3px"></span>How the rehearsal runs</div>
+      <div style="display:flex;gap:14px;align-items:center"><span style="width:6px;height:28px;background:var(--coral);border-radius:3px"></span>How the pitch is scored</div>
+    </div>
+    <div class="lbl" style="color:var(--muted);margin-top:44px">Before you start</div>
+    <div style="margin-top:18px;display:flex;flex-direction:column;gap:14px;font-size:19px;line-height:1.45">
+      <div style="display:flex;gap:14px"><span class="disc" style="width:34px;height:34px;font-size:16px;background:var(--greenT)">1</span>Load brochures and clinical studies into the knowledge base</div>
+      <div style="display:flex;gap:14px"><span class="disc" style="width:34px;height:34px;font-size:16px;background:var(--greenT)">2</span>Replace [Doctor’s Name]</div>
+      <div style="display:flex;gap:14px"><span class="disc" style="width:34px;height:34px;font-size:16px;background:var(--greenT)">3</span>Rehearse right before the visit, then type EVALUATE_PITCH</div>
+    </div>
+  </div>
+  <div class="footer"><span>Prompt variations are collected into the institutional Prompt Engineering Guide</span><div style="display:flex;gap:40px;align-items:center"><div class="prog"><i></i><i></i><i></i><i></i><i></i><i class="on"></i></div><span class="pg">09 / 11</span></div></div>
+</section>
+
+<!-- ============ 10 · SUMMARY ============ -->
+<section class="slide">
+  <div class="kicker">Summary</div>
+  <div class="title">Six strategies, six institutional deliverables</div>
+  <div class="brk" style="left:120px;top:252px;width:1680px;height:680px;--bw:40px;--bs:5px"></div>
+  <div style="position:absolute;left:186px;top:276px;width:1548px;display:flex;flex-direction:column;gap:12px">
+    <div style="display:grid;grid-template-columns:70px 520px 1fr;align-items:center;gap:26px;height:94px;background:#fff;border-radius:20px;padding:0 30px;border-left:8px solid var(--amber)"><span class="disc" style="width:48px;height:48px;font-size:22px;background:var(--amberT)">1</span><span class="serif" style="font-size:27px;font-weight:560">FBI Negotiation</span><span style="font-size:21px">Negotiation Playbook: top 10 objections with calibrated questions</span></div>
+    <div style="display:grid;grid-template-columns:70px 520px 1fr;align-items:center;gap:26px;height:94px;background:#fff;border-radius:20px;padding:0 30px;border-left:8px solid var(--blue)"><span class="disc" style="width:48px;height:48px;font-size:22px;background:var(--blueT)">2</span><span class="serif" style="font-size:27px;font-weight:560">Pharmonomics</span><span style="font-size:21px">Portable financial calculator for GMROI and free cash flow</span></div>
+    <div style="display:grid;grid-template-columns:70px 520px 1fr;align-items:center;gap:26px;height:94px;background:#fff;border-radius:20px;padding:0 30px;border-left:8px solid var(--amber)"><span class="disc" style="width:48px;height:48px;font-size:22px;background:var(--amberT)">3</span><span class="serif" style="font-size:27px;font-weight:560">Behavioural Nudge Matrix</span><span style="font-size:21px">Bias-to-technique matrix for clinics and pharmacies</span></div>
+    <div style="display:grid;grid-template-columns:70px 520px 1fr;align-items:center;gap:26px;height:94px;background:#fff;border-radius:20px;padding:0 30px;border-left:8px solid var(--green)"><span class="disc" style="width:48px;height:48px;font-size:22px;background:var(--greenT)">4</span><span class="serif" style="font-size:27px;font-weight:560">Business War Games</span><span style="font-size:21px">Market Disruption SOP for rapid response</span></div>
+    <div style="display:grid;grid-template-columns:70px 520px 1fr;align-items:center;gap:26px;height:94px;background:#fff;border-radius:20px;padding:0 30px;border-left:8px solid var(--green)"><span class="disc" style="width:48px;height:48px;font-size:22px;background:var(--greenT)">5</span><span class="serif" style="font-size:27px;font-weight:560">Red Teaming</span><span style="font-size:21px">Product Battlecards, updated quarterly</span></div>
+    <div style="display:grid;grid-template-columns:70px 520px 1fr;align-items:center;gap:26px;height:94px;background:#fff;border-radius:20px;padding:0 30px;border-left:8px solid var(--green)"><span class="disc" style="width:48px;height:48px;font-size:22px;background:var(--greenT)">6</span><span class="serif" style="font-size:27px;font-weight:560">AI Persona Simulator</span><span style="font-size:21px">Prompt Engineering Guide for Pharma and an in-house training bot</span></div>
+  </div>
+  <div class="footer"><span>Modern Pharmaceutical Sales Strategies</span><div style="display:flex;gap:40px;align-items:center"><div class="prog"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div><span class="pg">10 / 11</span></div></div>
+</section>
+
+<!-- ============ 11 · CLOSING ============ -->
+<section class="slide dark">
+  <div class="brk" style="left:120px;top:300px;width:1680px;height:480px;--bc:var(--amber);--bs:9px;--bw:64px"></div>
+  <div style="position:absolute;left:0;right:0;top:400px;text-align:center">
+    <div class="serif" style="font-size:120px;font-weight:560;letter-spacing:-.025em;line-height:1">From pitching to proving.</div>
+    <div style="margin-top:44px;font-size:28px;font-weight:300;color:var(--soft)">Empathy that disarms &nbsp;·&nbsp; numbers that convince &nbsp;·&nbsp; rehearsal that prepares</div>
+  </div>
+  <div class="footer"><span>Modern Pharmaceutical Sales Strategies</span><span class="pg">11 / 11</span></div>
+</section>
+
+</body>
+</html>
