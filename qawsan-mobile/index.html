@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <title>مكتب القوسان العلمي</title>
+  <meta name="description" content="مكتب القوسان العلمي — شريكك الموثوق في الحلول الطبية والعلمية. توزيع الأدوية والمستلزمات الطبية المعتمدة في جميع محافظات العراق.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@600;700&family=Noto+Sans+Arabic:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<div class="app" id="app">
+
+  <!-- ───────── Persistent chrome (header + progress) ───────── -->
+  <div class="stage chrome" aria-hidden="false">
+    <header class="header">
+      <a class="logo-plate" href="#home" data-go="0" aria-label="مكتب القوسان العلمي — الرئيسية">
+        <span class="logo">
+          <span class="logo__gold"><img src="assets/logos/arcs-gold.svg" alt=""></span>
+          <span class="logo__orange"><img src="assets/logos/arcs-orange.svg" alt=""></span>
+          <span class="logo__word"><img src="assets/logos/wordmark-navy.svg" alt=""></span>
+        </span>
+      </a>
+      <button class="icon-btn" id="menuBtn" type="button" aria-label="القائمة" aria-expanded="false" aria-controls="menu">
+        <img src="assets/icons/menu.svg" alt="" width="24" height="24">
+      </button>
+    </header>
+
+    <nav class="pager" aria-label="التنقل بين الصفحات">
+      <ol class="dots" id="dots"></ol>
+      <button class="next" id="nextBtn" type="button" aria-label="الصفحة التالية"><span class="next__chev"></span></button>
+    </nav>
+
+    <div class="menu" id="menu" hidden>
+      <ol class="menu__list" id="menuList"></ol>
+    </div>
+  </div>
+
+  <!-- ───────── Pages, side by side ───────── -->
+  <main class="track" id="track">
+
+    <!-- 1 · Home -->
+    <section class="slide" id="home" data-title="الرئيسية">
+      <div class="stage"><div class="page">
+        <div class="frame frame--tl rv" style="--i:0">
+          <span class="chip chip--a">18 محافظة</span>
+          <span class="chip chip--b">2–8°م</span>
+        </div>
+        <p class="overline rv" style="--i:1">مكتب القوسان العلمي</p>
+        <h1 class="h1 rv" style="--i:2">شريكك الموثوق في الحلول الطبية والعلمية</h1>
+        <img class="arc arc--hero rv" style="--i:3" src="assets/arc-hero.svg" alt="" width="90" height="14">
+        <p class="body rv" style="--i:4">نوزّع الأدوية والمستلزمات الطبية المعتمدة في جميع محافظات العراق الثماني عشرة، من خمسة مراكز رئيسية.</p>
+        <div class="actions rv" style="--i:5">
+          <button class="btn btn--cta" type="button" data-go="7">كن شريكاً</button>
+          <button class="btn btn--outline" type="button" data-go="1">تعرّف علينا</button>
+        </div>
+      </div></div>
+    </section>
+
+    <!-- 2 · Who we are -->
+    <section class="slide" id="who" data-title="من نحن">
+      <div class="stage"><div class="page">
+        <div class="frame frame--tr rv" style="--i:0"></div>
+        <p class="overline rv" style="--i:1">من نحن</p>
+        <h2 class="h1 rv" style="--i:2">شريك علمي تعتمد عليه</h2>
+        <img class="arc rv" style="--i:3" src="assets/arc.svg" alt="" width="83" height="13">
+        <p class="body rv" style="--i:4">مكتب القوسان العلمي شركة عراقية متخصصة في توزيع الأدوية والمستلزمات الطبية المعتمدة، نوصلها إلى الصيدليات والمستشفيات بأمان وفي موعدها.</p>
+        <ul class="stats rv" style="--i:5">
+          <li class="card stat"><b class="stat__num">18</b><span class="stat__txt">محافظة نغطيها في العراق</span></li>
+          <li class="card stat"><b class="stat__num">5</b><span class="stat__txt">مراكز توزيع رئيسية</span></li>
+          <li class="card stat"><b class="stat__num" dir="ltr">2–8°C</b><span class="stat__txt">سلسلة تبريد متصلة</span></li>
+        </ul>
+      </div></div>
+    </section>
+
+    <!-- 3 · Our network -->
+    <section class="slide slide--dark" id="network" data-title="شبكتنا">
+      <div class="stage"><div class="page">
+        <p class="overline rv" style="--i:0">شبكتنا</p>
+        <h2 class="h1 rv" style="--i:1">نصل إلى كل محافظة</h2>
+        <img class="arc rv" style="--i:2" src="assets/arc.svg" alt="" width="83" height="13">
+        <p class="body rv" style="--i:3">خمسة مراكز رئيسية في بغداد والبصرة وأربيل والموصل والنجف، وأسطول مبرّد يعمل بدرجة 2–8°م.</p>
+        <div class="card map rv" style="--i:4">
+          <svg viewBox="0 0 318 300" role="img" aria-label="مخطط مراكز التوزيع الخمسة: بغداد، البصرة، أربيل، الموصل، النجف">
+            <defs>
+              <pattern id="grid" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="rgba(174,191,217,.16)"/></pattern>
+            </defs>
+            <rect width="318" height="300" fill="url(#grid)"/>
+            <g class="map__lines" stroke="#f7931e" stroke-width="1.5" stroke-dasharray="4 6" fill="none" opacity=".75">
+              <path d="M170 150 L96 66"/>
+              <path d="M170 150 L226 82"/>
+              <path d="M170 150 L146 214"/>
+              <path d="M170 150 L246 260"/>
+            </g>
+            <g class="map__node" style="--d:0s"><circle class="pulse" cx="96" cy="66" r="6"/><circle cx="96" cy="66" r="6"/><text x="96" y="46">الموصل</text></g>
+            <g class="map__node" style="--d:.5s"><circle class="pulse" cx="226" cy="82" r="6"/><circle cx="226" cy="82" r="6"/><text x="226" y="62">أربيل</text></g>
+            <g class="map__node map__node--hq" style="--d:1s"><circle class="pulse" cx="170" cy="150" r="9"/><circle cx="170" cy="150" r="9"/><text x="170" y="128">بغداد</text></g>
+            <g class="map__node" style="--d:1.5s"><circle class="pulse" cx="146" cy="214" r="6"/><circle cx="146" cy="214" r="6"/><text x="146" y="238">النجف</text></g>
+            <g class="map__node" style="--d:2s"><circle class="pulse" cx="246" cy="260" r="6"/><circle cx="246" cy="260" r="6"/><text x="246" y="284">البصرة</text></g>
+          </svg>
+        </div>
+      </div></div>
+    </section>
+
+    <!-- 4 · Why Iraq -->
+    <section class="slide" id="iraq" data-title="لماذا العراق">
+      <div class="stage"><div class="page">
+        <div class="frame frame--tl rv" style="--i:0"></div>
+        <p class="overline rv" style="--i:0">لماذا العراق</p>
+        <h2 class="h1 rv" style="--i:1">سوق يحتاج شريكاً محلياً</h2>
+        <img class="arc rv" style="--i:2" src="assets/arc.svg" alt="" width="83" height="13">
+        <p class="body rv" style="--i:3">الأدوية والمستلزمات الطبية المعتمدة مطلوبة في كل محافظة، والوصول إليها يحتاج شبكة توزيع وخبرة بإجراءات السوق.</p>
+        <ol class="reasons">
+          <li class="card reason rv" style="--i:4"><b class="reason__n">01</b><div><h3 class="h3">طلب متنامٍ على الرعاية الصحية</h3><p class="small">صيدليات ومستشفيات في جميع المحافظات تنتظر منتجات موثوقة.</p></div></li>
+          <li class="card reason rv" style="--i:5"><b class="reason__n">02</b><div><h3 class="h3">شبكة تغطي البلاد</h3><p class="small">خمسة مراكز رئيسية تختصر المسافة بين المخزن والصيدلية.</p></div></li>
+          <li class="card reason rv" style="--i:6"><b class="reason__n">03</b><div><h3 class="h3">إجراءات نتولاها عنكم</h3><p class="small">متابعة التسجيل والتسعير لدى وزارة الصحة بخبرة محلية.</p></div></li>
+        </ol>
+      </div></div>
+    </section>
+
+    <!-- 5 · Our services -->
+    <section class="slide" id="services" data-title="خدماتنا">
+      <div class="stage"><div class="page">
+        <p class="overline rv" style="--i:0">خدماتنا</p>
+        <h2 class="h1 rv" style="--i:1">ماذا نقدّم لشركائنا</h2>
+        <img class="arc rv" style="--i:2" src="assets/arc.svg" alt="" width="83" height="13">
+        <ul class="features">
+          <li class="card feature rv" style="--i:3">
+            <div class="feature__text"><h3 class="h3">توزيع الأدوية</h3><p class="small">من المخزن إلى الصيدلية في كل محافظة.</p></div>
+            <span class="circle"><img src="assets/icons/truck.svg" alt="" width="26" height="26"></span>
+          </li>
+          <li class="card feature rv" style="--i:4">
+            <div class="feature__text"><h3 class="h3">سلسلة التبريد</h3><p class="small">تخزين ونقل بدرجة 2–8°م مع تسجيل مستمر.</p></div>
+            <span class="circle"><img src="assets/icons/thermometer.svg" alt="" width="26" height="26"></span>
+          </li>
+          <li class="card feature rv" style="--i:5">
+            <div class="feature__text"><h3 class="h3">التسجيل والتسعير</h3><p class="small">متابعة ملفات التسجيل لدى وزارة الصحة.</p></div>
+            <span class="circle"><img src="assets/icons/shield-check.svg" alt="" width="26" height="26"></span>
+          </li>
+        </ul>
+        <button class="btn btn--outline rv" style="--i:6" type="button" data-go="7">ابدأ شراكتك معنا</button>
+      </div></div>
+    </section>
+
+    <!-- 6 · Our capabilities — warehouses & cooling -->
+    <section class="slide slide--tile" id="capabilities" data-title="إمكانياتنا">
+      <div class="stage"><div class="page">
+        <p class="overline rv" style="--i:0">إمكانياتنا</p>
+        <h2 class="h1 rv" style="--i:1">مخازن وتبريد بمعايير دقيقة</h2>
+        <img class="arc rv" style="--i:2" src="assets/arc.svg" alt="" width="83" height="13">
+        <p class="body rv" style="--i:3">مخازن مبرّدة وأسطول نقل يحافظان على درجة الحرارة المطلوبة من لحظة الاستلام حتى التسليم.</p>
+        <div class="gauge rv" style="--i:4">
+          <span class="circle circle--lg"><img src="assets/icons/thermometer.svg" alt="" width="34" height="34"></span>
+          <div class="gauge__val" dir="ltr">2–8<small>°C</small></div>
+          <p class="small">نطاق التبريد المعتمد للأدوية الحساسة</p>
+        </div>
+        <ul class="minis rv" style="--i:5">
+          <li class="card mini"><b>مخازن</b><span>مبرّدة ومجهّزة</span></li>
+          <li class="card mini"><b>أسطول</b><span>نقل مبرّد</span></li>
+          <li class="card mini"><b>تسجيل</b><span>مستمر للحرارة</span></li>
+        </ul>
+      </div></div>
+    </section>
+
+    <!-- 7 · Warehouse benefits -->
+    <section class="slide" id="benefits" data-title="فوائد المخازن">
+      <div class="stage"><div class="page">
+        <p class="overline rv" style="--i:0">فوائد المخازن</p>
+        <h2 class="h1 rv" style="--i:1">ماذا تكسب شركتك</h2>
+        <img class="arc rv" style="--i:2" src="assets/arc.svg" alt="" width="83" height="13">
+        <p class="body rv" style="--i:3">تخزين آمن يحفظ جودة منتجاتك ويصل بها إلى السوق أسرع.</p>
+        <ul class="benefits">
+          <li class="card benefit rv" style="--i:4"><b class="benefit__n">01</b><h3 class="h3">سلامة المنتج</h3><p class="small">حفظ الفعالية ضمن درجة الحرارة الصحيحة.</p></li>
+          <li class="card benefit rv" style="--i:5"><b class="benefit__n">02</b><h3 class="h3">أقل هدر</h3><p class="small">تقليل التلف وفقدان الدفعات أثناء التخزين.</p></li>
+          <li class="card benefit rv" style="--i:6"><b class="benefit__n">03</b><h3 class="h3">توثيق مستمر</h3><p class="small">تسجيل الحرارة وحركة المخزون بشفافية.</p></li>
+          <li class="card benefit rv" style="--i:7"><b class="benefit__n">04</b><h3 class="h3">وصول أسرع</h3><p class="small">توزيع من خمسة مراكز إلى كل المحافظات.</p></li>
+        </ul>
+      </div></div>
+    </section>
+
+    <!-- 8 · Partners + CTA + info + short footer -->
+    <section class="slide" id="contact" data-title="الشركاء والتواصل">
+      <div class="stage"><div class="page page--end">
+        <div class="partners rv" style="--i:0">
+          <p class="overline">شركاؤنا</p>
+          <div class="marquee" aria-label="شعارات الشركاء">
+            <ul class="marquee__track">
+              <li class="partner"><img src="assets/logos/sibionics.png" alt="Sibionics"></li>
+              <li class="partner"><img src="assets/logos/unimed.png" alt="Unimed"></li>
+              <li class="partner"><img src="assets/logos/corona.png" alt="Corona"></li>
+              <li class="partner"><img src="assets/logos/dawah.png" alt="Dawah"></li>
+              <li class="partner"><img src="assets/logos/thera.png" alt="Thera"></li>
+              <li class="partner"><img src="assets/logos/microsynergy.png" alt="Microsynergy"></li>
+              <li class="partner"><img src="assets/logos/dorcas.png" alt="Dorcas"></li>
+              <li class="partner"><img src="assets/logos/sdi.png" alt="SDI"></li>
+              <li class="partner" aria-hidden="true"><img src="assets/logos/sibionics.png" alt=""></li>
+              <li class="partner" aria-hidden="true"><img src="assets/logos/unimed.png" alt=""></li>
+              <li class="partner" aria-hidden="true"><img src="assets/logos/corona.png" alt=""></li>
+              <li class="partner" aria-hidden="true"><img src="assets/logos/dawah.png" alt=""></li>
+              <li class="partner" aria-hidden="true"><img src="assets/logos/thera.png" alt=""></li>
+              <li class="partner" aria-hidden="true"><img src="assets/logos/microsynergy.png" alt=""></li>
+              <li class="partner" aria-hidden="true"><img src="assets/logos/dorcas.png" alt=""></li>
+              <li class="partner" aria-hidden="true"><img src="assets/logos/sdi.png" alt=""></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cta">
+          <p class="overline rv" style="--i:1">تواصل معنا</p>
+          <h2 class="h1 rv" style="--i:2">لنعمل معاً</h2>
+          <img class="arc rv" style="--i:3" src="assets/arc.svg" alt="" width="83" height="13">
+          <p class="body rv" style="--i:4">فريقنا جاهز للرد على استفسارات الشركات والمستوردين.</p>
+          <a class="btn btn--cta rv" style="--i:4" href="tel:+9647855599999">تواصل معنا</a>
+        </div>
+
+        <ul class="info rv" style="--i:5">
+          <li class="card info__row"><span class="info__label">العنوان</span><span class="info__val">حي القادسية، بغداد – العراق</span></li>
+          <li class="card info__row"><span class="info__label">الهاتف</span><a class="info__val" href="tel:+9647855599999" dir="ltr">0785 559 9999</a></li>
+        </ul>
+
+        <footer class="footer rv" style="--i:6">
+          <ul class="footer__links">
+            <li><a href="#who" data-go="1">من نحن</a></li>
+            <li><a href="#services" data-go="4">خدماتنا</a></li>
+            <li><a href="#network" data-go="2">شبكتنا</a></li>
+            <li><a href="#contact" data-go="7">الشركاء</a></li>
+            <li><a href="#contact" data-go="7">تواصل</a></li>
+          </ul>
+          <p class="footer__copy">© 2026 مكتب القوسان العلمي · بغداد – العراق</p>
+        </footer>
+      </div></div>
+    </section>
+
+  </main>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
